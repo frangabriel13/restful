@@ -98,7 +98,7 @@
 }
 
 @media (max-width: 768px) {
-  .navbar {
+  /* .navbar {
     position: absolute;
     display: none;
     top: 5rem;
@@ -108,7 +108,7 @@
     width: 100%;
     padding-top: 0.2rem;
     padding-bottom: 0.2rem;
-  } 
+  }  */
 
   .navToggle {
     display: flex;
@@ -126,9 +126,30 @@
   }
   /* puede no ser necesario */
 
-  .open {
+  /* .open {
     display: flex;
     flex-direction: column;
     align-items: center;
+  } */
+
+  .navbar {
+    position: absolute;
+    top: 10rem;
+    right: 0;
+    flex-direction: column;
+    background: var(--second-bg-color);
+    width: 100%;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+    transform: translateX(100%);
+    transition: transform 0.5s ease;
+    opacity: 0;
+    visibility: hidden;
+  }
+  
+  .open {
+    transform: translateX(0);
+    opacity: 1;
+    visibility: visible;
   }
 }
