@@ -2,7 +2,7 @@ require('dotenv').config();
 const passport = require('passport');
 const LocalStrategy = require('passport-local').Strategy;
 const { Strategy: JwtStrategy, ExtractJwt } = require('passport-jwt');
-const { User } = require('../models/User');
+const { User } = require('../db');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { JWT_SECRET } = process.env;
@@ -13,7 +13,8 @@ passport.use(
     passwordField: 'password',
   }, async (email, password, done) => {
     try {
-      const user = await User.findOne({ where: { email } });
+      const user = await User.findOne({ where: { email }});
+      console.log('User:', user);
       if(!user) {
         return done(null, false, { message: 'Usuario no encontrado' });
       }
@@ -51,5 +52,6 @@ passport.use(
     }
   })
 );
+
 
 module.exports = passport;
