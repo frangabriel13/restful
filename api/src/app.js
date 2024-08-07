@@ -4,8 +4,10 @@ const bodyParser = require('body-parser');
 const morgan = require('morgan');
 const routes = require('./routes/index.js');
 const cors = require('cors');
+const passport = require('passport');
 
 require('./db.js');
+require('./utils/localAuth.js');
 
 const app = express();
 
@@ -15,6 +17,9 @@ app.use(bodyParser.urlencoded({ extended: true, limit: '50mb' }));
 app.use(bodyParser.json({ limit: '50mb' }));
 app.use(cookieParser());
 app.use(morgan('dev'));
+
+app.use(passport.initialize());
+// app.use(passport.session());
 
 const corsOptions = {
   origin: 'http://localhost:3000',
