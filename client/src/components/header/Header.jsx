@@ -1,6 +1,7 @@
 import React from "react";
 import s from "./Header.module.css"
 import { useState, useEffect } from "react";
+import { IoMdMenu } from "react-icons/io";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -24,12 +25,6 @@ function Header() {
   const scrollToSection = (sectionId) => {
     document.getElementById(sectionId);
   };
-  // const scrollToSection = (sectionId) => {
-  //   const section = document.getElementById(sectionId);
-  //   if (section) {
-  //     section.scrollIntoView({ behavior: "smooth" });
-  //   }
-  // };
   
   const toggleMenu = (sectionId) => {
     setMenuOpen(!menuOpen);
@@ -41,19 +36,25 @@ function Header() {
 
   return (
     <div className={`${s.container} ${isScrolled ? s.scrolled : ""}`}>
-        <a href="#home" className={s.logo}>Franco.</a>
+      <div>
+        <a href="#home" className={s.logo}>Eternal Restful</a>
+      </div>
+      <div className={s.divNav}>
         <nav className={`${s.navbar} ${menuOpen ? s.open : ''}`}>
-            <a href="#home" className={s.home} onClick={() => toggleMenu('home')}>Home</a>
-            <a href="#about" onClick={() => toggleMenu('about')}>About</a>
-            <a href="#skills" onClick={() => toggleMenu('skills')}>Skills</a>
-            <a href="#projects" onClick={() => toggleMenu('projects')}>Projects</a>
-            <a href="#contact" onClick={() => toggleMenu('contact')}>Contact</a>
+            <a href="#home" className={s.home} onClick={() => toggleMenu('home')}>Quiénes somos</a>
+            <a href="#about" onClick={() => toggleMenu('about')}>Planes a futuro</a>
+            <a href="#skills" onClick={() => toggleMenu('skills')}>Necesidad inmediata</a>
+            <a href="#projects" onClick={() => toggleMenu('projects')}>Tipos de servicio</a>
         </nav>
+        <button className={s.btnQuote}>Pedir cotización</button>
+      </div>
         <div className={s.navToggle}>
-          <i className={`bx bx-menu ${s.icon}`} onClick={toggleMenu}></i>
+          <IoMdMenu className={s.btnMenu} onClick={toggleMenu} />
         </div>
     </div>
   );
 }
 
 export default Header;
+
+// cambiar a a Link para que no recargue la pagina
