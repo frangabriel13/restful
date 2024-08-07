@@ -45,8 +45,8 @@ function Header() {
             <a href="#about" onClick={() => toggleMenu('about')}>Planes a futuro</a>
             <a href="#skills" onClick={() => toggleMenu('skills')}>Necesidad inmediata</a>
             <a href="#projects" onClick={() => toggleMenu('projects')}>Tipos de servicio</a>
+            <button className={s.btnQuote}>Pedir cotización</button>
         </nav>
-        <button className={s.btnQuote}>Pedir cotización</button>
       </div>
         <div className={s.navToggle}>
           <IoMdMenu className={s.btnMenu} onClick={toggleMenu} />
