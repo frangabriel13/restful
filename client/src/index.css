@@ -15,8 +15,8 @@
   --second-bg-color: #08223c;
   --dark-color: #0F1422;
   /* --text-color: #ededed; */
-  --text-color: black;
-  --main-color: #24a0cc ;
+  --text-color: rgb(87, 87, 87);
+  --main-color: rgb(102, 102, 102);
   --second-color: #0085b8;
 }
 

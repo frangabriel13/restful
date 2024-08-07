@@ -1,0 +1,133 @@
+.container {
+  /* background-color: black; */
+  position: fixed;
+  /* position: sticky; */
+  top: 0;
+  left: 0;
+  width: 100%;
+  min-height: 10rem;
+  padding: 1rem 9%;
+  /* background: transparent; */
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  transition: .3s;
+  z-index: 10;
+}
+
+.scrolled {
+  background-color: var(--dark-color);
+}
+
+.logo {
+  font-size: 2.5rem;
+  color: var(--text-color);
+  font-weight: 600;
+}
+
+.divNav {
+  display: flex;
+  align-items: center;
+}
+
+.navbar {
+  display: flex;
+  gap: 3.5rem;
+  padding: 0rem 3.5rem;
+}
+
+.navbar a {
+  font-size: 1.7rem;
+  color: var(--text-color);
+  font-weight: 500;
+  /* margin-left: 3.5rem; */
+  /* gap: 3.5rem; */
+  transition: .3s;
+  position: relative;
+  opacity: 0.9;
+}
+
+.navbar a:hover {
+  opacity: 1;
+}
+
+.navbar a::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: .2rem;
+  /* background: #ffffff; */
+  background:rgb(87, 87, 87);
+  transition: all 0.45s;
+}
+
+.navbar a:hover::before {
+  width: 100%;
+}
+
+.navToggle {
+  /* font-size: 3.6rem;
+  color: var(--text-color);
+  cursor: pointer; */
+  display: none;
+}
+
+.icon {
+  color: var(--text-color);
+  font-size: 2.5rem;
+  cursor: pointer;
+}
+
+.btnQuote {
+  background: var(--text-color);
+  color: #ffffff;
+  padding: 0.7rem 1.5rem;
+  font-size: 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 500;
+  transition: .3s;
+  cursor: pointer;
+}
+
+.btnQuote:hover {
+  background: var(--main-color);
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    position: absolute;
+    display: none;
+    top: 5rem;
+    flex-direction: column;
+    background: var(--second-bg-color);
+    left: 0;
+    width: 100%;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+  } 
+
+  .navToggle {
+    display: flex;
+    /* display: block; */
+  }
+
+  .btnMenu {
+    color: #ffffff;
+    font-size: 2.5rem;
+    position: relative;
+  }
+
+  .navToggle i {
+    position: relative;
+  }
+  /* puede no ser necesario */
+
+  .open {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
