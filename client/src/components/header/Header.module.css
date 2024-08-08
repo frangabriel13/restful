@@ -116,7 +116,7 @@
   }
 
   .btnMenu {
-    color: --text-color;
+    color: var(--text-color);
     font-size: 2.5rem;
     position: relative;
   }
