@@ -1,8 +1,8 @@
-const { instance } = require("../../utils/axiosConfig");
+import { instance } from "../../utils/axiosConfig";
 
 export const sendEmail = (email, subject, text) => async (dispatch) => {
   try {
-    await instance.post("/send-email", { email, subject, text });
+    await instance.post("emails/send-email", { email, subject, text });
     dispatch({
       type: "SEND_EMAIL",
       payload: Response.data,
