@@ -7,7 +7,7 @@ const router = Router();
 
 router.use('/users', userRoute);
 router.use('/services', serviceRoute);
-router.use('/email', emailRoute);
+router.use('/emails', emailRoute);
 
 
 module.exports = router;
