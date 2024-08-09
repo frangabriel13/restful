@@ -28,10 +28,24 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const { email, name, lastName, type } = formData;
+    const { email, name, lastName, type, phone, age } = formData;
     const subject = `Consulta de ${name} ${lastName}`;
-    const text = `Tipo de consulta: ${type}`;
+    const text = `
+      Nombre: ${name} ${lastName}
+      Email: ${email}
+      Teléfono: ${phone}
+      Tipo de consulta: ${type}
+      Edad: ${age}
+    `;
     dispatch(sendEmail(email, subject, text));
+    setFormData({
+      name: "",
+      lastName: "",
+      age: "",
+      type: "",
+      phone: "",
+      email: "",
+    });
   };
 
   return (
