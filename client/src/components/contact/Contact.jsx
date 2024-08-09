@@ -4,6 +4,7 @@ import s from "./Contact.module.css";
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import { sendEmail } from "../../redux/actions/emailActions";
+import { validateForm } from "../../utils/validations";
 
 const Contact = () => {
   const dispatch = useDispatch();
@@ -15,6 +16,7 @@ const Contact = () => {
     phone: "",
     email: "",
   });
+  const [errors, setErrors] = useState({});
   console.log(formData);
 
   const handleChange = (e) => {
@@ -22,12 +24,20 @@ const Contact = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handlePhoneChange = (value) => {
-    setFormData({ ...formData, phone: value });
+  // const handlePhoneChange = (value) => {
+  //   setFormData({ ...formData, phone: value });
+  // };
+  const handlePhoneChange = (value, country, e, formattedValue) => {
+    setFormData({ ...formData, phone: formattedValue });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const validationErrors = validateForm(formData);
+    if(Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
     const { email, name, lastName, type, phone, age } = formData;
     const subject = `Consulta de ${name} ${lastName}`;
     const text = `
@@ -37,6 +47,7 @@ const Contact = () => {
       Tipo de consulta: ${type}
       Edad: ${age}
     `;
+    console.log(text);
     dispatch(sendEmail(email, subject, text));
     setFormData({
       name: "",
@@ -46,6 +57,7 @@ const Contact = () => {
       phone: "",
       email: "",
     });
+    setErrors({});
   };
 
   return (
@@ -55,6 +67,7 @@ const Contact = () => {
         <form onSubmit={handleSubmit}>
           <div className={s.divInput}>
             <input type="text" name="name" placeholder="Nombre" className={s.input} value={formData.name} onChange={handleChange} />
+            {errors.name && <p className={s.error}>{errors.name}</p>}
             <input type="text" name="lastName" placeholder="Apellido" className={s.input} value={formData.lastName} onChange={handleChange} />
           </div>
           <div className={s.divInput}>
