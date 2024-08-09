@@ -45,6 +45,8 @@ function Header() {
             <a href="#about" onClick={() => toggleMenu('about')}>Planes a futuro</a>
             <a href="#skills" onClick={() => toggleMenu('skills')}>Necesidad inmediata</a>
             <a href="#projects" onClick={() => toggleMenu('projects')}>Tipos de servicio</a>
+            <a href="#contact" onClick={() => toggleMenu('contact')}>Contacto</a>
+            <a href="#faq" onClick={() => toggleMenu('faq')}>Preguntas frecuentes</a>
             <button className={s.btnQuote}>Pedir cotización</button>
         </nav>
       </div>

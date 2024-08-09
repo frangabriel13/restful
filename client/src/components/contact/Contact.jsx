@@ -24,31 +24,13 @@ const Contact = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handlePhoneChange = (value) => {
-    setFormData({ ...formData, phone: value });
+  // const handlePhoneChange = (value) => {
+  //   setFormData({ ...formData, phone: value });
+  // };
+  const handlePhoneChange = (value, country, e, formattedValue) => {
+    setFormData({ ...formData, phone: formattedValue });
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const { email, name, lastName, type, phone, age } = formData;
-  //   const subject = `Consulta de ${name} ${lastName}`;
-  //   const text = `
-  //     Nombre: ${name} ${lastName}
-  //     Email: ${email}
-  //     Teléfono: ${phone}
-  //     Tipo de consulta: ${type}
-  //     Edad: ${age}
-  //   `;
-  //   dispatch(sendEmail(email, subject, text));
-  //   setFormData({
-  //     name: "",
-  //     lastName: "",
-  //     age: "",
-  //     type: "",
-  //     phone: "",
-  //     email: "",
-  //   });
-  // };
   const handleSubmit = (e) => {
     e.preventDefault();
     const validationErrors = validateForm(formData);
@@ -65,7 +47,8 @@ const Contact = () => {
       Tipo de consulta: ${type}
       Edad: ${age}
     `;
-    // dispatch(sendEmail(email, subject, text));
+    console.log(text);
+    dispatch(sendEmail(email, subject, text));
     setFormData({
       name: "",
       lastName: "",
