@@ -3,8 +3,8 @@
   padding: 0;
   box-sizing: border-box;
   text-decoration: none;
-  font-family: 'PT Sans Narrow', sans-serif;
-  
+  /* font-family: 'PT Sans Narrow', sans-serif; */
+  font-family: "Open Sans", sans-serif;
   border: none;
   outline: none;
   scroll-behavior: smooth;

@@ -2,6 +2,7 @@ import React from "react";
 import s from "./Header.module.css"
 import { useState, useEffect } from "react";
 import { IoMdMenu } from "react-icons/io";
+import { Link } from "react-router-dom";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -37,22 +38,22 @@ function Header() {
   return (
     <div className={`${s.container} ${isScrolled ? s.scrolled : ""}`}>
       <div>
-        <a href="#home" className={s.logo}>Eternal Restful</a>
+        <Link to="/" className={s.logo}>Eternal Restful</Link>
       </div>
       <div className={s.divNav}>
         <nav className={`${s.navbar} ${menuOpen ? s.open : ''}`}>
-            <a href="#home" className={s.home} onClick={() => toggleMenu('home')}>Quiénes somos</a>
-            <a href="#about" onClick={() => toggleMenu('about')}>Planes a futuro</a>
-            <a href="#skills" onClick={() => toggleMenu('skills')}>Necesidad inmediata</a>
-            <a href="#projects" onClick={() => toggleMenu('projects')}>Tipos de servicio</a>
-            <a href="#contact" onClick={() => toggleMenu('contact')}>Contacto</a>
-            <a href="#faq" onClick={() => toggleMenu('faq')}>Preguntas frecuentes</a>
+            <Link to="/" className={s.home} onClick={() => toggleMenu('home')}>Quiénes somos</Link>
+            <Link to="/about" onClick={() => toggleMenu('about')}>Planes a futuro</Link>
+            <Link to="/skills" onClick={() => toggleMenu('skills')}>Necesidad inmediata</Link>
+            <Link to="/projects" onClick={() => toggleMenu('projects')}>Tipos de servicio</Link>
+            <Link to="/contact" onClick={() => toggleMenu('contact')}>Contacto</Link>
+            <Link to="/faq" onClick={() => toggleMenu('faq')}>Preguntas frecuentes</Link>
             <button className={s.btnQuote}>Pedir cotización</button>
         </nav>
       </div>
-        <div className={s.navToggle}>
-          <IoMdMenu className={s.btnMenu} onClick={toggleMenu} />
-        </div>
+      <div className={s.navToggle}>
+        <IoMdMenu className={s.btnMenu} onClick={toggleMenu} />
+      </div>
     </div>
   );
 }
