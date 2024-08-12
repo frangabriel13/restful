@@ -38,11 +38,11 @@ function Header() {
   return (
     <div className={`${s.container} ${isScrolled ? s.scrolled : ""}`}>
       <div>
-        <Link to="/" className={s.logo}>Eternal Restful</Link>
+        <Link to="/" onClick={() => toggleMenu('home')} className={s.logo}>Eternal Restful</Link>
       </div>
       <div className={s.divNav}>
         <nav className={`${s.navbar} ${menuOpen ? s.open : ''}`}>
-            <Link to="/" className={s.home} onClick={() => toggleMenu('home')}>Quiénes somos</Link>
+            <Link to="/about" onClick={() => toggleMenu('about')}>Quiénes somos</Link>
             <Link to="/about" onClick={() => toggleMenu('about')}>Planes a futuro</Link>
             <Link to="/skills" onClick={() => toggleMenu('skills')}>Necesidad inmediata</Link>
             <Link to="/projects" onClick={() => toggleMenu('projects')}>Tipos de servicio</Link>

@@ -1,0 +1,44 @@
+.container {}
+
+.about {
+  /* width: 100%; */
+  height: 100vh;
+}
+
+.divTitle {
+  background-color: var(--second-bg-color);
+  height: 20rem;
+}
+
+.divTitle h2 {
+  font-size: 4rem;
+  color: var(--second-color);
+  text-align: center;
+  padding-top: 12rem;
+}
+
+.divData {
+  display: flex;
+  /* justify-content: center; */
+  /* padding: 5rem 10rem; */
+}
+
+.description {
+  padding: 10rem 5rem;
+}
+
+.description h3 {
+  font-size: 4rem;
+  color: var(--second-bg-color);
+  margin-bottom: 2rem;
+}
+
+.description p {
+  font-size: 2rem;
+  color: var(--text-color);
+  line-height: 2.5rem;
+}
+
+.divData img {
+  width: 50vw;
+}
