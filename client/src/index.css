@@ -12,12 +12,12 @@
 
 :root {
   --bg-color: #ffffff;
-  --second-bg-color: #08223c;
+  --second-bg-color: #694f32;
   --dark-color: #0F1422;
   /* --text-color: #ededed; */
   --text-color: rgb(87, 87, 87);
   --main-color: rgb(102, 102, 102);
-  --second-color: #0085b8;
+  --second-color: #a88749;
 }
 
 html {
