@@ -8,7 +8,7 @@
   min-height: 10rem;
   padding: 1rem 9%;
   /* background: transparent; */
-  background: rgba(0, 0, 0, 0.2);
+  background: rgba(90, 73, 55, 0.9);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -17,13 +17,14 @@
 }
 
 .scrolled {
-  background-color: var(--dark-color);
+  background-color: var(--second-bg-color);
 }
 
 .logo {
-  font-size: 2.5rem;
-  color: var(--text-color);
-  font-weight: 600;
+  cursor: pointer;
+  background-color: var(--second-color);
+  width: 20rem;
+  height: auto;
 }
 
 .divNav {
@@ -33,14 +34,14 @@
 
 .navbar {
   display: flex;
-  gap: 3.5rem;
+  gap: 2rem;
   padding: 0rem 3.5rem;
   align-items: center;
 }
 
 .navbar a {
   font-size: 1.7rem;
-  color: var(--text-color);
+  color: var(--second-color);
   font-weight: 500;
   /* margin-left: 3.5rem; */
   /* gap: 3.5rem; */
@@ -61,7 +62,7 @@
   width: 0;
   height: .2rem;
   /* background: #ffffff; */
-  background:rgb(87, 87, 87);
+  background:var(--second-color);
   transition: all 0.45s;
 }
 
@@ -83,18 +84,22 @@
 }
 
 .btnQuote {
-  background: var(--text-color);
-  color: #ffffff;
-  padding: 0.7rem 1.5rem;
-  font-size: 1.5rem;
-  border-radius: 0.5rem;
-  font-weight: 500;
-  transition: .3s;
+  padding: 1rem 2rem;
+  font-size: 1.7rem;
+  border: .1rem solid var(--second-color);
+  border-radius: .3rem;
   cursor: pointer;
+  transition: all 0.3s;
+  background: linear-gradient(to right, var(--second-bg-color) 50%, var(--second-color) 50%);
+  box-shadow: inset 0 0 0 .1rem var(--second-color);
+  background-size: 200% 100%;
+  color: var(--second-color);
 }
 
 .btnQuote:hover {
-  background: var(--main-color);
+  background-position: -100% 0;
+  transition: .5s;
+  color: var(--second-bg-color);
 }
 
 @media (max-width: 768px) {

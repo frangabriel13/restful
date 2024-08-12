@@ -3,6 +3,7 @@ import s from "./Header.module.css"
 import { useState, useEffect } from "react";
 import { IoMdMenu } from "react-icons/io";
 import { Link } from "react-router-dom";
+import logo from "../../assets/logo.png";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -38,7 +39,10 @@ function Header() {
   return (
     <div className={`${s.container} ${isScrolled ? s.scrolled : ""}`}>
       <div>
-        <Link to="/" onClick={() => toggleMenu('home')} className={s.logo}>Eternal Restful</Link>
+        {/* <Link to="/" onClick={() => toggleMenu('home')} className={s.logo}>Eternal Restful</Link> */}
+        <Link to="/" onClick={() => toggleMenu('home')} className={s.logo}>
+          <img src={logo} alt="logo" className={s.logo} />
+        </Link>
       </div>
       <div className={s.divNav}>
         <nav className={`${s.navbar} ${menuOpen ? s.open : ''}`}>
