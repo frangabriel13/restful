@@ -1,0 +1,94 @@
+.container {
+  background-color: var(--second-bg-color);
+  padding: 10rem 5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.divContent {
+  display: flex;
+  gap: 10rem;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 1px solid var(--second-color);
+  padding-bottom: 5rem;
+}
+
+.divData {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.divData img {
+  background-color: var(--second-color);
+  width: 20rem;
+  height: auto;
+}
+
+.divSocial {
+  display: flex;
+  gap: 2rem;
+  padding-top: 2rem;
+  justify-content: center;
+}
+
+.divSocial h5 {
+  color: var(--second-color);
+  font-size: 1.5rem;
+}
+
+.divIcons {
+  display: flex;
+  gap: 1rem;
+}
+
+.icon {
+  font-size: 2rem;
+  color: var(--second-color);
+}
+
+.divContact {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.divInfo {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.divInfo p {
+  font-size: 1.5rem;
+  color: var(--second-color);
+}
+
+.divFaq {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  justify-content: center;
+}
+
+.divFaq p {
+  font-size: 1.5rem;
+  color: var(--second-color);
+}
+
+.divCopy {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 5rem;
+}
+
+.divCopy p {
+  font-size: 1.5rem;
+  color: var(--second-color);
+}
