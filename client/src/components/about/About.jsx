@@ -1,8 +1,16 @@
 import React from "react";
 import s from "./About.module.css";
 import about from "../../assets/about.jpg";
+import Mision from "./mision/Mision";
+import { useNavigate } from "react-router-dom";
 
 const About = () => {
+  const navigate = useNavigate();
+
+  const handleContactClick = () => {
+    navigate("/contact");
+  };
+
   return (
     <div className={s.container}>
       <div className={s.about}>
@@ -26,6 +34,11 @@ const About = () => {
             <img src={about} alt="About" />
           </div>
         </div>
+      </div>
+      <Mision />
+      <div className={s.callToAction}>
+        <h3>Si quieres saber más información contáctate con nosotros</h3>
+        <button onClick={handleContactClick}>Contacta</button>
       </div>
     </div>
   )
