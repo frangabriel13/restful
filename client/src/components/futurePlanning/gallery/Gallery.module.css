@@ -1,8 +1,39 @@
-.container {}
+/* .container {}
 
 .container h3 {
   font-size: 4rem;
   color: var(--second-bg-color);
   margin-bottom: 2rem;
   text-align: center;
+} */
+
+.container {
+  text-align: center;
+}
+
+.selectedImageContainer {
+  margin-bottom: 20px;
+}
+
+.selectedImage {
+  width: 100%;
+  max-width: 600px;
+  height: auto;
+}
+
+.thumbnailContainer {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+.thumbnail {
+  width: 100px;
+  height: auto;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.thumbnail:hover {
+  transform: scale(1.1);
 }
