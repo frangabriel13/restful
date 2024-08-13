@@ -30,3 +30,9 @@
   color: var(--text-color);
   line-height: 2.5rem;
 }
+
+.sectionTwo {
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+}

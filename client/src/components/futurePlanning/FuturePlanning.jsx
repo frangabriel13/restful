@@ -1,6 +1,7 @@
 import React from "react";
 import s from "./FuturePlanning.module.css";
 import Benefits from "./benefits/Benefits";
+import Gallery from "./gallery/Gallery";
 
 const FuturePlanning = () => {
   return (
@@ -23,7 +24,14 @@ const FuturePlanning = () => {
           </p>
         </div>
       </div>
-      <Benefits />
+      <div className={s.sectionTwo}>
+        <div>
+          <Benefits />
+        </div>
+        <div>
+          <Gallery />
+        </div>
+      </div>
     </div>
   )
 };
