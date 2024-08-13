@@ -48,7 +48,7 @@ function Header() {
         <nav className={`${s.navbar} ${menuOpen ? s.open : ''}`}>
             <Link to="/about" onClick={() => toggleMenu('about')}>Quiénes somos</Link>
             <Link to="/future-planning" onClick={() => toggleMenu('future-planning')}>Planes a futuro</Link>
-            <Link to="/skills" onClick={() => toggleMenu('skills')}>Necesidad inmediata</Link>
+            <Link to="/immediate-need" onClick={() => toggleMenu('immediate-need')}>Necesidad inmediata</Link>
             <Link to="/projects" onClick={() => toggleMenu('projects')}>Tipos de servicio</Link>
             <Link to="/contact" onClick={() => toggleMenu('contact')}>Contacto</Link>
             <Link to="/duelo" onClick={() => toggleMenu('faq')}>Duelo</Link>

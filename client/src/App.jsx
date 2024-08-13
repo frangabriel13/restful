@@ -6,6 +6,7 @@ import Contact from './components/contact/Contact'
 import About from './components/about/About'
 import Footer from './components/footer/Footer'
 import FuturePlanning from './components/futurePlanning/FuturePlanning'
+import ImmediateNeed from './components/immediateNeed/ImmediateNeed'
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path='/contact' element={<Contact />} />
         <Route path='/about' element={<About />} />
         <Route path='/future-planning' element={<FuturePlanning />} />
+        <Route path='/immediate-need' element={<ImmediateNeed />} />
       </Routes>
       <Footer />
     </>
