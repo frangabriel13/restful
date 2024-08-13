@@ -2,8 +2,10 @@ import React from "react";
 import s from "./FuturePlanning.module.css";
 import Benefits from "./benefits/Benefits";
 import Gallery from "./gallery/Gallery";
+import { benfitsImages } from "../../utils/utilities";
 
 const FuturePlanning = () => {
+  console.log(benfitsImages);
   return (
     <div className={s.container}>
       <div className={s.divFuture}>
@@ -29,7 +31,7 @@ const FuturePlanning = () => {
           <Benefits />
         </div>
         <div>
-          <Gallery />
+          <Gallery images={benfitsImages} />
         </div>
       </div>
     </div>
