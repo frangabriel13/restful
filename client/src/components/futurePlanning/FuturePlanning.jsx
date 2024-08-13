@@ -3,9 +3,15 @@ import s from "./FuturePlanning.module.css";
 import Benefits from "./benefits/Benefits";
 import Gallery from "./gallery/Gallery";
 import { benfitsImages } from "../../utils/utilities";
+import { useNavigate } from "react-router-dom";
 
 const FuturePlanning = () => {
-  console.log(benfitsImages);
+  const navigate = useNavigate();
+
+  const handleContactClick = () => {
+    navigate("/contact");
+  };
+
   return (
     <div className={s.container}>
       <div className={s.divFuture}>
@@ -33,6 +39,10 @@ const FuturePlanning = () => {
         <div>
           <Gallery images={benfitsImages} />
         </div>
+      </div>
+      <div className={s.callToAction}>
+        <h3>Contáctate con nosotros para mas inforamción</h3>
+        <button onClick={handleContactClick}>Contacta</button>
       </div>
     </div>
   )
