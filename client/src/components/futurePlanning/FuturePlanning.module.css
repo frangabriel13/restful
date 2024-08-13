@@ -34,5 +34,6 @@
 .sectionTwo {
   display: flex;
   justify-content: center;
-  gap: 5rem;
+  gap: 15rem;
+  align-items: center;
 }

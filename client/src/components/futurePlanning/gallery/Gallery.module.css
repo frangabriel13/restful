@@ -1,39 +1,40 @@
-/* .container {}
-
-.container h3 {
-  font-size: 4rem;
-  color: var(--second-bg-color);
-  margin-bottom: 2rem;
-  text-align: center;
-} */
-
 .container {
-  text-align: center;
+  /* text-align: center; */
+  box-shadow: 0 .4rem .8rem rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  border-radius: .3rem;
+  background-color: #fff;
 }
 
 .selectedImageContainer {
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
 }
 
 .selectedImage {
   width: 100%;
-  max-width: 600px;
+  max-width: 60rem;
   height: auto;
+  border-radius: .3rem;
 }
 
 .thumbnailContainer {
   display: flex;
   justify-content: center;
-  gap: 10px;
+  gap: 1rem;
 }
 
 .thumbnail {
-  width: 100px;
+  width: 10rem;
   height: auto;
   cursor: pointer;
   transition: transform 0.2s;
 }
 
 .thumbnail:hover {
+  transform: scale(1.1);
+}
+
+.selectedThumbnail {
+  border: .2rem solid var(--main-color);
   transform: scale(1.1);
 }
