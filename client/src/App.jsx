@@ -7,6 +7,7 @@ import About from './components/about/About'
 import Footer from './components/footer/Footer'
 import FuturePlanning from './components/futurePlanning/FuturePlanning'
 import ImmediateNeed from './components/immediateNeed/ImmediateNeed'
+import Services from './components/services/Services'
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
         <Route path='/about' element={<About />} />
         <Route path='/future-planning' element={<FuturePlanning />} />
         <Route path='/immediate-need' element={<ImmediateNeed />} />
+        <Route path='/services' element={<Services />} />
       </Routes>
       <Footer />
     </>
