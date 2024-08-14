@@ -1,7 +1,14 @@
 import React from "react";
 import s from "./ImmediateNeed.module.css";
+import { useNavigate } from "react-router-dom";
 
 const ImmediateNeed = () => {
+  const navigate = useNavigate();
+
+  const handleContactClick = () => {
+    navigate("/contact");
+  };
+
   return (
     <div className={s.container}>
       <div className={s.divTitle}>
@@ -26,7 +33,8 @@ const ImmediateNeed = () => {
         <div className={s.step}>
           <h5>2. Contacta a la funeraria</h5>
           <p>
-            Una vez que el médico haya certificado la defunción, llama a nuestra funeraria para que podamos asistir en la recogida y cuidado del cuerpo, así como en la organización de los servicios funerarios.
+            Una vez que el médico haya certificado la defunción, llama a nuestra funeraria para que podamos asistir en la recogida y cuidado del cuerpo, 
+            así como en la organización de los servicios funerarios.
           </p>
         </div>
         <div className={s.step}>
@@ -44,7 +52,8 @@ const ImmediateNeed = () => {
         <div className={s.step}>
           <h5>5. Trámites legales</h5>
           <p>
-            Una vez que hayas realizado los pasos anteriores, deberás ocuparte de los trámites legales correspondientes. Esto incluye la obtención del certificado de defunción y la realización de los trámites de entierro o cremación.
+            Una vez que hayas realizado los pasos anteriores, deberás ocuparte de los trámites legales correspondientes. 
+            Esto incluye la obtención del certificado de defunción y la realización de los trámites de entierro o cremación.
           </p>
         </div>
         <div className={s.step}>
@@ -53,6 +62,10 @@ const ImmediateNeed = () => {
             En momentos difíciles, es importante contar con el apoyo emocional de familiares y amigos. No dudes en pedir ayuda si la necesitas.
           </p>
         </div>
+      </div>
+      <div className={s.callToAction}>
+        <h3>Contáctate con nosotros para mas información</h3>
+        <button onClick={handleContactClick}>Contacta</button>
       </div>
     </div>
   )
