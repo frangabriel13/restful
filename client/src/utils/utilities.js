@@ -17,4 +17,10 @@ export const servicesImages = [
   { id: 1, image: service1 },
   { id: 2, image: service1 },
   { id: 3, image: service1 },
+  { id: 4, image: service1 },
+  { id: 5, image: service1 },
+  { id: 6, image: service1 },
+  { id: 7, image: service1 },
+  { id: 8, image: service1 },
+  { id: 9, image: service1 },
 ];
