@@ -1,0 +1,31 @@
+.container {
+}
+
+.divTitle {
+  background-color: var(--second-bg-color);
+  height: 20rem;
+}
+
+.divTitle h2 {
+  font-size: 4rem;
+  color: var(--second-color);
+  text-align: center;
+  padding-top: 12rem;
+}
+
+.description {
+  padding: 10rem 5rem;
+}
+
+.description h3 {
+  font-size: 4rem;
+  color: var(--second-bg-color);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.description p {
+  font-size: 2rem;
+  color: var(--text-color);
+  line-height: 2.5rem;
+}
