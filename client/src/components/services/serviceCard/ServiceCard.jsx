@@ -16,20 +16,25 @@ const ServiceCard = ({ service }) => {
         )
       }
       <div className={s.divDataContainer}>
-        <div className={s.dataContainer}>
-          <div className={s.divData}>
-            <h3>{service.name}</h3>
-            <p>{service.description}</p>
+        <div className={s.containerData}>
+          <div className={s.dataContainer}>
+            <div className={s.divData}>
+              <h3>{service.name}</h3>
+              <p>{service.description}</p>
+            </div>
+            <div className={s.divFeatures}>
+              <h4>Beneficios:</h4>
+              <ul>
+                {
+                  service.features.map((feature, index) => (
+                    <li key={index}>{feature}</li>
+                  ))
+                }
+              </ul>
+            </div>
           </div>
-          <div className={s.divFeatures}>
-            <h4>Beneficios:</h4>
-            <ul>
-              {
-                service.features.map((feature, index) => (
-                  <li key={index}>{feature}</li>
-                ))
-              }
-            </ul>
+          <div className={s.divDisclaimer}>
+            <p>* {service.disclaimers}</p>
           </div>
         </div>
         <div className={s.divMoreInfo}>
