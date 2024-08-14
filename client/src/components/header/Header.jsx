@@ -49,7 +49,7 @@ function Header() {
             <Link to="/about" onClick={() => toggleMenu('about')}>Quiénes somos</Link>
             <Link to="/future-planning" onClick={() => toggleMenu('future-planning')}>Planes a futuro</Link>
             <Link to="/immediate-need" onClick={() => toggleMenu('immediate-need')}>Necesidad inmediata</Link>
-            <Link to="/projects" onClick={() => toggleMenu('projects')}>Tipos de servicio</Link>
+            <Link to="/services" onClick={() => toggleMenu('services')}>Tipos de servicio</Link>
             <Link to="/contact" onClick={() => toggleMenu('contact')}>Contacto</Link>
             <Link to="/duelo" onClick={() => toggleMenu('faq')}>Duelo</Link>
             <Link to="/faq" onClick={() => toggleMenu('faq')}>Preguntas frecuentes</Link>
