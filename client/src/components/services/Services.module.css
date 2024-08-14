@@ -29,3 +29,13 @@
   color: var(--text-color);
   line-height: 2.5rem;
 }
+
+.cardsContainer {
+  display: flex;
+  flex-direction: column;
+  /* flex-wrap: wrap; */
+  padding-bottom: 10rem;
+  gap: 2rem;
+  align-items: center;
+  background-color: antiquewhite;
+}

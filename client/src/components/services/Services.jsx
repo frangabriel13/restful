@@ -31,7 +31,7 @@ const Services = () => {
           permitiendo a las familias honrar la vida de sus seres queridos de la manera que consideren más adecuada.
         </p>
       </div>
-      <div>
+      <div className={s.cardsContainer}>
         {
           services.map((service) => (
             <ServiceCard key={service.id} service={service} />
