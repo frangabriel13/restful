@@ -41,7 +41,7 @@ const FuturePlanning = () => {
         </div>
       </div>
       <div className={s.callToAction}>
-        <h3>Contáctate con nosotros para mas inforamción</h3>
+        <h3>Contáctate con nosotros para mas información</h3>
         <button onClick={handleContactClick}>Contacta</button>
       </div>
     </div>
