@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import s from "./Services.module.css";
 import { getServices } from "../../redux/actions/serviceActions";
+import ServiceCard from "./serviceCard/ServiceCard";
 
 const Services = () => {
   const dispatch = useDispatch();
@@ -29,6 +30,13 @@ const Services = () => {
           asegurando que cada detalle sea manejado con el máximo respeto y profesionalismo. Nuestro compromiso es brindar apoyo integral, 
           permitiendo a las familias honrar la vida de sus seres queridos de la manera que consideren más adecuada.
         </p>
+      </div>
+      <div>
+        {
+          services.map((service) => (
+            <ServiceCard key={service.id} service={service} />
+          ))
+        }
       </div>
     </div>
   )
