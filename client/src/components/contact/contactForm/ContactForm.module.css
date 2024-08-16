@@ -36,8 +36,6 @@
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  /* justify-content: center;
-  align-items: center; */
 }
 
 .divName {
@@ -85,4 +83,40 @@
   padding: 1rem;
   font-size: 1.6rem;
   border-radius: .3rem;
+}
+
+.phoneInputContainer {
+  width: 50%;
+}
+
+.phoneInput {
+  width: 100% !important;
+  height: 4rem !important;
+  padding: 1rem;
+  font-size: 1.6rem;
+  border-radius: .3rem;
+}
+
+.divBtn {
+  display: flex;
+  justify-content: center;
+}
+
+.divBtn button {
+  padding: 1rem 2rem;
+  font-size: 1.7rem;
+  border: .1rem solid var(--second-color);
+  border-radius: .3rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  background: linear-gradient(to right, var(--second-bg-color) 50%, var(--second-color) 50%);
+  box-shadow: inset 0 0 0 .1rem var(--second-color);
+  background-size: 200% 100%;
+  color: var(--second-color);
+}
+
+.divBtn button:hover {
+  background-position: -100% 0;
+  transition: .5s;
+  color: var(--second-bg-color);
 }

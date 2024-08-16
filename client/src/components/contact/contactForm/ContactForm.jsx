@@ -59,13 +59,18 @@ const ContactForm = () => {
           </div>
           <div className={s.mail}>
             <input type="email" name="email" placeholder="Correo electrónico" onChange={(e) => setForm({ ...form, email: e.target.value })} />
-            <PhoneInput
-              country={'us'}
-              value={form.phone}
-              onChange={(phone) => setForm({ ...form, phone })}
-            />
+            <div className={s.phoneInputContainer}>
+              <PhoneInput
+                country={'us'}
+                value={form.phone}
+                onChange={(phone) => setForm({ ...form, phone })}
+                inputClass={s.phoneInput}
+              />
+            </div>
           </div>
-          <button className={s.button} type="submit" onClick={handleSubmit}>Enviar</button>
+          <div className={s.divBtn}>
+            <button className={s.button} type="submit" onClick={handleSubmit}>Enviar</button>
+          </div>
         </form>
       </div>
     </div>
