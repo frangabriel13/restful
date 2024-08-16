@@ -18,15 +18,17 @@ const Mourning = () => {
       </div>
       <div className={s.divMourning}>
         <h3>Las 5 etapas del duelo</h3>
-        <div>
-          <div>
+        <div className={s.divStages}>
+          <div className={s.stage}>
             <h4>1. Negación</h4>
             <p>
-              La primera reacción suele ser la negación, un mecanismo de defensa que nos ayuda a amortiguar el impacto 
-              inicial de la pérdida. Durante esta etapa, es común sentirse entumecido o incrédulo, como si la pérdida no fuera real.
+              La negación es una reacción que se produce de forma muy habitual inmediatamente después de una pérdida. 
+              No es infrecuente que, cuando experimentamos una pérdida súbita, tengamos una sensación de irrealidad o de incredulidad 
+              que puede verse acompañada de una congelación de las emociones. Se puede manifestar con expresiones tales como: “aún no me creo que sea verdad”, 
+              “es como si estuviera viviendo una pesadilla” e incluso con actitudes de aparente “entereza emocional” o de actuar “como si no hubiera pasado nada”.
             </p>
           </div>
-          <div>
+          <div className={s.stage}>
             <h4>2. Ira</h4>
             <p>
               A medida que la negación comienza a disiparse, emerge la ira. Puede estar dirigida hacia uno mismo, 
@@ -34,7 +36,7 @@ const Mourning = () => {
               la frustración.
             </p>
           </div>
-          <div>
+          <div className={s.stage}>
             <h4>3. Negociación</h4>
             <p>
               En esta etapa, las personas pueden intentar negociar o hacer tratos, a menudo con una fuerza mayor 
@@ -42,7 +44,7 @@ const Mourning = () => {
               Es una forma de buscar algún sentido o control en medio de la incertidumbre.
             </p>
           </div>
-          <div>
+          <div className={s.stage}>
             <h4>4. Depresión</h4>
             <p>
               Esta es una de las etapas más difíciles del duelo, caracterizada por una profunda tristeza y 
@@ -50,7 +52,7 @@ const Mourning = () => {
               un deseo de aislarse.
             </p>
           </div>
-          <div>
+          <div className={`${s.stage} ${s.stage5}`}>
             <h4>5. Aceptación</h4>
             <p>
               La aceptación no significa que el dolor haya desaparecido, sino que se ha encontrado una manera de seguir adelante. 
