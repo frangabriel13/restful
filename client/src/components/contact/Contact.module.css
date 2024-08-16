@@ -1,141 +1,14 @@
 .container {
-  background-image: url('../../assets/fondoJarron.jpg');
-  background-size: cover;
-  background-position: center;
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  /* justify-content: center; */
-  justify-content: flex-start;
-  align-items: center;
-  color: white;
 }
 
-.divForm {
-  background-color: rgba(255, 255, 255, 0.5);
-  padding: 5rem;
-  border-radius: .3rem;
-  margin-left: 20rem;
-  box-shadow: 7px 7px 25px -5px rgba(0,0,0,0.5);
-  -webkit-box-shadow: 7px 7px 25px -5px rgba(0,0,0,0.5);
-  -moz-box-shadow: 7px 7px 25px -5px rgba(0,0,0,0.5);
+.divTitle {
+  background-color: var(--second-bg-color);
+  height: 20rem;
 }
 
-.divForm h2 {
+.divTitle h2 {
+  font-size: 4rem;
+  color: var(--second-color);
   text-align: center;
-  color: var(--text-color);
-  font-size: 3rem;
-  margin-bottom: 2rem;
-}
-
-.divPhone {
-  display: flex;
-  gap: 1rem;
-}
-
-.divInput {
-  display: flex;
-  flex-direction: row;
-  gap: 1rem;
-}
-
-.input,
-.select {
-  width: 50%;
-  padding: 1rem;
-  margin: .5rem 0;
-  box-sizing: border-box;
-  border: .1rem solid #ccc;
-  border-radius: .4rem;
-  font-size: 1.6rem;
-}
-
-.phoneInputContainer {
-  /* Estilos para el contenedor del PhoneInput */
-  width: 50% !important;
-  margin-top: .5rem !important;
-}
-
-.phoneInput {
-  /* Estilos para el input del PhoneInput */
-  width: 100% !important;
-  height: 89% !important;
-}
-
-.phoneInputButton {
-  /* Estilos para el botón del dropdown */
-  color: black;
-  height: 4rem !important;
-}
-
-.phoneInputDropdown {
-  /* Estilos para el contenedor del dropdown */
-}
-
-.phoneInputSearch {
-  /* Estilos para el campo de búsqueda */
-}
-
-.divSend {
-  display: flex;
-  justify-content: center;
-  margin-top: 1.5rem;
-}
-
-.divSend button {
-  font-size: 1.6rem;
-  padding: 1rem 2rem;
-  margin-right: 1rem;
-  border-radius: .3rem;
-  cursor: pointer;
-
-  background-size: 200% 100%;
-  transition: background-position 0.3s;
-}
-
-.btnSend {
-  background: linear-gradient(to right, #615037 50%, var(--text-color) 50%);
-  color: #ffffff;
-  box-shadow: inset 0 0 0 .1rem var(--text-color);
-}
-
-.btnSend:hover {
-  background-position: -100% 0;
-  transition: .5s;
-  color: var(--bg-color);
-}
-
-/* Media Queries para Mobile */
-@media (max-width: 768px) {
-  .container {
-    justify-content: center;
-    /* height: auto; */
-    padding: 2rem;
-  }
-
-  .divForm {
-    margin-left: 0;
-    padding: 2rem;
-    width: 100%;
-    box-shadow: none;
-  }
-
-  .divInput {
-    flex-direction: column;
-  }
-
-  .input,
-  .select,
-  .phoneInputContainer {
-    width: 100%;
-  }
-
-  .phoneInputButton {
-    height: 3rem !important;
-  }
-
-  .divSend button {
-    width: 100%;
-    margin: 0;
-  }
+  padding-top: 12rem;
 }
