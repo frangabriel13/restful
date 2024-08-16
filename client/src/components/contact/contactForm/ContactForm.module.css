@@ -1,0 +1,88 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.divTitle {
+  padding: 10rem 5rem;
+}
+
+.divTitle h3 {
+  font-size: 4rem;
+  color: var(--second-bg-color);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.divTitle p {
+  font-size: 2rem;
+  color: var(--text-color);
+  line-height: 2.5rem;
+  text-align: center;
+}
+
+.divForm {
+  background-color: var(--second-bg-color);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 5rem;
+}
+
+.form {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  /* justify-content: center;
+  align-items: center; */
+}
+
+.divName {
+  display: flex;
+  gap: 2rem;
+}
+
+.divName input {
+  width: 50%;
+  height: 4rem;
+  padding: 1rem;
+  font-size: 1.6rem;
+  border-radius: .3rem;
+}
+
+.services {
+  display: flex;
+  gap: 2rem;
+}
+
+.services input {
+  width: 30%;
+  height: 4rem;
+  padding: 1rem;
+  font-size: 1.6rem;
+  border-radius: .3rem;
+}
+
+.services select {
+  width: 70%;
+  height: 4rem;
+  padding: 1rem;
+  font-size: 1.6rem;
+  border-radius: .3rem;
+}
+
+.mail {
+  display: flex;
+  gap: 2rem;
+}
+
+.mail input {
+  width: 50%;
+  height: 4rem;
+  padding: 1rem;
+  font-size: 1.6rem;
+  border-radius: .3rem;
+}
