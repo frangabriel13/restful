@@ -17,12 +17,21 @@ const ContactForm = () => {
     phone: "",
     service: "",
   });
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     dispatch(getServices());
   }, []);
 
-  console.log(services);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const errors = validateForm(form);
+    if (Object.keys(errors).length) {
+      setErrors(errors);
+      return;
+    }
+    dispatch(sendEmail(form));
+  };
 
   return (
     <div className={s.container}>
@@ -34,29 +43,39 @@ const ContactForm = () => {
         <form>
           <div className={s.divName}>
             <div>
-              <input type="text" name="name" placeholder="Nombre" />
+              <input type="text" name="name" placeholder="Nombre" onChange={(e) => setForm({ ...form, name: e.target.value })} />
             </div>
             <div>
-              <input type="text" name="lastname" placeholder="Apellido" />
+              <input type="text" name="lastname" placeholder="Apellido" onChange={(e) => setForm({ ...form, lastname: e.target.value })} />
             </div>
           </div>
           <div className={s.services}>
             <div>
-              <input type="number" name="age" placeholder="Edad" />
+              <input type="number" name="age" placeholder="Edad" onChange={(e) => setForm({ ...form, age: e.target.value })} />
             </div>
             <div className={s.service}>
               <select name="service">
                 <option value="">Selecciona un servicio</option>
                 {services.map((service) => (
-                  <option key={service.id} value={service.id}>
+                  <option key={service.id} value={service.id} onClick={(e) => setForm({ ...form, service: e.target.value })}>
                     {service.name}
                   </option>
                 ))}
-                <option value="not_sure">No estoy seguro (a)</option>
+                <option value="not_sure" onClick={(e) => setForm({ ...form, service: e.target.value })}>No estoy seguro (a)</option>
               </select>
             </div>
           </div>
-          <button>Enviar</button>
+          <div className={s.mail}>
+            <input type="email" name="email" placeholder="Correo electrónico" onChange={(e) => setForm({ ...form, email: e.target.value })} />
+          </div>
+          <div className={s.phone}>
+            <PhoneInput
+              country={'us'}
+              value={form.phone}
+              onChange={(phone) => setForm({ ...form, phone })}
+            />
+          </div>
+          <button className={s.button} type="submit" onClick={handleSubmit}>Enviar</button>
         </form>
       </div>
     </div>
