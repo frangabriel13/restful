@@ -92,9 +92,10 @@
 .phoneInput {
   width: 100% !important;
   height: 4rem !important;
-  padding: 1rem;
-  font-size: 1.6rem;
-  border-radius: .3rem;
+  padding: 1rem !important;
+  font-size: 1.6rem !important;
+  border-radius: .3rem !important;
+  padding-left: 5rem !important;
 }
 
 .divBtn {
