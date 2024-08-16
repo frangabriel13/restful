@@ -40,35 +40,25 @@ const ContactForm = () => {
         <p>Te responderemos a la brevedad</p>
       </div>
       <div className={s.divForm}>
-        <form>
+        <form className={s.form}>
           <div className={s.divName}>
-            <div>
-              <input type="text" name="name" placeholder="Nombre" onChange={(e) => setForm({ ...form, name: e.target.value })} />
-            </div>
-            <div>
-              <input type="text" name="lastname" placeholder="Apellido" onChange={(e) => setForm({ ...form, lastname: e.target.value })} />
-            </div>
+            <input type="text" name="name" placeholder="Nombre" onChange={(e) => setForm({ ...form, name: e.target.value })} />
+            <input type="text" name="lastname" placeholder="Apellido" onChange={(e) => setForm({ ...form, lastname: e.target.value })} />
           </div>
           <div className={s.services}>
-            <div>
-              <input type="number" name="age" placeholder="Edad" onChange={(e) => setForm({ ...form, age: e.target.value })} />
-            </div>
-            <div className={s.service}>
-              <select name="service">
-                <option value="">Selecciona un servicio</option>
-                {services.map((service) => (
-                  <option key={service.id} value={service.id} onClick={(e) => setForm({ ...form, service: e.target.value })}>
-                    {service.name}
-                  </option>
-                ))}
-                <option value="not_sure" onClick={(e) => setForm({ ...form, service: e.target.value })}>No estoy seguro (a)</option>
-              </select>
-            </div>
+            <input type="number" name="age" placeholder="Edad" onChange={(e) => setForm({ ...form, age: e.target.value })} />
+            <select name="service">
+              <option value="">Selecciona un servicio</option>
+              {services.map((service) => (
+                <option key={service.id} value={service.id} onClick={(e) => setForm({ ...form, service: e.target.value })}>
+                  {service.name}
+                </option>
+              ))}
+              <option value="not_sure" onClick={(e) => setForm({ ...form, service: e.target.value })}>No estoy seguro (a)</option>
+            </select>
           </div>
           <div className={s.mail}>
             <input type="email" name="email" placeholder="Correo electrónico" onChange={(e) => setForm({ ...form, email: e.target.value })} />
-          </div>
-          <div className={s.phone}>
             <PhoneInput
               country={'us'}
               value={form.phone}
