@@ -52,7 +52,7 @@ function Header() {
             <Link to="/services" onClick={() => toggleMenu('services')}>Tipos de servicio</Link>
             <Link to="/contact" onClick={() => toggleMenu('contact')}>Contacto</Link>
             <Link to="/mourning" onClick={() => toggleMenu('mourning')}>Duelo</Link>
-            <Link to="/faq" onClick={() => toggleMenu('faq')}>Preguntas frecuentes</Link>
+            {/* <Link to="/faq" onClick={() => toggleMenu('faq')}>Preguntas frecuentes</Link> */}
             <button className={s.btnQuote}>Pedir cotización</button>
         </nav>
       </div>

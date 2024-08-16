@@ -16,6 +16,7 @@ const ContactForm = () => {
     age: "",
     phone: "",
     service: "",
+    email: "",
   });
   const [errors, setErrors] = useState({});
 
@@ -48,14 +49,14 @@ const ContactForm = () => {
           </div>
           <div className={s.services}>
             <input type="number" name="age" placeholder="Edad" onChange={(e) => setForm({ ...form, age: e.target.value })} />
-            <select name="service">
+            <select name="service" onChange={(e) => setForm({ ...form, service: e.target.value })}>
               <option value="">Selecciona un servicio</option>
               {services.map((service) => (
-                <option key={service.id} value={service.id} onClick={(e) => setForm({ ...form, service: e.target.value })}>
+                <option key={service.id} value={service.id}>
                   {service.name}
                 </option>
               ))}
-              <option value="not_sure" onClick={(e) => setForm({ ...form, service: e.target.value })}>No estoy seguro (a)</option>
+              <option value="not_sure">No estoy seguro (a)</option>
             </select>
           </div>
           <div className={s.mail}>

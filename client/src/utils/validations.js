@@ -5,7 +5,7 @@ export const validateForm = (formData) => {
     errors.name = "El nombre es requerido";
   }
 
-  if (!formData.lastName) {
+  if (!formData.lastname) {
     errors.lastName = "El apellido es requerido";
   }
 
@@ -13,7 +13,7 @@ export const validateForm = (formData) => {
     errors.age = "La edad es requerida";
   }
 
-  if (!formData.type) {
+  if (!formData.service) {
     errors.type = "El tipo de consulta es requerido";
   }
 
