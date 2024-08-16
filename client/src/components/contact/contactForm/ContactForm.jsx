@@ -28,6 +28,7 @@ const ContactForm = () => {
     const errors = validateForm(form);
     if (Object.keys(errors).length) {
       setErrors(errors);
+      console.log(errors);
       return;
     }
     dispatch(sendEmail(form));
