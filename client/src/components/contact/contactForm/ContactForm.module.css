@@ -43,8 +43,14 @@
   gap: 2rem;
 }
 
-.divName input {
+.divNombre {
   width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.divName input {
+  /* width: 50%; */
   height: 4rem;
   padding: 1rem;
   font-size: 1.6rem;
@@ -56,8 +62,20 @@
   gap: 2rem;
 }
 
-.services input {
+.divAge {
   width: 30%;
+  display: flex;
+  flex-direction: column;
+}
+
+.divService {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+}
+
+.services input {
+  /* width: 30%; */
   height: 4rem;
   padding: 1rem;
   font-size: 1.6rem;
@@ -65,7 +83,7 @@
 }
 
 .services select {
-  width: 70%;
+  /* width: 70%; */
   height: 4rem;
   padding: 1rem;
   font-size: 1.6rem;
@@ -77,8 +95,14 @@
   gap: 2rem;
 }
 
-.mail input {
+.divEmail {
   width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.divEmail input {
+  /* width: 50%; */
   height: 4rem;
   padding: 1rem;
   font-size: 1.6rem;
@@ -120,4 +144,8 @@
   background-position: -100% 0;
   transition: .5s;
   color: var(--second-bg-color);
+}
+
+.error {
+  color: white;
 }

@@ -62,23 +62,38 @@ const ContactForm = () => {
       <div className={s.divForm}>
         <form className={s.form}>
           <div className={s.divName}>
-            <input type="text" name="name" placeholder="Nombre" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
-            <input type="text" name="lastname" placeholder="Apellido" value={form.lastname} onChange={(e) => setForm({ ...form, lastname: e.target.value })} />
+            <div className={s.divNombre}>
+              <input type="text" name="name" placeholder="Nombre" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
+              { errors.name && <p className={s.error}>{errors.name}</p> }
+            </div>
+            <div className={s.divNombre}>
+              <input type="text" name="lastname" placeholder="Apellido" value={form.lastname} onChange={(e) => setForm({ ...form, lastname: e.target.value })} />
+              { errors.lastName && <p className={s.error}>{errors.lastName}</p> }
+            </div>
           </div>
           <div className={s.services}>
-            <input type="number" name="age" placeholder="Edad" value={form.age} onChange={(e) => setForm({ ...form, age: e.target.value })} />
-            <select name="service" value={form.service} onChange={(e) => setForm({ ...form, service: e.target.value })}>
-              <option value="">Selecciona un servicio</option>
-              {services.map((service) => (
-                <option key={service.id} value={service.name}>
-                  {service.name}
-                </option>
-              ))}
-              <option value="not_sure">No estoy seguro (a)</option>
-            </select>
+            <div className={s.divAge}>
+              <input type="number" name="age" placeholder="Edad" value={form.age} onChange={(e) => setForm({ ...form, age: e.target.value })} />
+              { errors.age && <p className={s.error}>{errors.age}</p> }
+            </div>
+            <div className={s.divService}>
+              <select name="service" value={form.service} onChange={(e) => setForm({ ...form, service: e.target.value })}>
+                <option value="">Selecciona un servicio</option>
+                {services.map((service) => (
+                  <option key={service.id} value={service.name}>
+                    {service.name}
+                  </option>
+                ))}
+                <option value="not_sure">No estoy seguro (a)</option>
+              </select>
+              { errors.type && <p className={s.error}>{errors.type}</p> }
+            </div>
           </div>
           <div className={s.mail}>
-            <input type="email" name="email" placeholder="Correo electrónico" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
+            <div className={s.divEmail}>
+              <input type="email" name="email" placeholder="Correo electrónico" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
+              { errors.email && <p className={s.error}>{errors.email}</p> }
+            </div>
             <div className={s.phoneInputContainer}>
               <PhoneInput
                 country={'us'}
@@ -86,6 +101,7 @@ const ContactForm = () => {
                 onChange={(phone, country, e, formattedValue) => setForm({ ...form, phone: formattedValue })}
                 inputClass={s.phoneInput}
               />
+              { errors.phone && <p className={s.error}>{errors.phone}</p> }
             </div>
           </div>
           <div className={s.divBtn}>
