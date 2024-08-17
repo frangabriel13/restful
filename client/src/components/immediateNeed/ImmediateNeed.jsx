@@ -1,11 +1,13 @@
 import React from "react";
 import s from "./ImmediateNeed.module.css";
 import { useNavigate } from "react-router-dom";
+import { scrollToSection } from "../../utils/utilities";
 
 const ImmediateNeed = () => {
   const navigate = useNavigate();
 
   const handleContactClick = () => {
+    scrollToSection("contact");
     navigate("/contact");
   };
 
