@@ -32,8 +32,13 @@ const ContactForm = () => {
       console.log(errors);
       return;
     }
-    dispatch(sendEmail(form));
+    const { email, service, name, lastname, age, phone } = form;
+    const subject = `Solicitud de asesoramiento para el servicio ${service}`;
+    const text = `Nombre: ${name} ${lastname}\nEdad: ${age}\nTeléfono: ${phone}\nCorreo electrónico: ${email}\nServicio: ${service}`;
+    dispatch(sendEmail(email, subject, text));
   };
+
+  console.log(form);
 
   return (
     <div className={s.container}>
@@ -52,7 +57,7 @@ const ContactForm = () => {
             <select name="service" onChange={(e) => setForm({ ...form, service: e.target.value })}>
               <option value="">Selecciona un servicio</option>
               {services.map((service) => (
-                <option key={service.id} value={service.id}>
+                <option key={service.id} value={service.name}>
                   {service.name}
                 </option>
               ))}
@@ -65,7 +70,7 @@ const ContactForm = () => {
               <PhoneInput
                 country={'us'}
                 value={form.phone}
-                onChange={(phone) => setForm({ ...form, phone })}
+                onChange={(phone, country, e, formattedValue) => setForm({ ...form, phone: formattedValue })}
                 inputClass={s.phoneInput}
               />
             </div>
