@@ -1,6 +1,7 @@
 import React from "react";
 import s from "./Home.module.css";
 import fondo from "../../assets/fondoJarron.jpg";
+import ToAbout from "./toAbout/ToAbout";
 
 const Home = () => {
   return (
@@ -21,7 +22,7 @@ const Home = () => {
         </div>
       </div>
       <div>
-        Esto sigue siendo parte del home
+        <ToAbout />
       </div>
     </div>
   );
