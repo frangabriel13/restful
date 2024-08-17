@@ -6,15 +6,21 @@ import { Link } from "react-router-dom";
 const Redirect = () => {
   return (
     <div className={s.redirect}>
-      <div className={s.target} style={{ backgroundImage: `url(${img1})` }}>
-        <h4>Planes Futuros</h4>
-      </div>
-      <div className={s.target} style={{ backgroundImage: `url(${img1})` }}>
-        <h4>Necesidad Inmediata</h4>
-      </div>
-      <div className={s.target} style={{ backgroundImage: `url(${img1})` }}>
-        <h4>Duelo</h4>
-      </div>
+      <Link to="/future-planning" className={s.link}>
+        <div className={s.target} style={{ backgroundImage: `url(${img1})` }}>
+          <h4>Planes Futuros</h4>
+        </div>
+      </Link>
+      <Link to="/immediate-need" className={s.link}>
+        <div className={s.target} style={{ backgroundImage: `url(${img1})` }}>
+          <h4>Necesidad Inmediata</h4>
+        </div>
+      </Link>
+      <Link to="/mourning" className={s.link}>
+        <div className={s.target} style={{ backgroundImage: `url(${img1})` }}>
+          <h4>Duelo</h4>
+        </div>
+      </Link>
     </div>
   );
 };
