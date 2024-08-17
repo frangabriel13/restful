@@ -22,7 +22,7 @@ const ContactForm = () => {
 
   useEffect(() => {
     dispatch(getServices());
-  }, []);
+  }, [dispatch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,9 +36,22 @@ const ContactForm = () => {
     const subject = `Solicitud de asesoramiento para el servicio ${service}`;
     const text = `Nombre: ${name} ${lastname}\nEdad: ${age}\nTeléfono: ${phone}\nCorreo electrónico: ${email}\nServicio: ${service}`;
     dispatch(sendEmail(email, subject, text));
+    clearForm();
   };
 
-  console.log(form);
+  const clearForm = () => {
+    setForm({
+      name: "",
+      lastname: "",
+      age: "",
+      phone: "",
+      service: "",
+      email: "",
+    });
+    setErrors({});
+  };
+
+  console.log(errors);
 
   return (
     <div className={s.container}>
@@ -49,12 +62,12 @@ const ContactForm = () => {
       <div className={s.divForm}>
         <form className={s.form}>
           <div className={s.divName}>
-            <input type="text" name="name" placeholder="Nombre" onChange={(e) => setForm({ ...form, name: e.target.value })} />
-            <input type="text" name="lastname" placeholder="Apellido" onChange={(e) => setForm({ ...form, lastname: e.target.value })} />
+            <input type="text" name="name" placeholder="Nombre" value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} />
+            <input type="text" name="lastname" placeholder="Apellido" value={form.lastname} onChange={(e) => setForm({ ...form, lastname: e.target.value })} />
           </div>
           <div className={s.services}>
-            <input type="number" name="age" placeholder="Edad" onChange={(e) => setForm({ ...form, age: e.target.value })} />
-            <select name="service" onChange={(e) => setForm({ ...form, service: e.target.value })}>
+            <input type="number" name="age" placeholder="Edad" value={form.age} onChange={(e) => setForm({ ...form, age: e.target.value })} />
+            <select name="service" value={form.service} onChange={(e) => setForm({ ...form, service: e.target.value })}>
               <option value="">Selecciona un servicio</option>
               {services.map((service) => (
                 <option key={service.id} value={service.name}>
@@ -65,7 +78,7 @@ const ContactForm = () => {
             </select>
           </div>
           <div className={s.mail}>
-            <input type="email" name="email" placeholder="Correo electrónico" onChange={(e) => setForm({ ...form, email: e.target.value })} />
+            <input type="email" name="email" placeholder="Correo electrónico" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
             <div className={s.phoneInputContainer}>
               <PhoneInput
                 country={'us'}
@@ -83,6 +96,5 @@ const ContactForm = () => {
     </div>
   )
 };
-
 
 export default ContactForm;
