@@ -2,6 +2,7 @@ import React from "react";
 import s from "./Home.module.css";
 import fondo from "../../assets/fondoJarron.jpg";
 import ToAbout from "./toAbout/ToAbout";
+import Redirect from "./redirect/Redirect";
 
 const Home = () => {
   return (
@@ -23,6 +24,7 @@ const Home = () => {
       </div>
       <div>
         <ToAbout />
+        <Redirect />
       </div>
     </div>
   );
