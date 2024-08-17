@@ -6,8 +6,13 @@ import Redirect from "./redirect/Redirect";
 import ServiceType from "./serviceType/ServiceType";
 import { Link } from "react-router-dom";
 import ToContact from "./toContact/ToContact";
+import { scrollToSection } from "../../utils/utilities";
 
 const Home = () => {
+  const handleScroll = () => {
+    scrollToSection("contact");
+  };
+
   return (
     <div>
       <div className={s.container}>
@@ -22,7 +27,7 @@ const Home = () => {
               Contáctanos para obtener tu cotización de jarrones funerarios
             </p>
             {/* <button>Pedir cotización</button> */}
-            <Link to="/contact" className={s.link}>
+            <Link to="/contact" className={s.link} onClick={handleScroll} > 
               <button className={s.button}>Pedir cotización</button>
             </Link>
           </div>
