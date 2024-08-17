@@ -4,6 +4,11 @@
   justify-content: center;
 }
 
+.link {
+  text-decoration: none; /* Elimina el subrayado de los enlaces */
+  width: 100%; /* Asegura que los enlaces ocupen todo el ancho */
+}
+
 .target {
   position: relative;
   width: 100%;
