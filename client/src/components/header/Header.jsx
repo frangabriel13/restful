@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { IoMdMenu } from "react-icons/io";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
+import { scrollToSection } from "../../utils/utilities";
 
 function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
@@ -23,10 +24,6 @@ function Header() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-
-  const scrollToSection = (sectionId) => {
-    document.getElementById(sectionId);
-  };
   
   const toggleMenu = (sectionId) => {
     setMenuOpen(!menuOpen);
