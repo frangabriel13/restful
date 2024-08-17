@@ -3,6 +3,7 @@ import s from "./Home.module.css";
 import fondo from "../../assets/fondoJarron.jpg";
 import ToAbout from "./toAbout/ToAbout";
 import Redirect from "./redirect/Redirect";
+import ServiceType from "./serviceType/ServiceType";
 
 const Home = () => {
   return (
@@ -25,6 +26,7 @@ const Home = () => {
       <div>
         <ToAbout />
         <Redirect />
+        <ServiceType />
       </div>
     </div>
   );
