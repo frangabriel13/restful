@@ -4,6 +4,8 @@ import fondo from "../../assets/fondoJarron.jpg";
 import ToAbout from "./toAbout/ToAbout";
 import Redirect from "./redirect/Redirect";
 import ServiceType from "./serviceType/ServiceType";
+import { Link } from "react-router-dom";
+import ToContact from "./toContact/ToContact";
 
 const Home = () => {
   return (
@@ -19,7 +21,10 @@ const Home = () => {
             <p>
               Contáctanos para obtener tu cotización de jarrones funerarios
             </p>
-            <button>Pedir cotización</button>
+            {/* <button>Pedir cotización</button> */}
+            <Link to="/contact" className={s.link}>
+              <button className={s.button}>Pedir cotización</button>
+            </Link>
           </div>
         </div>
       </div>
@@ -27,6 +32,7 @@ const Home = () => {
         <ToAbout />
         <Redirect />
         <ServiceType />
+        <ToContact />
       </div>
     </div>
   );

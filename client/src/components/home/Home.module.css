@@ -52,6 +52,12 @@
   font-size: 3rem;
 }
 
+.link {
+  padding-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
 .divContact button {
   font-size: 2rem;
   padding: 1rem 2rem;

@@ -53,7 +53,10 @@ function Header() {
             <Link to="/contact" onClick={() => toggleMenu('contact')}>Contacto</Link>
             <Link to="/mourning" onClick={() => toggleMenu('mourning')}>Duelo</Link>
             {/* <Link to="/faq" onClick={() => toggleMenu('faq')}>Preguntas frecuentes</Link> */}
-            <button className={s.btnQuote}>Pedir cotización</button>
+            {/* <button className={s.btnQuote}>Pedir cotización</button> */}
+            <Link to="/contact" onClick={() => toggleMenu('contact')}>
+              <button className={s.btnQuote}>Pedir cotización</button>
+            </Link>
         </nav>
       </div>
       <div className={s.navToggle}>
@@ -64,5 +67,3 @@ function Header() {
 }
 
 export default Header;
-
-// cambiar a a Link para que no recargue la pagina
