@@ -1,8 +1,18 @@
 import React from "react";
 import s from "./ServiceCard.module.css";
 import { servicesImages } from "../../../utils/utilities";
+import { scrollToSection } from "../../../utils/utilities";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const ServiceCard = ({ service }) => {
+  const navigate = useNavigate();
+
+  const handleScroll = () => {
+    scrollToSection('contact');
+    navigate("/contact");
+  };
+
   return (
     <div className={s.card}>
       {
@@ -38,7 +48,10 @@ const ServiceCard = ({ service }) => {
           </div>
         </div>
         <div className={s.divMoreInfo}>
-          <button>Más información</button>
+          <button onClick={handleScroll}>Más información</button>
+          {/* <Link to="/services" onClick={handleScroll}>
+            <button>Más información</button>
+          </Link> */}
         </div>
       </div>
     </div>

@@ -4,11 +4,13 @@ import Benefits from "./benefits/Benefits";
 import Gallery from "./gallery/Gallery";
 import { benfitsImages } from "../../utils/utilities";
 import { useNavigate } from "react-router-dom";
+import { scrollToSection } from "../../utils/utilities";
 
 const FuturePlanning = () => {
   const navigate = useNavigate();
 
   const handleContactClick = () => {
+    scrollToSection("contact");
     navigate("/contact");
   };
 

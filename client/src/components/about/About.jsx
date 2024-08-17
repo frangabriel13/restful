@@ -3,11 +3,13 @@ import s from "./About.module.css";
 import about from "../../assets/about.jpg";
 import Mision from "./mision/Mision";
 import { useNavigate } from "react-router-dom";
+import { scrollToSection } from "../../utils/utilities";
 
 const About = () => {
   const navigate = useNavigate();
 
   const handleContactClick = () => {
+    scrollToSection("contact");
     navigate("/contact");
   };
 
