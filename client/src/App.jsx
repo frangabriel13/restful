@@ -9,22 +9,31 @@ import FuturePlanning from './components/futurePlanning/FuturePlanning'
 import ImmediateNeed from './components/immediateNeed/ImmediateNeed'
 import Services from './components/services/Services'
 import Mourning from './components/mourning/Mourning'
+import Dashboard from './components/dashboard/Dashboard'
 
 function App() {
   return (
-    <>
-      <Header />
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/contact' element={<Contact />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/future-planning' element={<FuturePlanning />} />
-        <Route path='/immediate-need' element={<ImmediateNeed />} />
-        <Route path='/services' element={<Services />} />
-        <Route path='/mourning' element={<Mourning />} />
-      </Routes>
-      <Footer />
-    </>
+    <Routes>
+      <Route path='/dashboard/*' element={<Dashboard />} />
+      <Route
+        path='*'
+        element={
+          <>
+            <Header />
+            <Routes>
+              <Route path='/' element={<Home />} />
+              <Route path='/contact' element={<Contact />} />
+              <Route path='/about' element={<About />} />
+              <Route path='/future-planning' element={<FuturePlanning />} />
+              <Route path='/immediate-need' element={<ImmediateNeed />} />
+              <Route path='/services' element={<Services />} />
+              <Route path='/mourning' element={<Mourning />} />
+            </Routes>
+            <Footer />
+          </>
+        }
+      />
+    </Routes>
   )
 }
 

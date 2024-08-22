@@ -31,7 +31,7 @@ export const registerAdmin = (data) => async (dispatch) => {
       type: "REGISTER_ADMIN",
       payload: response.data,
     });
-  } catch (error) {
+  } catch(error) {
     console.error(error);
   }
 };
