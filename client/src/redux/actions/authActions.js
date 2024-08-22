@@ -23,3 +23,15 @@ export const logout = () => async (dispatch) => {
     console.error(error);
   }
 };
+
+export const registerAdmin = (data) => async (dispatch) => {
+  try {
+    const response = await instance.post("/register", data);
+    dispatch({
+      type: "REGISTER_ADMIN",
+      payload: response.data,
+    });
+  } catch (error) {
+    console.error(error);
+  }
+};
