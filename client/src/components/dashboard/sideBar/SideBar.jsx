@@ -8,14 +8,14 @@ const SideBar = () => {
   return (
     <div className={s.sideBar}>
       <Link>
-        <div>
-          <IoIosHome />
+        <div className={s.divIcon}>
+          <IoIosHome className={s.icon} />
           <p>Home</p>
         </div>
       </Link>
       <Link to={'services'}>
-        <div>
-          <BsTools />
+        <div className={s.divIcon}>
+          <BsTools className={s.icon} />
           <p>Services</p>
         </div>
       </Link>
