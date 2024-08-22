@@ -2,20 +2,24 @@ const { Router } = require('express');
 const { User } = require('../db.js');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+const { deleteUser, getUsers } = require('../controllers/userController');
 
 const router = Router();
 
-router.get('/', async (req, res) => {
-  res.send('Hello World');
-});
+router.get('/', getUsers);
 
 router.post('/register', async (req, res) => {
   const { email, password } = req.body;
   try {
+    const existAdmin = await User.findOne({ where: { role: 'admin' } });
+    if(existAdmin) {
+      return res.status(403).json({ message: 'Admin already exist' });
+    }
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({
       email,
       password: hashedPassword,
+      role: 'admin',
     })
     res.status(201).json({ message: 'User created', user });
   } catch(error) {
@@ -42,6 +46,8 @@ router.post('/login', (req, res, next) => {
     });
   })(req, res, next);
 });
+
+router.delete('/:id', deleteUser);
 
 
 module.exports = router;
