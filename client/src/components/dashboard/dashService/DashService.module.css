@@ -1,0 +1,75 @@
+.container {
+  width: 100%;
+  padding: 2rem;
+  background-color: #f9f9f9;
+}
+
+.dashboard {
+  width: 40%;
+  border-radius: 0.3rem;
+  box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  background-color: #fff;
+}
+
+.dashboard h2 {
+  font-size: 2.4rem;
+  color: #333;
+  padding-bottom: 2rem;
+  border-bottom: 0.1rem solid #ddd;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 2rem;
+}
+
+.table th,
+.table td {
+  padding: 1.2rem 1.5rem;
+  text-align: left;
+  border-bottom: 0.1rem solid #ddd;
+}
+
+.table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.table button {
+  padding: 0.8rem 1.2rem;
+  margin-right: 0.5rem;
+  border: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.table button:first-child {
+  background-color: #4caf50;
+  color: white;
+}
+
+.table button:first-child:hover {
+  background-color: #45a049;
+}
+
+/* .table button:last-child {
+  background-color: #f44336;
+  color: white;
+}
+
+.table button:last-child:hover {
+  background-color: #e53935;
+} */

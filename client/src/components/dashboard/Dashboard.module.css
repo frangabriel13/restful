@@ -2,6 +2,6 @@
   display: flex;
 }
 
-.container > div {
-  /* margin: 2rem; */
+.dashboard {
+  width: 100%;
 }
