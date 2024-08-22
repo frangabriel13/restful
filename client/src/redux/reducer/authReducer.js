@@ -15,6 +15,11 @@ const authReducer = (state = initialState, action) => {
         ...state,
         user: null,
       };
+    case 'REGISTER_ADMIN':
+      return {
+        ...state,
+        user: action.payload,
+      };
     default:
       return state;
   }
