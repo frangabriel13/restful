@@ -3,11 +3,15 @@ import { instance } from "../../utils/axiosConfig";
 export const login = (data) => async (dispatch) => {
   try {
     const response = await instance.post("/users/login", data);
+    const { user, token } = response.data;
+
+    localStorage.setItem("token", token);
+
     dispatch({
       type: "LOGIN",
       payload: {
-        user: response.data.user,
-        token: response.data.token,
+        user,
+        token,
       },
     });
     return { success: true };

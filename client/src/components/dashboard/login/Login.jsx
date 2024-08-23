@@ -33,8 +33,6 @@ const Login = () => {
     }
   };
 
-  console.log(errors);
-
   return (
     <div className={s.container}>
       <h2>Login</h2>

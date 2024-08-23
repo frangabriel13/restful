@@ -35,7 +35,7 @@ export const validateLogin = (formData) => {
 
   if (!formData.password) {
     errors.password = "La contraseña es requerida";
-  } 
+  }
   // else if (formData.password.length < 8) {
   //   errors.password = "La contraseña debe tener al menos 8 caracteres";
   // } else if (!/[A-Z]/.test(formData.password)) {
