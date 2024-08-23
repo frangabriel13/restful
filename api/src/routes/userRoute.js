@@ -42,7 +42,7 @@ router.post('/login', (req, res, next) => {
       if(err) {
         return res.status(500).json({ message: 'Error en la autenticación', error: err });
       }
-      return res.status(200).json({ message: 'Usuario autenticado', token: info.token });
+      return res.status(200).json({ message: 'Usuario autenticado', token: info.token, user });
     });
   })(req, res, next);
 });

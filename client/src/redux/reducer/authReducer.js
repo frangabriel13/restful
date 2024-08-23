@@ -1,24 +1,31 @@
 const initialState = {
   user: null,
+  isAuthenticated: false,
+  token: null,
 };
 
-//Solo lo creé para tener una referencia de como se vería el reducer
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
     case 'LOGIN':
       return {
         ...state,
-        user: action.payload,
+        user: action.payload.user,
+        isAuthenticated: true,
+        token: action.payload.token,
       };
     case 'LOGOUT':
       return {
         ...state,
         user: null,
+        isAuthenticated: false,
+        token: null,
       };
     case 'REGISTER_ADMIN':
       return {
         ...state,
-        user: action.payload,
+        user: action.payload.user,
+        isAuthenticated: true,
+        token: action.payload.token,
       };
     default:
       return state;

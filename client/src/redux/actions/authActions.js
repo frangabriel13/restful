@@ -6,7 +6,10 @@ export const login = (data) => async (dispatch) => {
     const response = await instance.post("/login", data);
     dispatch({
       type: "LOGIN",
-      payload: response.data,
+      payload: {
+        user: response.data.user,
+        token: response.data.token,
+      },
     });
   } catch (error) {
     console.error(error);
@@ -15,7 +18,7 @@ export const login = (data) => async (dispatch) => {
 
 export const logout = () => async (dispatch) => {
   try {
-    await instance.post("/logout");
+    localStorage.removeItem("token");
     dispatch({
       type: "LOGOUT",
     });
