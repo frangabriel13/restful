@@ -10,11 +10,22 @@ import ImmediateNeed from './components/immediateNeed/ImmediateNeed'
 import Services from './components/services/Services'
 import Mourning from './components/mourning/Mourning'
 import Dashboard from './components/dashboard/Dashboard'
+import Login from './components/dashboard/login/Login'
+import ProtectedRoute from './components/dashboard/ProtectedRoute'
 
 function App() {
   return (
     <Routes>
-      <Route path='/dashboard/*' element={<Dashboard />} />
+      {/* <Route path='/dashboard/*' element={<Dashboard />} /> */}
+      <Route path='/dashboard/login' element={<Login />} />
+      <Route
+        path='/dashboard/*'
+        element={
+          <ProtectedRoute>
+            <Dashboard />
+          </ProtectedRoute>
+        }
+      />
       <Route
         path='*'
         element={

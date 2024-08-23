@@ -21,11 +21,11 @@ export const validateForm = (formData) => {
     errors.phone = "El teléfono es requerido";
   }
 
-  if (!formData.email) {
-    errors.email = "El email es requerido";
-  } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-    errors.email = "El email es inválido";
-  }
+  // if (!formData.email) {
+  //   errors.email = "El email es requerido";
+  // } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
+  //   errors.email = "El email es inválido";
+  // }
 
   return errors;
 };

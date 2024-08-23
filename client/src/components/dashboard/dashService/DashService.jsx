@@ -11,8 +11,6 @@ const DashService = () => {
     dispatch(getServices());
   }, [dispatch]);
 
-  console.log(services);
-
   return (
     <div className={s.container}>
       <div className={s.dashboard}>
@@ -36,7 +34,7 @@ const DashService = () => {
                 <td>{service.preNeed}</td>
                 <td>
                   <button>Edit</button>
-                  <button>Delete</button>
+                  {/* <button>Delete</button> */}
                 </td>
               </tr>
             ))}
