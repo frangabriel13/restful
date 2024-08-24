@@ -44,7 +44,7 @@ const createService = async (req, res) => {
 
 const updateService = async (req, res) => {
   const { id } = req.params;
-  const { name, description, price, preNeed, features, disclaimers } = req.body;
+  const { name, description, price, preNeed, features, disclaimers, isActive } = req.body;
   try {
     const service = await Service.findByPk(id);
     if(!service) {
@@ -57,6 +57,7 @@ const updateService = async (req, res) => {
       preNeed,
       features,
       disclaimers,
+      isActive,
     })
     res.status(200).json(service);
   } catch(error) {

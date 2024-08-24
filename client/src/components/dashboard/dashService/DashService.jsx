@@ -34,7 +34,6 @@ const DashService = () => {
                 <td>{service.preNeed}</td>
                 <td>
                   <button>Edit</button>
-                  {/* <button>Delete</button> */}
                 </td>
               </tr>
             ))}

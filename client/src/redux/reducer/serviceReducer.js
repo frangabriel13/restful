@@ -9,6 +9,13 @@ const serviceReducer = (state = initialState, action) => {
         ...state,
         services: action.payload,
       };
+    case "UPDATE_SERVICE":
+      return {
+        ...state,
+        // services: state.services.map((service) =>
+        //   service.id === action.payload.id ? action.payload : service
+        // ),
+      };
     default:
       return state;
   }

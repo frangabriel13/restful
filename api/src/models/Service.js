@@ -24,5 +24,9 @@ module.exports = (sequelize) => {
     disclaimers: {
       type: DataTypes.TEXT,
     },
+    isActive: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true,
+    },
   });
 };
