@@ -60,8 +60,10 @@ const EditService = ({ service, handleCancel }) => {
             <label htmlFor="isActive">Active</label>
             <input type="checkbox" name="isActive" id="isActive" checked={formData.isActive} onChange={handleChange} />
           </div>
-          <button type="submit">Save</button>
-          <button type="button" onClick={handleCancel}>Cancel</button>
+          <div className={s.divBtns}>
+            <button type="submit">Save</button>
+            <button type="button" onClick={handleCancel}>Cancel</button>
+          </div>
         </form>
       </div>
     </div>
