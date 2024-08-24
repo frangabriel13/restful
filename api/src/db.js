@@ -24,7 +24,20 @@ let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map(entry => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { } = sequelize.models;
+const { Service, Order } = sequelize.models;
+
+Order.belongsTo(Service, {
+  foreignKey: {
+    allowNull: false,
+  },
+  onDelete: 'CASCADE',
+});
+Service.hasMany(Order, {
+  foreignKey: {
+    allowNull: false,
+  },
+  onDelete: 'CASCADE',
+});
 
 
 module.exports = {
