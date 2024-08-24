@@ -1,0 +1,93 @@
+.container {
+  width: 60%;
+  border-radius: 0.3rem;
+  box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  background-color: #fff;
+}
+
+/* .container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background-color: #f9f9f9;
+} */
+
+.editService {
+  /* background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 600px; */
+}
+
+.editService h2 {
+  margin-bottom: 2rem;
+  font-size: 2.4rem;
+  color: #333;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup {
+  margin-bottom: 15px;
+}
+
+.formGroup label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+
+.formGroup input[type="text"],
+.formGroup textarea {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 16px;
+  color: #333;
+}
+
+.formGroup input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+.formGroup textarea {
+  resize: vertical;
+  height: 100px;
+}
+
+button[type="submit"],
+button[type="button"] {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+button[type="submit"] {
+  background-color: #4caf50;
+  color: #fff;
+}
+
+button[type="button"] {
+  background-color: #f44336;
+  color: #fff;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+button[type="button"]:hover {
+  background-color: #e53935;
+}
