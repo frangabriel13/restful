@@ -7,7 +7,19 @@ export const getServices = () => async (dispatch) => {
       type: "GET_SERVICES",
       payload: response.data,
     });
-  } catch (error) {
+  } catch(error) {
     console.error(error);
+  }
+};
+
+export const updateService = (id, service) => async (dispatch) => {
+  try {
+    const response = await instance.put(`services/${id}`, service);
+    dispatch({
+      type: "UPDATE_SERVICE",
+      payload: response.data,
+    })
+  } catch(error) {
+    console.log(error);
   }
 };

@@ -1,21 +1,33 @@
 import { instance } from "../../utils/axiosConfig";
 
-//Solo creé el action para tener una referencia de como se vería
 export const login = (data) => async (dispatch) => {
   try {
-    const response = await instance.post("/login", data);
+    const response = await instance.post("/users/login", data);
+    const { user, token } = response.data;
+
+    localStorage.setItem("token", token);
+
     dispatch({
       type: "LOGIN",
-      payload: response.data,
+      payload: {
+        user,
+        token,
+      },
     });
+    return { success: true };
   } catch (error) {
     console.error(error);
+    return {
+      success: false,
+      message: error.response.data.message,
+      info: error.response.data.info,
+    }
   }
 };
 
 export const logout = () => async (dispatch) => {
   try {
-    await instance.post("/logout");
+    localStorage.removeItem("token");
     dispatch({
       type: "LOGOUT",
     });
@@ -26,7 +38,7 @@ export const logout = () => async (dispatch) => {
 
 export const registerAdmin = (data) => async (dispatch) => {
   try {
-    const response = await instance.post("/register", data);
+    const response = await instance.post("/users/register", data);
     dispatch({
       type: "REGISTER_ADMIN",
       payload: response.data,
