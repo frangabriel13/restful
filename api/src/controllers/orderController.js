@@ -25,7 +25,7 @@ const getOrderById = async (req, res) => {
 };
 
 const createOrder = async (req, res) => {
-  const { contactDate, contactName, phoneNumber, email, comission, relationship, deceasedName, status, statusDate, serviceId } = req.body;
+  const { contactDate, contactName, phoneNumber, email, comission, relationship, deceasedName, status, statusDate, serviceId, price, insurance, tracking, age } = req.body;
   try {
     const service = await Service.findByPk(serviceId);
     if(!service) {
@@ -43,6 +43,10 @@ const createOrder = async (req, res) => {
       status,
       statusDate,
       serviceId,
+      price,
+      insurance,
+      tracking,
+      age,
     });
     res.status(201).json(newOrder);
   } catch(error) {

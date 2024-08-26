@@ -25,13 +25,11 @@ const getServiceId = async (req, res) => {
 }
 
 const createService = async (req, res) => {
-  const { name, description, price, preNeed, features, disclaimers } = req.body;
+  const { name, price, features, disclaimers } = req.body;
   try {
     const newService = await Service.create({
       name,
-      description,
       price,
-      preNeed,
       features,
       disclaimers,
     })
@@ -44,7 +42,7 @@ const createService = async (req, res) => {
 
 const updateService = async (req, res) => {
   const { id } = req.params;
-  const { name, description, price, preNeed, features, disclaimers, isActive } = req.body;
+  const { name, price, features, disclaimers, isActive } = req.body;
   try {
     const service = await Service.findByPk(id);
     if(!service) {

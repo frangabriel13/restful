@@ -34,5 +34,20 @@ module.exports = (sequelize) => {
       type: DataTypes.DATE,
       defaultValue: DataTypes.NOW,
     },
+    price: {
+      type: DataTypes.STRING,
+    },
+    insurance: {
+      type: DataTypes.ENUM('pending', 'GWIC', 'CMT'),
+    },
+    tracking: {
+      type: DataTypes.ARRAY(DataTypes.STRING),
+    },
+    age: {
+      type: DataTypes.INTEGER,
+    },
+    source: {
+      type: DataTypes.STRING,
+    }
   });
 };
