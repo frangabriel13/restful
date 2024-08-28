@@ -19,7 +19,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
     },
     comission: {
-      type: DataTypes.FLOAT,
+      type: DataTypes.STRING,
     },
     relationship: {
       type: DataTypes.STRING,
