@@ -22,7 +22,7 @@ app.use(passport.initialize());
 // app.use(passport.session());
 
 const corsOptions = {
-  origin: 'http://localhost:5173',
+  origin: 'http://191.101.232.23/',
   credentials: true,
   optionsSuccessStatus: 200
 };
