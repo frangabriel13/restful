@@ -25,13 +25,14 @@ const getServiceId = async (req, res) => {
 }
 
 const createService = async (req, res) => {
-  const { name, price, features, disclaimers } = req.body;
+  const { name, price, features, disclaimers, isActive } = req.body;
   try {
     const newService = await Service.create({
       name,
       price,
       features,
       disclaimers,
+      isActive,
     })
     res.status(201).json(newService);
   } catch(error) {
@@ -50,9 +51,7 @@ const updateService = async (req, res) => {
     }
     await service.update({
       name,
-      description,
       price,
-      preNeed,
       features,
       disclaimers,
       isActive,
@@ -75,7 +74,7 @@ const deleteService = async (req, res) => {
     res.status(200).json({ message: 'Servicio eliminado con éxito' });
   } catch(error) {
     console.log(error);
-    res.tatus(500).json({ message: 'Internal server error' })
+    res.status(500).json({ message: 'Internal server error' })
   }
 }
 
