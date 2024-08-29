@@ -1,0 +1,14 @@
+.container {
+}
+
+.divTitle {
+  background-color: var(--second-bg-color);
+  height: 20rem;
+}
+
+.divTitle h2 {
+  font-size: 4rem;
+  color: var(--second-color);
+  text-align: center;
+  padding-top: 12rem;
+}

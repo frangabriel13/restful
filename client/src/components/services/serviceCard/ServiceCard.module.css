@@ -1,0 +1,88 @@
+.card {
+  padding: 2rem;
+  width: 60%;
+  display: flex;
+  border-radius: .3rem;
+  gap: 2rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
+}
+
+.divImg img {
+  max-width: 25rem;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+  border-radius: .3rem;
+  /* object-fit: cover; */
+}
+
+.divDataContainer {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.containerData {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 75%;
+}
+
+.dataContainer {
+  display: flex;
+  gap: 4rem;
+}
+
+.divData {
+  width: 25rem;
+}
+
+.divData h3 {
+  font-size: 2rem;
+  color: var(--second-bg-color);
+}
+
+.divData p {
+  font-size: 1.6rem;
+  color: var(--text-color);
+}
+
+.divFeatures h4 {
+  font-size: 1.8rem;
+  color: var(--second-bg-color);
+}
+
+.divFeatures ul {
+  /* list-style: none; */
+  font-size: 1.4rem;
+}
+
+.divMoreInfo {
+  display: flex;
+  align-items: center;
+}
+
+.divDisclaimer p {
+  font-size: 1.2rem;
+  color: var(--main-color);
+}
+
+.divMoreInfo button {
+  padding: 1rem 2rem;
+  font-size: 1.7rem;
+  border: .1rem solid var(--second-color);
+  border-radius: .3rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  background: linear-gradient(to right, var(--second-bg-color) 50%, var(--second-color) 50%);
+  box-shadow: inset 0 0 0 .1rem var(--second-color);
+  background-size: 200% 100%;
+  color: var(--second-color);
+}
+
+.divMoreInfo button:hover {
+  background-position: -100% 0;
+  transition: .5s;
+  color: var(--second-bg-color);
+}

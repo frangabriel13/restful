@@ -1,0 +1,151 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.divTitle {
+  padding: 10rem 5rem;
+}
+
+.divTitle h3 {
+  font-size: 4rem;
+  color: var(--second-bg-color);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.divTitle p {
+  font-size: 2rem;
+  color: var(--text-color);
+  line-height: 2.5rem;
+  text-align: center;
+}
+
+.divForm {
+  background-color: var(--second-bg-color);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 5rem;
+}
+
+.form {
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.divName {
+  display: flex;
+  gap: 2rem;
+}
+
+.divNombre {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.divName input {
+  /* width: 50%; */
+  height: 4rem;
+  padding: 1rem;
+  font-size: 1.6rem;
+  border-radius: .3rem;
+}
+
+.services {
+  display: flex;
+  gap: 2rem;
+}
+
+.divAge {
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+}
+
+.divService {
+  width: 70%;
+  display: flex;
+  flex-direction: column;
+}
+
+.services input {
+  /* width: 30%; */
+  height: 4rem;
+  padding: 1rem;
+  font-size: 1.6rem;
+  border-radius: .3rem;
+}
+
+.services select {
+  /* width: 70%; */
+  height: 4rem;
+  padding: 1rem;
+  font-size: 1.6rem;
+  border-radius: .3rem;
+}
+
+.mail {
+  display: flex;
+  gap: 2rem;
+}
+
+.divEmail {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+
+.divEmail input {
+  /* width: 50%; */
+  height: 4rem;
+  padding: 1rem;
+  font-size: 1.6rem;
+  border-radius: .3rem;
+}
+
+.phoneInputContainer {
+  width: 50%;
+}
+
+.phoneInput {
+  width: 100% !important;
+  height: 4rem !important;
+  padding: 1rem !important;
+  font-size: 1.6rem !important;
+  border-radius: .3rem !important;
+  padding-left: 5rem !important;
+}
+
+.divBtn {
+  display: flex;
+  justify-content: center;
+}
+
+.divBtn button {
+  padding: 1rem 2rem;
+  font-size: 1.7rem;
+  border: .1rem solid var(--second-color);
+  border-radius: .3rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  background: linear-gradient(to right, var(--second-bg-color) 50%, var(--second-color) 50%);
+  box-shadow: inset 0 0 0 .1rem var(--second-color);
+  background-size: 200% 100%;
+  color: var(--second-color);
+}
+
+.divBtn button:hover {
+  background-position: -100% 0;
+  transition: .5s;
+  color: var(--second-bg-color);
+}
+
+.error {
+  color: white;
+}

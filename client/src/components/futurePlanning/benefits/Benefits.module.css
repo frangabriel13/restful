@@ -1,0 +1,33 @@
+.container {}
+
+.container h3 {
+  font-size: 4rem;
+  color: var(--second-bg-color);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.divBenefits {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding-top: 2rem;
+  padding-bottom: 10rem;
+}
+
+.benefit {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.icon {
+  font-size: 5rem;
+  color: var(--main-color);
+  margin-right: 1rem;
+}
+
+.benefit p {
+  font-size: 3rem;
+  color: var(--text-color);
+}

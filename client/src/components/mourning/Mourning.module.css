@@ -1,0 +1,79 @@
+.container {
+}
+
+.divTitle {
+  background-color: var(--second-bg-color);
+  height: 20rem;
+}
+
+.divTitle h2 {
+  font-size: 4rem;
+  color: var(--second-color);
+  text-align: center;
+  padding-top: 12rem;
+}
+
+.description {
+  padding: 10rem 5rem;
+}
+
+.description h3 {
+  font-size: 4rem;
+  color: var(--second-bg-color);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.description p {
+  font-size: 2rem;
+  color: var(--text-color);
+  line-height: 2.5rem;
+}
+
+.divMourning {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 10rem;
+}
+
+.divMourning h3 {
+  font-size: 3rem;
+  color: var(--second-bg-color);
+  margin-bottom: 2rem;
+}
+
+.divStages {
+  display: flex;
+  flex-direction: column;
+  padding: 5rem 10rem;
+  box-shadow: 0 0 1rem 0 rgba(0, 0, 0, 0.1);
+  border-radius: .3rem;
+  width: 60%;
+}
+
+.stage {
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 5rem;
+  margin-bottom: 5rem;
+  border-bottom: .1rem solid var(--second-bg-color);
+}
+
+.stage5 {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+.stage h4 {
+  font-size: 2.5rem;
+  color: var(--main-color);
+  margin-bottom: 1rem;
+}
+
+.stage p {
+  font-size: 2rem;
+  color: var(--text-color);
+  line-height: 2.5rem;
+}

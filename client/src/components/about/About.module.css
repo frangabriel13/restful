@@ -1,0 +1,77 @@
+.container {}
+
+.about {
+  /* width: 100%; */
+  height: 100vh;
+}
+
+.divTitle {
+  background-color: var(--second-bg-color);
+  height: 20rem;
+}
+
+.divTitle h2 {
+  font-size: 4rem;
+  color: var(--second-color);
+  text-align: center;
+  padding-top: 12rem;
+}
+
+.divData {
+  display: flex;
+  /* justify-content: center; */
+  /* padding: 5rem 10rem; */
+}
+
+.description {
+  padding: 10rem 5rem;
+}
+
+.description h3 {
+  font-size: 4rem;
+  color: var(--second-bg-color);
+  margin-bottom: 2rem;
+}
+
+.description p {
+  font-size: 2rem;
+  color: var(--text-color);
+  line-height: 2.5rem;
+}
+
+.divData img {
+  width: 56vw;
+}
+
+.callToAction {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 10rem;
+}
+
+.callToAction h3 {
+  font-size: 4rem;
+  color: var(--second-bg-color);
+  margin-bottom: 2rem;
+}
+
+.callToAction button {
+  padding: 1rem 2rem;
+  font-size: 2rem;
+  border: .1rem solid var(--second-bg-color);
+  border-radius: .3rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  background: linear-gradient(to right, #ffffff 50%, var(--second-bg-color) 50%);
+  box-shadow: inset 0 0 0 .1rem var(--second-bg-color);
+  background-size: 200% 100%;
+  color: var(--second-bg-color);
+}
+
+.callToAction button:hover {
+  background-position: -100% 0;
+  transition: .5s;
+  color: var(--second-color);
+}

@@ -1,0 +1,73 @@
+.container {
+  background-image: url('../../assets/fondoJarron.jpg');
+  background-size: cover;
+  background-position: center;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  gap: 10rem;
+}
+
+.divContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10rem;
+  background-color: rgba(0, 0, 0, 0.5);;
+  padding: 25rem;
+  height: 100vh;
+}
+
+.divData {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.divData h1 {
+  font-size: 9rem;
+}
+
+.divData p {
+  font-size: 4rem;
+}
+
+.divContact {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--second-bg-color);
+  padding: 2rem;
+  gap: 1rem;
+  border-radius: .3rem;
+}
+
+.divContact h2 {
+  font-size: 5rem;
+}
+
+.divContact p {
+  font-size: 3rem;
+}
+
+.link {
+  padding-top: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.divContact button {
+  font-size: 2rem;
+  padding: 1rem 2rem;
+  border: none;
+  background-color: var(--main-color);
+  color: white;
+  cursor: pointer;
+  border-radius: .3rem;
+}
+
+.divContact button:hover {
+  background-color: var(--second-color);
+}
