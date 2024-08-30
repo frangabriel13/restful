@@ -31,7 +31,7 @@ const Register = () => {
 
     const result = await dispatch(registerSuperAdmin(data));
     if(result.success) {
-      navigate("/login");
+      navigate("/dashboard/login");
     } else {
       setErrors({ message: result.message, ...result.info });
     }

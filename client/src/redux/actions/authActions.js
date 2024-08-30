@@ -43,8 +43,14 @@ export const registerSuperAdmin = (data) => async (dispatch) => {
       type: "REGISTER_SUPERADMIN",
       payload: response.data,
     });
-  } catch(error) {
+    return { success: true };
+  } catch (error) {
     console.error(error);
+    return {
+      success: false,
+      message: error.response.data.message,
+      info: error.response.data.info,
+    };
   }
 };
 
@@ -53,13 +59,19 @@ export const registerAdmin = (data, token) => async (dispatch) => {
     const response = await instance.post("/users/register", data, {
       headers: {
         Authorization: `Bearer ${token}`,
-      }
+      },
     });
     dispatch({
       type: "REGISTER_ADMIN",
       payload: response.data,
     });
-  } catch(error) {
+    return { success: true };
+  } catch (error) {
     console.error(error);
+    return {
+      success: false,
+      message: error.response.data.message,
+      info: error.response.data.info,
+    };
   }
 };
