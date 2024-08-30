@@ -24,20 +24,16 @@ let entries = Object.entries(sequelize.models);
 let capsEntries = entries.map(entry => [entry[0][0].toUpperCase() + entry[0].slice(1), entry[1]]);
 sequelize.models = Object.fromEntries(capsEntries);
 
-const { Service, Order } = sequelize.models;
+const { Service, Order, User, FuneralHome } = sequelize.models;
 
-Order.belongsTo(Service, {
-  foreignKey: {
-    allowNull: false,
-  },
-  onDelete: 'CASCADE',
-});
-Service.hasMany(Order, {
-  foreignKey: {
-    allowNull: false,
-  },
-  onDelete: 'CASCADE',
-});
+Order.belongsTo(Service, { foreignKey: { name: 'serviceId', allowNull: false }, onDelete: 'CASCADE' });
+Service.hasMany(Order, { foreignKey: { name: 'serviceId', allowNull: false }, onDelete: 'CASCADE' });
+
+User.hasMany(Order, { foreignKey: { name: 'userId', allowNull: false }, onDelete: 'CASCADE' });
+Order.belongsTo(User, { foreignKey: { name: 'userId', allowNull: false }, onDelete: 'CASCADE' });
+
+FuneralHome.hasMany(Order, { foreignKey: { name: 'funeralHomeId', allowNull: false }, onDelete: 'CASCADE' });
+Order.belongsTo(FuneralHome, { foreignKey: { name: 'funeralHomeId', allowNull: false }, onDelete: 'CASCADE' });
 
 
 module.exports = {
