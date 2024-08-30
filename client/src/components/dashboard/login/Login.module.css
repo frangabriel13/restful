@@ -8,45 +8,45 @@
 }
 
 .container h2 {
-  margin-bottom: 20px;
+  margin-bottom: 2rem;
   color: #333;
 }
 
 .form {
   display: flex;
   flex-direction: column;
-  width: 300px;
-  padding: 20px;
-  border: 1px solid #ccc;
-  border-radius: 10px;
+  width: 30rem;
+  padding: 2rem;
+  border: .1rem solid #ccc;
+  border-radius: 1rem;
   background-color: #fff;
 }
 
 .divInput {
-  margin-bottom: 15px;
+  margin-bottom: 1.5rem;
 }
 
 .divInput label {
-  margin-bottom: 5px;
+  margin-bottom: .5rem;
   font-weight: bold;
   color: #555;
 }
 
 .divInput input {
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
+  padding: 1rem;
+  border: .1rem solid #ccc;
+  border-radius: .5rem;
   width: 100%;
   box-sizing: border-box;
 }
 
 .btn {
-  padding: 10px;
+  padding: 1rem;
   border: none;
-  border-radius: 5px;
+  border-radius: .5rem;
   background-color: #007bff;
   color: white;
-  font-size: 16px;
+  font-size: 1.6rem;
   cursor: pointer;
 }
 
