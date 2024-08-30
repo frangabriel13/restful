@@ -27,6 +27,13 @@ const authReducer = (state = initialState, action) => {
         isAuthenticated: true,
         token: action.payload.token,
       };
+    case 'REGISTER_SUPERADMIN':
+      return {
+        ...state,
+        user: action.payload.user,
+        isAuthenticated: true,
+        token: action.payload.token,
+      };
     default:
       return state;
   }
