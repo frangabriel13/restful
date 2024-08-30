@@ -12,12 +12,13 @@ import Mourning from './components/mourning/Mourning'
 import Dashboard from './components/dashboard/Dashboard'
 import Login from './components/dashboard/login/Login'
 import ProtectedRoute from './components/dashboard/ProtectedRoute'
+import Register from './components/dashboard/login/Register'
 
 function App() {
   return (
     <Routes>
-      {/* <Route path='/dashboard/*' element={<Dashboard />} /> */}
       <Route path='/dashboard/login' element={<Login />} />
+      <Route path='/dashboard/register' element={<Register />} />
       <Route
         path='/dashboard/*'
         element={
