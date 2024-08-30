@@ -36,9 +36,25 @@ export const logout = () => async (dispatch) => {
   }
 };
 
-export const registerAdmin = (data) => async (dispatch) => {
+export const registerSuperAdmin = (data) => async (dispatch) => {
   try {
-    const response = await instance.post("/users/register", data);
+    const response = await instance.post("/users/register-superadmin", data);
+    dispatch({
+      type: "REGISTER_SUPERADMIN",
+      payload: response.data,
+    });
+  } catch(error) {
+    console.error(error);
+  }
+};
+
+export const registerAdmin = (data, token) => async (dispatch) => {
+  try {
+    const response = await instance.post("/users/register", data, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      }
+    });
     dispatch({
       type: "REGISTER_ADMIN",
       payload: response.data,
