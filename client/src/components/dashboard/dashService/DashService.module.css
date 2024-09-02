@@ -67,11 +67,16 @@
   background-color: #45a049;
 }
 
-/* .table button:last-child {
-  background-color: #f44336;
+.btnCreate {
+  background-color: #4caf50;
   color: white;
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 0.4rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.table button:last-child:hover {
-  background-color: #e53935;
-} */
+.btnCreate:hover {
+  background-color: #45a049;
+}

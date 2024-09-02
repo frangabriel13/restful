@@ -52,6 +52,7 @@ const DashService = () => {
             ))}
           </tbody>
         </table>
+        <button className={s.btnCreate}>Create</button>
       </div>
       {
         showEdit && (

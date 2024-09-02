@@ -23,3 +23,15 @@ export const updateService = (id, service) => async (dispatch) => {
     console.log(error);
   }
 };
+
+export const createService = (service) => async (dispatch) => {
+  try {
+    const response = await instance.post("services", service);
+    dispatch({
+      type: "CREATE_SERVICE",
+      payload: response.data,
+    });
+  } catch(error) {
+    console.error(error);
+  }
+};
