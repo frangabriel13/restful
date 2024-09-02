@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import s from "./DashService.module.css";
 import { getServices } from "../../../redux/actions/serviceActions";
 import EditService from "./EditService";
+import CreateService from "./CreateService";
 
 const DashService = () => {
   const dispatch = useDispatch();
   const services = useSelector((state) => state.service.services);
   const [selectedService, setSelectedService] = useState(null);
   const [showEdit, setShowEdit] = useState(false);
+  const [showCreate, setShowCreate] = useState(false);
 
   useEffect(() => {
     dispatch(getServices());
@@ -17,6 +19,10 @@ const DashService = () => {
   const handleEdit = (service) => {
     setSelectedService(service);
     setShowEdit(true);
+  };
+
+  const handleCreate = () => {
+    setShowCreate(true);
   };
 
   const handleCancel = () => {
@@ -52,7 +58,7 @@ const DashService = () => {
             ))}
           </tbody>
         </table>
-        <button className={s.btnCreate}>Create</button>
+        <button className={s.btnCreate} onClick={handleCreate}>Create</button>
       </div>
       {
         showEdit && (
@@ -60,6 +66,11 @@ const DashService = () => {
             service={selectedService}
             handleCancel={handleCancel}
           />
+        )
+      }
+      {
+        showCreate && (
+          <CreateService handleCancel={() => setShowCreate(false)} />
         )
       }
     </div>
