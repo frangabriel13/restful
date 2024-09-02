@@ -4,6 +4,8 @@ import { Link } from "react-router-dom";
 import { BsTools } from "react-icons/bs";
 import { IoIosHome } from "react-icons/io";
 import { FaClipboardList } from "react-icons/fa";
+import { FaCross } from "react-icons/fa";
+import { FaUserFriends } from "react-icons/fa";
 
 const SideBar = () => {
   return (
@@ -24,6 +26,18 @@ const SideBar = () => {
         <div className={s.divIcon}>
           <FaClipboardList className={s.icon} />
           <p>Orders</p>
+        </div>
+      </Link>
+      <Link to={'funeral-home'}>
+        <div className={s.divIcon}>
+          <FaCross className={s.icon} />
+          <p>Funeral Home</p>
+        </div>
+      </Link>
+      <Link to={'users'}>
+        <div className={s.divIcon}>
+          <FaUserFriends className={s.icon} />
+          <p>Users</p>
         </div>
       </Link>
     </div>
