@@ -16,6 +16,11 @@ const serviceReducer = (state = initialState, action) => {
         //   service.id === action.payload.id ? action.payload : service
         // ),
       };
+    case "CREATE_SERVICE":
+      return {
+        ...state,
+        services: [...state.services, action.payload],
+      };
     default:
       return state;
   }
