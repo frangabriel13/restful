@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import s from "./CreateService.module.css";
 import { createService } from "../../../redux/actions/serviceActions";
+import { validateCreateService } from "../../../utils/validations";
 
 const CreateService = ({ handleCancel }) => {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ const CreateService = ({ handleCancel }) => {
     features: [""],
     isActive: true,
   });
+  const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
     setFormData({
@@ -20,11 +22,52 @@ const CreateService = ({ handleCancel }) => {
     });
   };
 
+  const handleFeatureChange = (index, value) => {
+    const newFeatures = [...formData.features];
+    newFeatures[index] = value;
+    setFormData({
+      ...formData,
+      features: newFeatures,
+    });
+  };
+
+  // const addFeature = () => {
+  //   setFormData({
+  //     ...formData,
+  //     features: [...formData.features, ""],
+  //   });
+  // };
+  const addFeature = () => {
+    // Verificar si el último feature está vacío
+    if (formData.features[formData.features.length - 1].trim() !== "") {
+      // Agregar un nuevo feature solo si el último no está vacío
+      setFormData({
+        ...formData,
+        features: [...formData.features, ""]
+      });
+    }
+  };
+
+  const removeFeature = (index) => {
+    const newFeatures = formData.features.filter((feature, i) => i !== index);
+    setFormData({
+      ...formData,
+      features: newFeatures,
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
+    const validationErrors = validateCreateService(formData);
+    if(Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
     dispatch(createService(formData));
     handleCancel();
   };
+
+  console.log(errors);
 
   return (
     <div className={s.container}>
@@ -41,6 +84,7 @@ const CreateService = ({ handleCancel }) => {
                   value={formData.name}
                   onChange={handleChange}
                 />
+                {errors.name && <p className={s.error}>{errors.name}</p>}
               </div>
               <div className={s.divInput}>
                 <label>Price</label>
@@ -51,6 +95,7 @@ const CreateService = ({ handleCancel }) => {
                   onChange={handleChange}
                   step="0.01"
                 />
+                {errors.price && <p className={s.error}>{errors.price}</p>}
               </div>
             </div>
             <div className={s.divInput}>
@@ -60,29 +105,33 @@ const CreateService = ({ handleCancel }) => {
                 value={formData.disclaimers}
                 onChange={handleChange}
               />
+              {errors.disclaimers && <p className={s.error}>{errors.disclaimers}</p>}
             </div>
           </div>
-          <div className={s.divInput}>
+          <div className={s.divFeatures}>
             <label>Features</label>
+            <div className={s.featureInput}>
+              <input
+                type="text"
+                value={formData.features[formData.features.length - 1]}
+                onChange={(e) => handleFeatureChange(formData.features.length - 1, e.target.value)}
+              />
+              <button type="button" onClick={addFeature}>+</button>
+            </div>
             {
-              formData.features.map((feature, index) => (
-                <div key={index} className={s.featureInput}>
-                  <input
-                    type="text"
-                    value={feature}
-                    onChange={(e) => handleFeatureChange(index, e.target.value)}
-                  />
-                  <button type="button" onClick={() => removeFeature(index)}>
-                    Remove
-                  </button>
+              formData.features.slice(0, -1).map((feature, index) => (
+                <div key={index} className={s.featureItem}>
+                  <span>{feature}</span>
+                  <button type="button" onClick={() => removeFeature(index)}>-</button>
                 </div>
               ))
             }
+            {errors.features && <p className={s.error}>{errors.features}</p>}
           </div>
         </div>
         <div className={s.divBtn}>
-          <button type="submit">Create</button>
-          <button onClick={handleCancel}>Cancel</button>
+          <button className={s.btnCreate} type="submit">Create</button>
+          <button className={s.btnCancel} onClick={handleCancel}>Cancel</button>
         </div>
       </form>
     </div>

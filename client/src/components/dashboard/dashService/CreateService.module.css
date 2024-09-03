@@ -62,9 +62,106 @@
   height: 9rem;
 }
 
+.divFeatures {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  gap: .3rem;
+}
+
+.divFeatures label {
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.featureInput {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.featureInput input {
+  padding: 0.8rem 1rem;
+  border: 0.1rem solid #ddd;
+  border-radius: 0.3rem;
+  width: 100%;
+}
+
+.featureInput button {
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.featureInput button:hover {
+  background-color: #45a049;
+}
+
+.featureItem {
+  display: flex;
+  gap: 1rem;
+  /* padding: 0.5rem; */
+}
+
+.featureItem span {
+  font-size: 1.5rem;
+  color: #333;
+  width: 100%;
+  border: .1rem solid #ddd;
+  border-radius: .3rem;
+  padding: .5rem;
+}
+
+.featureItem button {
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: #f44336;
+  color: #fff;
+  align-self: flex-start;
+}
+
+.featureItem button:hover {
+  background-color: #df392e;
+}
+
 .divBtn {
   display: flex;
   gap: 1rem;
   padding-top: 2rem;
   justify-content: center;
+}
+
+.btnCreate {
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: #4caf50;
+  color: #fff;
+}
+
+.btnCreate:hover {
+  background-color: #45a049;
+}
+
+.btnCancel {
+  padding: 0.8rem 1.2rem;
+  border: none;
+  border-radius: 0.3rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  background-color: #f44336;
+  color: #fff;
+}
+
+.btnCancel:hover {
+  background-color: #df392e;
 }
