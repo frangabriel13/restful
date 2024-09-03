@@ -20,6 +20,30 @@ const CreateService = ({ handleCancel }) => {
     });
   };
 
+  const handleFeatureChange = (index, value) => {
+    const newFeatures = [...formData.features];
+    newFeatures[index] = value;
+    setFormData({
+      ...formData,
+      features: newFeatures,
+    });
+  };
+
+  const addFeature = () => {
+    setFormData({
+      ...formData,
+      features: [...formData.features, ""],
+    });
+  };
+
+  const removeFeature = (index) => {
+    const newFeatures = formData.features.filter((feature, i) => i !== index);
+    setFormData({
+      ...formData,
+      features: newFeatures,
+    });
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     dispatch(createService(formData));
@@ -62,27 +86,29 @@ const CreateService = ({ handleCancel }) => {
               />
             </div>
           </div>
-          <div className={s.divInput}>
+          <div className={s.divFeatures}>
             <label>Features</label>
+            <div className={s.featureInput}>
+              <input
+                type="text"
+                value={formData.features[formData.features.length - 1]}
+                onChange={(e) => handleFeatureChange(formData.features.length - 1, e.target.value)}
+              />
+              <button type="button" onClick={addFeature}>+</button>
+            </div>
             {
-              formData.features.map((feature, index) => (
-                <div key={index} className={s.featureInput}>
-                  <input
-                    type="text"
-                    value={feature}
-                    onChange={(e) => handleFeatureChange(index, e.target.value)}
-                  />
-                  <button type="button" onClick={() => removeFeature(index)}>
-                    Remove
-                  </button>
+              formData.features.slice(0, -1).map((feature, index) => (
+                <div key={index} className={s.featureItem}>
+                  <span>{feature}</span>
+                  <button type="button" onClick={() => removeFeature(index)}>-</button>
                 </div>
               ))
             }
           </div>
         </div>
         <div className={s.divBtn}>
-          <button type="submit">Create</button>
-          <button onClick={handleCancel}>Cancel</button>
+          <button className={s.btnCreate} type="submit">Create</button>
+          <button className={s.btnCancel} onClick={handleCancel}>Cancel</button>
         </div>
       </form>
     </div>
