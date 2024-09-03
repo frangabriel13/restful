@@ -48,3 +48,28 @@ export const validateLogin = (formData) => {
   
   return errors;
 }
+
+export const validateCreateService = (formData) => {
+  const errors = {};
+
+  if(!formData.name) {
+    errors.name = "El nombre es requerido";
+  }
+
+  if(!formData.price) {
+    errors.price = "El precio es requerido";
+  }
+
+  if(!formData.disclaimers) {
+    errors.disclaimers = "Los disclaimers son requeridos";
+  }
+
+  // if(formData.features.length === 0) {
+  //   errors.features = "Al menos un feature es requerido";
+  // }
+  if(formData.features.length === 0 || formData.features.every(feature => feature.trim() === "")) {
+    errors.features = "Al menos un feature válido es requerido";
+  }
+
+  return errors;
+};
