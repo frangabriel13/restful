@@ -14,6 +14,8 @@ export const getServices = () => async (dispatch) => {
 
 export const updateService = (id, service) => async (dispatch) => {
   try {
+    console.log("service", service);
+    console.log("id", id);
     const response = await instance.put(`services/${id}`, service);
     dispatch({
       type: "UPDATE_SERVICE",
