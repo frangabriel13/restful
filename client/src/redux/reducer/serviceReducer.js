@@ -21,6 +21,13 @@ const serviceReducer = (state = initialState, action) => {
         ...state,
         services: [...state.services, action.payload],
       };
+    case "DELETE_SERVICE":
+      return {
+        ...state,
+        services: state.services.filter(
+          (service) => service.id !== action.payload
+        ),
+      };
     default:
       return state;
   }

@@ -37,3 +37,15 @@ export const createService = (service) => async (dispatch) => {
     console.error(error);
   }
 };
+
+export const deleteService = (id) => async (dispatch) => {
+  try {
+    await instance.delete(`services/${id}`);
+    dispatch({
+      type: "DELETE_SERVICE",
+      payload: id,
+    });
+  } catch(error) {
+    console.error(error);
+  }
+}
