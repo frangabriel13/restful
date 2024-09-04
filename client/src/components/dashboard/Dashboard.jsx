@@ -4,6 +4,7 @@ import s from "./Dashboard.module.css";
 import SideBar from "./sideBar/SideBar";
 import DashService from "./dashService/DashService";
 import Management from "./management/Management";
+import FuneralHome from "./funeralHome/FuneralHome";
 
 const Dashboard = () => {
   return (
@@ -13,6 +14,7 @@ const Dashboard = () => {
         <Routes>
           <Route path="services" element={<DashService />} />
           <Route path="orders" element={<Management />} />
+          <Route path="funeral-homes" element={<FuneralHome />} />
         </Routes>
       </div>
     </div>
