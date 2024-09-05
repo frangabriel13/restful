@@ -73,3 +73,13 @@ export const validateCreateService = (formData) => {
 
   return errors;
 };
+
+export const validateCreateFuneral = (formData) => {
+  const errors = {};
+
+  if(!formData.name) {
+    errors.name = "El nombre es requerido";
+  }
+
+  return errors;
+};
