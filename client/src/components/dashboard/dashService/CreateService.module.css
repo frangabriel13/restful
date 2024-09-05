@@ -165,3 +165,8 @@
 .btnCancel:hover {
   background-color: #df392e;
 }
+
+.error {
+  color: #f44336;
+  font-size: 1.2rem;
+}

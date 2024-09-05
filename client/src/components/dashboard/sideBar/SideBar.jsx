@@ -28,7 +28,7 @@ const SideBar = () => {
           <p>Orders</p>
         </div>
       </Link>
-      <Link to={'funeral-home'}>
+      <Link to={'funeral-homes'}>
         <div className={s.divIcon}>
           <FaCross className={s.icon} />
           <p>Funeral Home</p>
