@@ -67,7 +67,7 @@ const FuneralHome = () => {
       {
         showEdit && (
           <EditFuneral
-            service={selectedFuneralHome}
+            funeralHome={selectedFuneralHome}
             handleCancel={handleCancel}
           />
         )
