@@ -34,6 +34,8 @@ const FuneralHome = () => {
     dispatch(deleteFuneralHome(id));
   };
 
+  console.log(funeralHomes);
+
   return (
     <div className={s.container}>
       <div className={s.dashboard}>
@@ -51,7 +53,6 @@ const FuneralHome = () => {
               <tr key={funeral._id}>
                 <td>{funeral.id}</td>
                 <td>{funeral.name}</td>
-                <td>${funeral.price}</td>
                 <td className={s.btnCell}>
                   <button onClick={() => handleEdit(funeral)}>Edit</button>
                   <button className={s.btnDelete} onClick={() => handleDelete(funeral.id)}>Delete</button>

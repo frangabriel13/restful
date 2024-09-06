@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import s from "./CreateFuneral.module.css";
 import { updateFuneralHome } from "../../../redux/actions/funeralHomeActions";
-import { validateCreateFuneralHome } from "../../../utils/validations";
+import { validateCreateFuneral } from "../../../utils/validations";
 
 const EditFuneral = ({ funeralHome, handleCancel }) => {
   const dispatch = useDispatch();
@@ -18,7 +18,7 @@ const EditFuneral = ({ funeralHome, handleCancel }) => {
 
   const handleSave = (e) => {
     e.preventDefault();
-    const validationErrors = validateCreateFuneralHome(formData);
+    const validationErrors = validateCreateFuneral(formData);
     if(Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
