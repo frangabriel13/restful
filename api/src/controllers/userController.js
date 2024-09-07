@@ -93,7 +93,7 @@ const generateRegistrationToken = async (req, res) => {
   const { name } = req.body;
   try {
     const token = jwt.sign({ name }, JWT_SECRET, { expiresIn: '1h' });
-    res.status(200).json({ token });
+    res.status(200).json({ token, name });
   } catch(error) {
     console.log(error);
     res.status(500).json({ message: 'Internal server error' });
