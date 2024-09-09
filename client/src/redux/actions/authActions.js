@@ -54,19 +54,50 @@ export const registerSuperAdmin = (data) => async (dispatch) => {
   }
 };
 
-export const registerAdmin = (data, token) => async (dispatch) => {
+// export const registerAdmin = (data, token) => async (dispatch) => {
+//   try {
+//     const response = await instance.post("/users/register", data, {
+//       headers: {
+//         Authorization: `Bearer ${token}`,
+//       },
+//     });
+//     dispatch({
+//       type: "REGISTER_ADMIN",
+//       payload: response.data,
+//     });
+//     return { success: true };
+//   } catch (error) {
+//     console.error(error);
+//     return {
+//       success: false,
+//       message: error.response.data.message,
+//       info: error.response.data.info,
+//     };
+//   }
+// };
+
+export const generateToken = (data) => async (dispatch) => {
   try {
-    const response = await instance.post("/users/register", data, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await instance.post("/users/generate-token", data);
+    return { success: true, token: response.data.token };
+  } catch(error) {
+    console.error(error);
+    return {
+      success: false,
+      message: error.response.data.message,
+    };
+  }
+};
+
+export const registerAdminWithToken = (data, token) => async (dispatch) => {
+  try {
+    const response = await instance.post(`/users/register/${token}`, data);
     dispatch({
       type: "REGISTER_ADMIN",
       payload: response.data,
     });
     return { success: true };
-  } catch (error) {
+  } catch(error) {
     console.error(error);
     return {
       success: false,
