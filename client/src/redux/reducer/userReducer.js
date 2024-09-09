@@ -1,7 +1,5 @@
 const initialState = {
-  user: null,
-  // isAuthenticated: false,
-  // token: null,
+  users: [],
 };
 
 export const userReducer = (state = initialState, action) => {
