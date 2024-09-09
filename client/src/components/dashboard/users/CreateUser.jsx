@@ -1,13 +1,59 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import s from "./CreateUser.module.css";
-// import { createUser } from "../../../redux/actions/userActions";
-// import { validateCreateUser } from "../../../utils/validations";
+import { generateToken } from "../../../redux/actions/authActions";
+import { validateCreateFuneral } from "../../../utils/validations";
 
 const CreateUser = ({ handleCancel }) => {
+  const dispatch = useDispatch();
+  const [formData, setFormData] = useState({
+    name: "",
+  });
+  const [errors, setErrors] = useState({});
+
+  const handleChange = (e) => {
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const validationErrors = validateCreateFuneral(formData);
+    if(Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+    dispatch(generateToken(formData));
+    handleCancel();
+  };
+
   return (
-    <div>
-      <h2>Crear Usuario</h2>
+    <div className={s.container}>
+      <h3>Create User</h3>
+      <form className={s.form} onSubmit={handleSubmit}>
+        <div className={s.divForm}>
+          <div className={s.divNamePriceDis}>
+            <div className={s.divNamePrice}>
+              <div className={s.divInput}>
+                <label>Name</label>
+                <input
+                  type="text"
+                  name="name"
+                  value={formData.name}
+                  onChange={handleChange}
+                />
+                {/* {errors.name && <p className={s.error}>{errors.name}</p>} */}
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className={s.divBtn}>
+          <button className={s.btnCreate} type="submit">Create</button>
+          <button className={s.btnCancel} onClick={handleCancel}>Cancel</button>
+        </div>
+      </form>
     </div>
   )
 };
