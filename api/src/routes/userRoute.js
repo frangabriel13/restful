@@ -67,7 +67,8 @@ router.post('/login', (req, res, next) => {
   })(req, res, next);
 });
 
-router.post('/register-token', passport.authenticate('jwt', { session: false }), isSuperAdmin, generateRegistrationToken);
+// router.post('/generate-token', passport.authenticate('jwt', { session: false }), isSuperAdmin, generateRegistrationToken);
+router.post('/generate-token', generateRegistrationToken);
 
 router.delete('/:id', deleteUser);
 

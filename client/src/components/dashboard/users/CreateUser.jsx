@@ -10,6 +10,7 @@ const CreateUser = ({ handleCancel }) => {
     name: "",
   });
   const [errors, setErrors] = useState({});
+  const [registrationLink, setRegistrationLink] = useState("");
 
   const handleChange = (e) => {
     setFormData({
@@ -18,15 +19,27 @@ const CreateUser = ({ handleCancel }) => {
     });
   };
 
-  const handleSubmit = (e) => {
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const validationErrors = validateCreateFuneral(formData);
+  //   if(Object.keys(validationErrors).length > 0) {
+  //     setErrors(validationErrors);
+  //     return;
+  //   }
+  //   dispatch(generateToken(formData));
+  //   handleCancel();
+  // };
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validateCreateFuneral(formData);
-    if(Object.keys(validationErrors).length > 0) {
+    if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
-    dispatch(generateToken(formData));
-    handleCancel();
+    const result = await dispatch(generateToken(formData));
+    if (result.success) {
+      setRegistrationLink(result.registrationLink);
+    }
   };
 
   return (
@@ -44,16 +57,24 @@ const CreateUser = ({ handleCancel }) => {
                   value={formData.name}
                   onChange={handleChange}
                 />
-                {/* {errors.name && <p className={s.error}>{errors.name}</p>} */}
+                {errors.name && <p className={s.error}>{errors.name}</p>}
               </div>
             </div>
           </div>
         </div>
         <div className={s.divBtn}>
-          <button className={s.btnCreate} type="submit">Create</button>
+          <button className={s.btnCreate} type="submit">Generate</button>
           <button className={s.btnCancel} onClick={handleCancel}>Cancel</button>
         </div>
       </form>
+      {registrationLink && (
+        <div className={s.registrationLink}>
+          <p>Registration Link:</p>
+          <a href={registrationLink} target="_blank" rel="noopener noreferrer">
+            {registrationLink}
+          </a>
+        </div>
+      )}
     </div>
   )
 };

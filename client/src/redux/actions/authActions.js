@@ -54,34 +54,41 @@ export const registerSuperAdmin = (data) => async (dispatch) => {
   }
 };
 
-// export const registerAdmin = (data, token) => async (dispatch) => {
+// export const generateToken = (data) => async (dispatch) => {
 //   try {
-//     const response = await instance.post("/users/register", data, {
-//       headers: {
-//         Authorization: `Bearer ${token}`,
-//       },
-//     });
-//     dispatch({
-//       type: "REGISTER_ADMIN",
-//       payload: response.data,
-//     });
-//     return { success: true };
-//   } catch (error) {
+//     const response = await instance.post("/users/generate-token", data);
+//     return { success: true, token: response.data.token };
+//   } catch(error) {
 //     console.error(error);
 //     return {
 //       success: false,
 //       message: error.response.data.message,
-//       info: error.response.data.info,
 //     };
 //   }
 // };
-
 export const generateToken = (data) => async (dispatch) => {
   try {
-    const response = await instance.post("/users/generate-token", data);
-    return { success: true, token: response.data.token };
-  } catch(error) {
+    const token = localStorage.getItem('token'); // Obtener el token JWT desde localStorage
+    const response = await instance.post("/users/generate-token", data, {
+      headers: {
+        Authorization: `Bearer ${token}`, // Incluir el token JWT en los encabezados
+      },
+    });
+    const registrationToken = response.data.token;
+    const registrationLink = `https://localhost:5173/register?token=${registrationToken}&name=${encodeURIComponent(data.name)}`;
+    
+    dispatch({
+      type: "GENERATE_TOKEN_SUCCESS",
+      payload: { token: registrationToken, registrationLink },
+    });
+
+    return { success: true, registrationLink };
+  } catch (error) {
     console.error(error);
+    dispatch({
+      type: "GENERATE_TOKEN_FAILURE",
+      payload: error.response.data.message,
+    });
     return {
       success: false,
       message: error.response.data.message,
