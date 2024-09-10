@@ -2,6 +2,7 @@ const { Router } = require('express');
 const { User } = require('../db.js');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
+// const passport = require('../utils/localAuth.js');
 const { deleteUser, getUsers, generateRegistrationToken } = require('../controllers/userController');
 const { isSuperAdmin } = require('../middlewares/authMiddleware');
 
@@ -67,7 +68,22 @@ router.post('/login', (req, res, next) => {
   })(req, res, next);
 });
 
-router.post('/register-token', passport.authenticate('jwt', { session: false }), isSuperAdmin, generateRegistrationToken);
+router.post('/generate-token', generateRegistrationToken);
+// router.post('/generate-token', 
+//   (req, res, next) => {
+//     console.log('Request received at /generate-token'); // Log para verificar que la solicitud llega a la ruta
+//     console.log('Request Headers:', req.headers); // Log para verificar los encabezados de la solicitud
+//     console.log('Request Body:', req.body); // Log para verificar el cuerpo de la solicitud
+//     next();
+//   },
+//   passport.authenticate('jwt', { session: false }), 
+//   (req, res, next) => {
+//     console.log('Passport authentication passed'); // Log para verificar que el middleware de Passport se ejecuta
+//     next();
+//   },
+//   isSuperAdmin, 
+//   generateRegistrationToken
+// );
 
 router.delete('/:id', deleteUser);
 
