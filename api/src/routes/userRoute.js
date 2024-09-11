@@ -5,6 +5,8 @@ const passport = require('passport');
 // const passport = require('../utils/localAuth.js');
 const { deleteUser, getUsers, generateRegistrationToken } = require('../controllers/userController');
 const { isSuperAdmin } = require('../middlewares/authMiddleware');
+const jwt = require('jsonwebtoken');
+const { JWT_SECRET } = process.env;
 
 const router = Router();
 

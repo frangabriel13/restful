@@ -1,11 +1,16 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { useParams, useLocation } from "react-router-dom";
 import s from "./RegisterUser.module.css";
 import { registerAdminWithToken } from "../../../redux/actions/authActions";
 import { validateLogin } from "../../../utils/validations";
 
 const RegisterUser = ({ registrationLink }) => {
   const dispatch = useDispatch();
+  const { token } = useParams();
+  const location = useLocation();
+  const name = new URLSearchParams(location.search).get("name");
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -28,13 +33,14 @@ const RegisterUser = ({ registrationLink }) => {
       setErrors(validationErrors);
       return;
     }
-    const result = await dispatch(registerAdminWithToken({ ...formData, registrationLink }));
+    const result = await dispatch(registerAdminWithToken({ ...formData, name }, token));
     if (result.success) {
       setSuccessMessage("Registration successful!");
     } else {
       setErrors(result.errors);
     }
   };
+  console.log(name)
 
   return (
     <div className={s.container}>
