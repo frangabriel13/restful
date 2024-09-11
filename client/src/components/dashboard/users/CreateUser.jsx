@@ -11,6 +11,7 @@ const CreateUser = ({ handleCancel }) => {
   });
   const [errors, setErrors] = useState({});
   const [registrationLink, setRegistrationLink] = useState("");
+  const [copySuccess, setCopySuccess] = useState("");
 
   const handleChange = (e) => {
     setFormData({
@@ -19,16 +20,6 @@ const CreateUser = ({ handleCancel }) => {
     });
   };
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   const validationErrors = validateCreateFuneral(formData);
-  //   if(Object.keys(validationErrors).length > 0) {
-  //     setErrors(validationErrors);
-  //     return;
-  //   }
-  //   dispatch(generateToken(formData));
-  //   handleCancel();
-  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
     const validationErrors = validateCreateFuneral(formData);
@@ -40,6 +31,13 @@ const CreateUser = ({ handleCancel }) => {
     if (result.success) {
       setRegistrationLink(result.registrationLink);
     }
+  };
+
+  const copyToClipboard = () => {
+    navigator.clipboard.writeText(registrationLink).then(() => {
+      setCopySuccess("Copied!");
+      setTimeout(() => setCopySuccess(""), 2000);
+    });
   };
 
   return (
@@ -73,6 +71,10 @@ const CreateUser = ({ handleCancel }) => {
           <a href={registrationLink} target="_blank" rel="noopener noreferrer">
             {registrationLink}
           </a>
+          <div className={s.divCopy}>
+            <button onClick={copyToClipboard} className={s.btnCopy}>Copy</button>
+            {copySuccess && <p className={s.copySuccess}>{copySuccess}</p>}
+          </div>
         </div>
       )}
     </div>
