@@ -13,12 +13,14 @@ import Dashboard from './components/dashboard/Dashboard'
 import Login from './components/dashboard/login/Login'
 import ProtectedRoute from './components/dashboard/ProtectedRoute'
 import Register from './components/dashboard/login/Register'
+import RegisterUser from './components/dashboard/login/RegisterUser'
 
 function App() {
   return (
     <Routes>
       <Route path='/dashboard/login' element={<Login />} />
       <Route path='/dashboard/register' element={<Register />} />
+      <Route path='/dashboard/register/:token' element={<RegisterUser />} />
       <Route
         path='/dashboard/*'
         element={

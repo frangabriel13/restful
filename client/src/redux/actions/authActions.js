@@ -75,7 +75,8 @@ export const generateToken = (data) => async (dispatch) => {
       },
     });
     const registrationToken = response.data.token;
-    const registrationLink = `https://localhost:5173/register?token=${registrationToken}&name=${encodeURIComponent(data.name)}`;
+    // const registrationLink = `https://localhost:5173/register?token=${registrationToken}&name=${encodeURIComponent(data.name)}`;
+    const registrationLink = `http://localhost:5173/dashboard/register?token=${registrationToken}&name=${encodeURIComponent(data.name)}`;
     
     dispatch({
       type: "GENERATE_TOKEN_SUCCESS",
