@@ -54,18 +54,6 @@ export const registerSuperAdmin = (data) => async (dispatch) => {
   }
 };
 
-// export const generateToken = (data) => async (dispatch) => {
-//   try {
-//     const response = await instance.post("/users/generate-token", data);
-//     return { success: true, token: response.data.token };
-//   } catch(error) {
-//     console.error(error);
-//     return {
-//       success: false,
-//       message: error.response.data.message,
-//     };
-//   }
-// };
 export const generateToken = (data) => async (dispatch) => {
   try {
     const token = localStorage.getItem('token'); // Obtener el token JWT desde localStorage
@@ -76,7 +64,7 @@ export const generateToken = (data) => async (dispatch) => {
     });
     const registrationToken = response.data.token;
     // const registrationLink = `https://localhost:5173/register?token=${registrationToken}&name=${encodeURIComponent(data.name)}`;
-    const registrationLink = `http://localhost:5173/dashboard/register?token=${registrationToken}&name=${encodeURIComponent(data.name)}`;
+    const registrationLink = `http://localhost:5173/dashboard/register/${registrationToken}?name=${encodeURIComponent(data.name)}`;
     
     dispatch({
       type: "GENERATE_TOKEN_SUCCESS",
