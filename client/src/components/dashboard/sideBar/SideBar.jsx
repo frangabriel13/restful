@@ -1,13 +1,24 @@
 import React from "react";
 import s from "./SideBar.module.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BsTools } from "react-icons/bs";
 import { IoIosHome } from "react-icons/io";
 import { FaClipboardList } from "react-icons/fa";
 import { FaCross } from "react-icons/fa";
 import { FaUserFriends } from "react-icons/fa";
+import { MdLogout } from "react-icons/md";
+import { useDispatch } from "react-redux";
+import { logout } from "../../../redux/actions/authActions";
 
 const SideBar = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    dispatch(logout());
+    navigate("/dashboard/login");
+  };
+
   return (
     <div className={s.sideBar}>
       <Link>
@@ -40,6 +51,10 @@ const SideBar = () => {
           <p>Users</p>
         </div>
       </Link>
+      <div className={s.divIcon} onClick={handleLogout}>
+        <MdLogout className={s.icon} />
+        <p>Logout</p>
+      </div>
     </div>
   );
 };
