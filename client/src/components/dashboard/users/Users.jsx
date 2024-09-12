@@ -11,6 +11,7 @@ const Users = () => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [showEdit, setShowEdit] = useState(false);
   const [showCreate, setShowCreate] = useState(false);
+  const [warningMessage, setWarningMessage] = useState("");
   const authenticatedUser = useSelector((state) => state.auth.user);
   const stateAuth = useSelector((state) => state.auth);
 
@@ -26,8 +27,16 @@ const Users = () => {
     setShowEdit(true);
   };
 
+  // const handleCreate = () => {
+  //   setShowCreate(true);
+  // };
   const handleCreate = () => {
-    setShowCreate(true);
+    if (isSuperAdmin) {
+      setShowCreate(true);
+      setWarningMessage("");
+    } else {
+      setWarningMessage("Solo el superAdmin puede crear nuevos usuarios");
+    }
   };
 
   const handleCancel = () => {
@@ -36,7 +45,12 @@ const Users = () => {
   };
 
   const handleDelete = (id) => {
-    dispatch(deleteUser(id));
+    if (isSuperAdmin) {
+      dispatch(deleteUser(id));
+      setWarningMessage("");
+    } else {
+      setWarningMessage("Solo el superAdmin puede eliminar usuarios");
+    }
   };
 
   return (
@@ -69,6 +83,7 @@ const Users = () => {
         <div className={s.btnCreateContainer}>
           <button className={s.btnCreate} onClick={handleCreate}>Create</button>
         </div>
+        {warningMessage && <p className={s.warning}>{warningMessage}</p>}
       </div>
       {
         showEdit && (

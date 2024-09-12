@@ -102,3 +102,13 @@
 .btnCreate:hover {
   background-color: #45a049;
 }
+
+.warning {
+  color: #d9534f; /* Rojo para indicar advertencia */
+  background-color: #f2dede; /* Fondo rojo claro */
+  border: 1px solid #ebccd1; /* Borde rojo claro */
+  padding: 1rem;
+  border-radius: 0.3rem;
+  margin-top: 1rem;
+  text-align: center;
+}
