@@ -1,4 +1,16 @@
 import { instance } from "../../utils/axiosConfig";
+import { jwtDecode } from "jwt-decode";
+
+export const isTokenExpired = (token) => {
+  try {
+    const decoded = jwtDecode(token);
+    const currentTime = Date.now() / 1000;
+    return decoded.exp < currentTime;
+  } catch(error) {
+    console.log(error);
+    return true;
+  }
+};
 
 export const login = (data) => async (dispatch) => {
   try {
@@ -55,15 +67,21 @@ export const registerSuperAdmin = (data) => async (dispatch) => {
 };
 
 export const generateToken = (data) => async (dispatch) => {
+  const token = localStorage.getItem('token'); // Obtener el token JWT desde localStorage
+  if (isTokenExpired(token)) {
+    dispatch(logout());
+    return {
+      success: false,
+      message: "Token expirado. Por favor, inicia sesión nuevamente.",
+    };
+  }
   try {
-    const token = localStorage.getItem('token'); // Obtener el token JWT desde localStorage
     const response = await instance.post("/users/generate-token", data, {
       headers: {
         Authorization: `Bearer ${token}`, // Incluir el token JWT en los encabezados
       },
     });
     const registrationToken = response.data.token;
-    // const registrationLink = `https://localhost:5173/register?token=${registrationToken}&name=${encodeURIComponent(data.name)}`;
     const registrationLink = `http://localhost:5173/dashboard/register/${registrationToken}?name=${encodeURIComponent(data.name)}`;
     
     dispatch({

@@ -11,8 +11,11 @@ const Users = () => {
   const [selectedUser, setSelectedUser] = useState(null);
   const [showEdit, setShowEdit] = useState(false);
   const [showCreate, setShowCreate] = useState(false);
+  const authenticatedUser = useSelector((state) => state.auth.user);
+  const stateAuth = useSelector((state) => state.auth);
 
-  console.log(users);
+  const isSuperAdmin = authenticatedUser && authenticatedUser.role === 'superAdmin';
+  console.log('stateAuth:', stateAuth);
 
   useEffect(() => {
     dispatch(getUsers());
