@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { useParams, useLocation } from "react-router-dom";
+import { useParams, useLocation, useNavigate } from "react-router-dom";
 import s from "./RegisterUser.module.css";
 import { registerAdminWithToken } from "../../../redux/actions/authActions";
-import { validateLogin } from "../../../utils/validations";
+import { validateRegisterAdmin } from "../../../utils/validations";
 
 const RegisterUser = ({ registrationLink }) => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { token } = useParams();
   const location = useLocation();
   const name = new URLSearchParams(location.search).get("name");
@@ -28,7 +29,7 @@ const RegisterUser = ({ registrationLink }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const validationErrors = validateLogin(formData);
+    const validationErrors = validateRegisterAdmin(formData);
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
@@ -36,6 +37,9 @@ const RegisterUser = ({ registrationLink }) => {
     const result = await dispatch(registerAdminWithToken({ ...formData, name }, token));
     if (result.success) {
       setSuccessMessage("Registration successful!");
+      setTimeout(() => {
+        navigate("/dashboard/login");
+      }, 2000);
     } else {
       setErrors(result.errors);
     }
