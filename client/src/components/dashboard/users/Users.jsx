@@ -59,7 +59,7 @@ const Users = () => {
                 <td>{user.name}</td>
                 <td>{user.role}</td>
                 <td className={s.btnCell}>
-                  <button onClick={() => handleEdit(user)}>Edit</button>
+                  {/* <button onClick={() => handleEdit(user)}>Edit</button> */}
                   <button className={s.btnDelete} onClick={() => handleDelete(user.id)}>Delete</button>
                 </td>
               </tr>
