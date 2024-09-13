@@ -25,7 +25,7 @@ const getOrderById = async (req, res) => {
 };
 
 const createOrder = async (req, res) => {
-  const { contactDate, contactName, phoneNumber, email, comission, relationship, deceasedName, status, statusDate, serviceId, price, insurance, tracking, age, funeralHomeId, userId } = req.body;
+  const { status, contactName, phoneNumber, email, comission, relationship, deceasedName, serviceId, price, insurance, tracking, age, funeralHomeId, userId } = req.body;
   try {
     const service = await Service.findByPk(serviceId);
     if(!service) {
@@ -42,16 +42,20 @@ const createOrder = async (req, res) => {
       return res.status(404).json({ message: 'No se encontró ninguna funeraria con ese ID' });
     }
 
+    const statusDate = {
+      date: new Date(),
+      updatedBy: user.name,
+    };
+
     const newOrder = await Order.create({
-      contactDate,
+      status,
+      statusDate,
       contactName,
       phoneNumber,
       email,
       comission,
       relationship,
       deceasedName,
-      status,
-      statusDate,
       serviceId,
       price,
       insurance,
