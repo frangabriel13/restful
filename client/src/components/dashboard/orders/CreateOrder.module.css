@@ -111,3 +111,7 @@
 .divBtnSubmit button:hover {
   background-color: #444;
 }
+
+.error {
+  color: #f44336;
+}
