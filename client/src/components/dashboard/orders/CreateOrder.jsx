@@ -5,6 +5,7 @@ import { createOrder } from "../../../redux/actions/orderActions";
 import { getFuneralHomes } from "../../../redux/actions/funeralHomeActions";
 import { getServices } from "../../../redux/actions/serviceActions";
 import { getUsers } from "../../../redux/actions/userActions";
+import { validateOrderForm } from "../../../utils/validations";
 
 const CreateOrder = () => {
   const dispatch = useDispatch();
@@ -30,6 +31,7 @@ const CreateOrder = () => {
   });
   const [comment, setComment] = useState("");
   const [selectedComission, setSelectedComission] = useState("");
+  const [errors, setErrors] = useState({});
 
   useEffect(() => {
     dispatch(getFuneralHomes());
@@ -46,6 +48,12 @@ const CreateOrder = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const validationErrors = validateOrderForm(form);
+    if (Object.keys(validationErrors).length > 0) {
+      setErrors(validationErrors);
+      return;
+    }
+
     dispatch(createOrder(form));
   };
 
@@ -100,7 +108,7 @@ const CreateOrder = () => {
         <div className={s.divGroupFour}>
           <div className={s.formGroup}>
             <label htmlFor="status">Status</label>
-            <select name="status" value={form.status} onChange={handleChange} required>
+            <select name="status" value={form.status} onChange={handleChange}>
               <option value="new">New</option>
               <option value="inProgress">In Progress</option>
               <option value="pending">Pending</option>
@@ -110,7 +118,7 @@ const CreateOrder = () => {
           </div>
           <div className={s.formGroup}>
             <label htmlFor="insurance">Insurance</label>
-            <select name="insurance" value={form.insurance} onChange={handleChange} required>
+            <select name="insurance" value={form.insurance} onChange={handleChange}>
               <option value="pending">Pending</option>
               <option value="GWIC">GWIC</option>
               <option value="CMT">CMT</option>
@@ -118,7 +126,7 @@ const CreateOrder = () => {
           </div>
           <div className={s.formGroup}>
             <label htmlFor="funeralHomeId">Funeral Home</label>
-            <select name="funeralHomeId" value={form.funeralHomeId} onChange={handleChange} required>
+            <select name="funeralHomeId" value={form.funeralHomeId} onChange={handleChange}>
               <option value="">Select Funeral Home</option>
               {funeralHomes.map((home) => (
                 <option key={home.id} value={home.id}>
@@ -129,7 +137,7 @@ const CreateOrder = () => {
           </div>
           <div className={s.formGroup}>
             <label htmlFor="serviceId">Service</label>
-            <select name="serviceId" value={form.serviceId} onChange={handleChange} required>
+            <select name="serviceId" value={form.serviceId} onChange={handleChange}>
               <option value="">Select Service</option>
               {services.map((service) => (
                 <option key={service.id} value={service.id}>
@@ -142,43 +150,45 @@ const CreateOrder = () => {
         <div className={s.divGroupFour}>
           <div className={s.formGroup}>
             <label htmlFor="price">Price or Comment</label>
-            <input type="text" name="price" value={form.price} onChange={handleChange} placeholder="Price or Comment" required className={s.input} />
+            <input type="text" name="price" value={form.price} onChange={handleChange} placeholder="Price or Comment" className={s.input} />
           </div>
           <div className={s.formGroup}>
             <label htmlFor="contactName">Contact Name</label>
-            <input type="text" name="contactName" value={form.contactName} onChange={handleChange} placeholder="Contact Name" required className={s.input} />
+            <input type="text" name="contactName" value={form.contactName} onChange={handleChange} placeholder="Contact Name" className={s.input} />
+            { errors.contactName && <p className={s.error}>{errors.contactName}</p> }
           </div>
           <div className={s.formGroup}>
             <label htmlFor="phoneNumber">Phone Number</label>
-            <input type="text" name="phoneNumber" value={form.phoneNumber} onChange={handleChange} placeholder="Phone Number" required className={s.input} />
+            <input type="text" name="phoneNumber" value={form.phoneNumber} onChange={handleChange} placeholder="Phone Number" className={s.input} />
+            { errors.phoneNumber && <p className={s.error}>{errors.phoneNumber}</p> }
           </div>
           <div className={s.formGroup}>
             <label htmlFor="email">Email</label>
-            <input type="email" name="email" value={form.email} onChange={handleChange} placeholder="Email" required className={s.input} />
+            <input type="email" name="email" value={form.email} onChange={handleChange} placeholder="Email" className={s.input} />
           </div>
         </div>
         <div className={s.divGroupFour}>
           <div className={s.formGroup}>
             <label htmlFor="relationship">Relationship</label>
-            <input type="text" name="relationship" value={form.relationship} onChange={handleChange} placeholder="Relationship" required className={s.input} />
+            <input type="text" name="relationship" value={form.relationship} onChange={handleChange} placeholder="Relationship" className={s.input} />
           </div>
           <div className={s.formGroup}>
             <label htmlFor="deceasedName">Deceased Name</label>
-            <input type="text" name="deceasedName" value={form.deceasedName} onChange={handleChange} placeholder="Deceased Name" required className={s.input} />
+            <input type="text" name="deceasedName" value={form.deceasedName} onChange={handleChange} placeholder="Deceased Name" className={s.input} />
           </div>
           <div className={s.formGroup}>
             <label htmlFor="age">Age</label>
-            <input type="number" name="age" value={form.age} onChange={handleChange} placeholder="Age" required className={s.input} />
+            <input type="number" name="age" value={form.age} onChange={handleChange} placeholder="Age" className={s.input} />
           </div>
           <div className={s.formGroup}>
             <label htmlFor="source">Source</label>
-            <input type="text" name="source" value={form.source} onChange={handleChange} placeholder="Source" required className={s.input} />
+            <input type="text" name="source" value={form.source} onChange={handleChange} placeholder="Source" className={s.input} />
           </div>
         </div>
         <div className={s.divGroupThree}>
           <div className={s.formGroup}>
             <label htmlFor="userId">Admin</label>
-            <select name="userId" value={form.userId} onChange={handleChange} required>
+            <select name="userId" value={form.userId} onChange={handleChange}>
               <option value="">Select Admin</option>
               {users.map((user) => (
                 <option key={user.id} value={user.id}>

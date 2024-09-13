@@ -114,3 +114,17 @@ export const validateCreateFuneral = (formData) => {
 
   return errors;
 };
+
+export const validateOrderForm = (form) => {
+  const errors = {};
+
+  if(!form.contactName) {
+    errors.contactName = "Contact name is required";
+  }
+
+  if(!form.phoneNumber) {
+    errors.phoneNumber = "Phone number is required";
+  }
+
+  return errors;
+};
