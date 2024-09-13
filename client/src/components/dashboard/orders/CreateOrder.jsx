@@ -63,6 +63,14 @@ const CreateOrder = () => {
     }
   };
 
+  const removeComment = (index) => {
+    const newTracking = form.tracking.filter((_, i) => i !== index);
+    setForm({
+      ...form,
+      tracking: newTracking,
+    });
+  };
+
   const handleComissionChange = (e) => {
     setSelectedComission(e.target.value);
   };
@@ -77,87 +85,147 @@ const CreateOrder = () => {
     }
   };
 
+  const removeComission = (index) => {
+    const newComission = form.comission.filter((_, i) => i !== index);
+    setForm({
+      ...form,
+      comission: newComission,
+    });
+  };
+
   return (
     <div className={s.container}>
-      <h3>Create Order</h3>
-      <form onSubmit={handleSubmit}>
-        <select name="status" value={form.status} onChange={handleChange} required>
-          <option value="new">New</option>
-          <option value="inProgress">In Progress</option>
-          <option value="pending">Pending</option>
-          <option value="sold">Sold</option>
-          <option value="notSold">Not Sold</option>
-        </select>
-        <select name="insurance" value={form.insurance} onChange={handleChange} required>
-          <option value="pending">Pending</option>
-          <option value="GWIC">GWIC</option>
-          <option value="CMT">CMT</option>
-        </select>
-        <select name="funeralHomeId" value={form.funeralHomeId} onChange={handleChange} required>
-          <option value="">Select Funeral Home</option>
-          {funeralHomes.map((home) => (
-            <option key={home.id} value={home.id}>
-              {home.name}
-            </option>
-          ))}
-        </select>
-        <div>
-          <h4>Tracking Comments</h4>
-          {form.tracking.map((track, index) => (
-            <div key={index}>
-              <p>{track}</p>
-            </div>
-          ))}
-          <input
-            type="text"
-            value={comment}
-            onChange={handleCommentChange}
-            placeholder="Add a comment"
-          />
-          <button type="button" onClick={addComment}>Add Comment</button>
+      <h3 className={s.title}>Create Order</h3>
+      <form onSubmit={handleSubmit} className={s.form}>
+        <div className={s.divGroupFour}>
+          <div className={s.formGroup}>
+            <label htmlFor="status">Status</label>
+            <select name="status" value={form.status} onChange={handleChange} required>
+              <option value="new">New</option>
+              <option value="inProgress">In Progress</option>
+              <option value="pending">Pending</option>
+              <option value="sold">Sold</option>
+              <option value="notSold">Not Sold</option>
+            </select>
+          </div>
+          <div className={s.formGroup}>
+            <label htmlFor="insurance">Insurance</label>
+            <select name="insurance" value={form.insurance} onChange={handleChange} required>
+              <option value="pending">Pending</option>
+              <option value="GWIC">GWIC</option>
+              <option value="CMT">CMT</option>
+            </select>
+          </div>
+          <div className={s.formGroup}>
+            <label htmlFor="funeralHomeId">Funeral Home</label>
+            <select name="funeralHomeId" value={form.funeralHomeId} onChange={handleChange} required>
+              <option value="">Select Funeral Home</option>
+              {funeralHomes.map((home) => (
+                <option key={home.id} value={home.id}>
+                  {home.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className={s.formGroup}>
+            <label htmlFor="serviceId">Service</label>
+            <select name="serviceId" value={form.serviceId} onChange={handleChange} required>
+              <option value="">Select Service</option>
+              {services.map((service) => (
+                <option key={service.id} value={service.id}>
+                  {service.name}
+                </option>
+              ))}
+            </select>
+          </div>
         </div>
-        <input type="text" name="price" value={form.price} onChange={handleChange} placeholder="Price or Comment" required />
-        <input type="text" name="contactName" value={form.contactName} onChange={handleChange} placeholder="Contact Name" required />
-        <input type="text" name="phoneNumber" value={form.phoneNumber} onChange={handleChange} placeholder="Phone Number" required />
-        <input type="email" name="email" value={form.email} onChange={handleChange} placeholder="Email" required />
-        <input type="text" name="relationship" value={form.relationship} onChange={handleChange} placeholder="Relationship" required />
-        <select name="serviceId" value={form.serviceId} onChange={handleChange} required>
-          <option value="">Select Service</option>
-          {services.map((service) => (
-            <option key={service.id} value={service.id}>
-              {service.name}
-            </option>
-          ))}
-        </select>
-        <input type="text" name="deceasedName" value={form.deceasedName} onChange={handleChange} placeholder="Deceased Name" required />
-        <input type="number" name="age" value={form.age} onChange={handleChange} placeholder="Age" required />
-        <input type="text" name="source" value={form.source} onChange={handleChange} placeholder="Source" required />
-        <select name="userId" value={form.userId} onChange={handleChange} required>
-          <option value="">Select Admin</option>
-          {users.map((user) => (
-            <option key={user.id} value={user.id}>
-              {user.name}
-            </option>
-          ))}
-        </select>
-        <div>
-          <h4>Comission</h4>
-          {form.comission.map((com, index) => (
-            <div key={index}>
-              <p>{com}</p>
-            </div>
-          ))}
-          <select value={selectedComission} onChange={handleComissionChange}>
-            <option value="">Select User</option>
-            {users.map((user) => (
-              <option key={user.id} value={user.name}>
-                {user.name}
-              </option>
+        <div className={s.divGroupFour}>
+          <div className={s.formGroup}>
+            <label htmlFor="price">Price or Comment</label>
+            <input type="text" name="price" value={form.price} onChange={handleChange} placeholder="Price or Comment" required className={s.input} />
+          </div>
+          <div className={s.formGroup}>
+            <label htmlFor="contactName">Contact Name</label>
+            <input type="text" name="contactName" value={form.contactName} onChange={handleChange} placeholder="Contact Name" required className={s.input} />
+          </div>
+          <div className={s.formGroup}>
+            <label htmlFor="phoneNumber">Phone Number</label>
+            <input type="text" name="phoneNumber" value={form.phoneNumber} onChange={handleChange} placeholder="Phone Number" required className={s.input} />
+          </div>
+          <div className={s.formGroup}>
+            <label htmlFor="email">Email</label>
+            <input type="email" name="email" value={form.email} onChange={handleChange} placeholder="Email" required className={s.input} />
+          </div>
+        </div>
+        <div className={s.divGroupFour}>
+          <div className={s.formGroup}>
+            <label htmlFor="relationship">Relationship</label>
+            <input type="text" name="relationship" value={form.relationship} onChange={handleChange} placeholder="Relationship" required className={s.input} />
+          </div>
+          <div className={s.formGroup}>
+            <label htmlFor="deceasedName">Deceased Name</label>
+            <input type="text" name="deceasedName" value={form.deceasedName} onChange={handleChange} placeholder="Deceased Name" required className={s.input} />
+          </div>
+          <div className={s.formGroup}>
+            <label htmlFor="age">Age</label>
+            <input type="number" name="age" value={form.age} onChange={handleChange} placeholder="Age" required className={s.input} />
+          </div>
+          <div className={s.formGroup}>
+            <label htmlFor="source">Source</label>
+            <input type="text" name="source" value={form.source} onChange={handleChange} placeholder="Source" required className={s.input} />
+          </div>
+        </div>
+        <div className={s.divGroupThree}>
+          <div className={s.formGroup}>
+            <label htmlFor="userId">Admin</label>
+            <select name="userId" value={form.userId} onChange={handleChange} required>
+              <option value="">Select Admin</option>
+              {users.map((user) => (
+                <option key={user.id} value={user.id}>
+                  {user.name}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className={s.formGroup}>
+            <h4>Comission</h4>
+            <select value={selectedComission} onChange={handleComissionChange} className={s.select}>
+              <option value="">Select User</option>
+              {users.map((user) => (
+                <option key={user.id} value={user.name}>
+                  {user.name}
+                </option>
+              ))}
+            </select>
+            <button type="button" onClick={addComission} className={s.button}>Add Comission</button>
+            {form.comission.map((com, index) => (
+              <div key={index} className={s.comment}>
+                <p>{com}</p>
+                <button type="button" onClick={() => removeComission(index)} className={s.removeButton}>Remove</button>
+              </div>
             ))}
-          </select>
-          <button type="button" onClick={addComission}>Add Comission</button>
+          </div>
+          <div className={s.formGroup}>
+            <h4>Tracking</h4>
+            <input
+              type="text"
+              value={comment}
+              onChange={handleCommentChange}
+              placeholder="Add a comment"
+              className={s.input}
+            />
+            <button type="button" onClick={addComment} className={s.button}>Add Comment</button>
+            {form.tracking.map((track, index) => (
+              <div key={index} className={s.comment}>
+                <p>{track}</p>
+                <button type="button" onClick={() => removeComment(index)} className={s.removeButton}>Remove</button>
+              </div>
+            ))}
+          </div>
         </div>
-        <button type="submit">Create Order</button>
+        <div className={s.divBtnSubmit}>
+          <button type="submit">Create Order</button>
+        </div>
       </form>
     </div>
   )
