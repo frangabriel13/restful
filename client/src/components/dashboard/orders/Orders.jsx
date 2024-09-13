@@ -21,7 +21,7 @@ const Orders = () => {
 
   return (
     <div className={s.container}>
-      <div>
+      <div className={s.divOrders}>
         <h2>Orders</h2>
         <button onClick={handleCreate}>Create Order</button>
       </div>
