@@ -36,7 +36,7 @@ const CreateUser = ({ handleCancel }) => {
   const copyToClipboard = () => {
     navigator.clipboard.writeText(registrationLink).then(() => {
       setCopySuccess("Copied!");
-      setTimeout(() => setCopySuccess(""), 2000);
+      setTimeout(() => setCopySuccess(""), 1000);
     });
   };
 
