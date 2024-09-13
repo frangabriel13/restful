@@ -5,11 +5,6 @@ module.exports = (sequelize) => {
     status: {
       type: DataTypes.ENUM('new', 'inProgress', 'pending', 'sold', 'notSold'),
     },
-    contactDate: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
-    },
     statusDate: {
       type: DataTypes.JSON,
       defaultValue: {
