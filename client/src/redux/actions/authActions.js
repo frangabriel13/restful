@@ -67,14 +67,13 @@ export const registerSuperAdmin = (data) => async (dispatch) => {
 };
 
 export const generateToken = (data) => async (dispatch) => {
-  const token = localStorage.getItem('token'); // Obtener el token JWT desde localStorage
-  if (isTokenExpired(token)) {
-    dispatch(logout());
-    return {
-      success: false,
-      message: "Token expirado. Por favor, inicia sesión nuevamente.",
-    };
-  }
+  const token = localStorage.getItem('token');
+  //   dispatch(logout());
+  //   return {
+  //     success: false,
+  //     message: "Token expirado. Por favor, inicia sesión nuevamente.",
+  //   };
+  // }
   try {
     const response = await instance.post("/users/generate-token", data, {
       headers: {
