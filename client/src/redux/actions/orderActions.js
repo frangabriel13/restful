@@ -26,6 +26,7 @@ export const updateOrder = (id, order) => async (dispatch) => {
 
 export const createOrder = (order) => async (dispatch) => {
   try {
+    console.log("order", order);
     const response = await instance.post("orders", order);
     dispatch({
       type: "CREATE_ORDER",
