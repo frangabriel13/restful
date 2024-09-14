@@ -42,3 +42,20 @@
 .table tr:hover {
   background-color: #f1f1f1;
 }
+
+.divIcons {
+  display: flex;
+  gap: 1rem;
+}
+
+.iconEdit {
+  font-size: 1.5rem;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.iconDelete {
+  font-size: 1.5rem;
+  color: #dc3545;
+  cursor: pointer;
+}
