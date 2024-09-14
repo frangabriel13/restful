@@ -4,6 +4,7 @@ import emailReducer from './emailReducer';
 import serviceReducer from './serviceReducer';
 import funeralHomeReducer from './funeralHomeReducer';
 import userReducer from './userReducer';
+import orderReducer from './orderReucer';
 
 const rootReducer = combineReducers({
   auth: authReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   service: serviceReducer,
   funeralHome: funeralHomeReducer,
   user: userReducer,
+  order: orderReducer,
 });
 
 
