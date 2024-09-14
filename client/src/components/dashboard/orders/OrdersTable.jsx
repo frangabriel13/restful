@@ -26,7 +26,6 @@ const OrdersTable = () => {
             <th>Status</th>
             <th>Contact Day</th>
             <th>Insurance</th>
-            <th>Service Name</th>
             <th>Funeral Home</th>
             <th>Tracking</th>
             <th>Price</th>
@@ -48,15 +47,24 @@ const OrdersTable = () => {
               <td>{order.status}</td>
               <td>{formatDate(order.statusDate.date)} by {order.statusDate.updatedBy}</td>
               <td>{order.insurance}</td>
-              <td>{order.service ? order.service.name : 'N/A'}</td>
+              <td>{order.funeralHome ? order.funeralHome.name : 'N/A'}</td>
+              <td>
+                <ul>
+                  {order.tracking.map((track, index) => (
+                    <li key={index}>{track}</li>
+                  ))}
+                </ul>
+              </td>
               <td>{order.price}</td>
               <td>{order.contactName}</td>
               <td>{order.phoneNumber}</td>
               <td>{order.email}</td>
               <td>{order.relationship}</td>
+              <td>{order.service ? order.service.name : 'N/A'}</td>
               <td>{order.deceasedName}</td>
               <td>{order.age}</td>
               <td>{order.source}</td>
+              <td>{order.user ? order.user.name : 'N/A'}</td>
               <td>{order.comission.join(", ")}</td>
             </tr>
           ))}
