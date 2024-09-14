@@ -12,6 +12,7 @@ const CreateOrder = () => {
   const funeralHomes = useSelector((state) => state.funeralHome.funeralHomes);
   const services = useSelector((state) => state.service.services);
   const users = useSelector((state) => state.user.users);
+  const authUserName = useSelector((state) => state.auth.user.name);
   const [form, setForm] = useState({
     status: "new",
     insurance: "pending",
@@ -28,6 +29,7 @@ const CreateOrder = () => {
     serviceId: "",
     userId: "",
     source: "",
+    createdBy: authUserName,
   });
   const [comment, setComment] = useState("");
   const [selectedComission, setSelectedComission] = useState("");

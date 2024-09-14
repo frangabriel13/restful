@@ -6,27 +6,19 @@ import CreateOrder from "./CreateOrder";
 import EditOrder from "./EditOrder";
 
 const Orders = () => {
-  const [showCreate, setShowCreate] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
-
-  const handleCreate = () => {
-    setShowCreate(true);
-    setShowEdit(false);
-  };
 
   const handleEdit = () => {
     setShowEdit(true);
-    setShowCreate(false);
   };
 
   return (
     <div className={s.container}>
       <div className={s.divOrders}>
         <h2>Orders</h2>
-        <button onClick={handleCreate}>Create Order</button>
       </div>
       <OrdersTable onEditClick={handleEdit} />
-      { showCreate && <CreateOrder /> }
+      <CreateOrder />
       { showEdit && <EditOrder /> }
     </div>
   );

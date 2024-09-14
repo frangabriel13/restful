@@ -2,7 +2,22 @@ const { Order, Service, User, FuneralHome } = require('../db');
 
 const getOrders = async (req, res) => {
   try {
-    const orders = await Order.findAll();
+    const orders = await Order.findAll({
+      include: [
+        {
+          model: Service,
+          attributes: ['name'],
+        },
+        {
+          model: User,
+          attributes: ['name'],
+        },
+        {
+          model: FuneralHome,
+          attributes: ['name'],
+        },
+      ],
+    });
     res.status(200).json(orders);
   } catch(error) {
     console.log(error);
@@ -25,7 +40,8 @@ const getOrderById = async (req, res) => {
 };
 
 const createOrder = async (req, res) => {
-  const { status, contactName, phoneNumber, email, comission, relationship, deceasedName, serviceId, price, insurance, tracking, age, funeralHomeId, userId } = req.body;
+  console.log("req.body", req.body);
+  const { status, contactName, phoneNumber, email, comission, relationship, deceasedName, serviceId, price, insurance, tracking, age, funeralHomeId, userId, createdBy } = req.body;
   try {
     const service = await Service.findByPk(serviceId);
     if(!service) {
@@ -44,7 +60,7 @@ const createOrder = async (req, res) => {
 
     const statusDate = {
       date: new Date(),
-      updatedBy: user.name,
+      updatedBy: createdBy,
     };
 
     const newOrder = await Order.create({
