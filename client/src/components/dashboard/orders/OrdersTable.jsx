@@ -23,7 +23,7 @@ const OrdersTable = () => {
   const limit = 12;
 
   useEffect(() => {
-    dispatch(getOrders());
+    dispatch(getOrders(currentPage, limit));
     dispatch(getFuneralHomes());
     dispatch(getServices());
     dispatch(getUsers());
@@ -54,6 +54,8 @@ const OrdersTable = () => {
   };
 
   const totalPages = Math.ceil(totalOrders / limit);
+
+  console.log(orders);
 
   return (
     <div className={s.dashboard}>
