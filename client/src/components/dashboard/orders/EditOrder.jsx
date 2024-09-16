@@ -29,7 +29,7 @@ const EditOrder = ({ order, onClose }) => {
     serviceId: order.serviceId || "",
     userId: order.userId || "",
     source: order.source || "",
-    createdBy: order.createdBy || authUserName,
+    updateBy: authUserName,
   });
   const [comment, setComment] = useState("");
   const [selectedComission, setSelectedComission] = useState("");

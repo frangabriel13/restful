@@ -14,6 +14,7 @@ export const getOrders = () => async (dispatch) => {
 
 export const updateOrder = (id, order) => async (dispatch) => {
   try {
+    console.log("order", order);
     const response = await instance.put(`orders/${id}`, order);
     dispatch({
       type: "UPDATE_ORDER",
