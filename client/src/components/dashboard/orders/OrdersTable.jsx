@@ -6,24 +6,28 @@ import { getFuneralHomes } from "../../../redux/actions/funeralHomeActions";
 import { getServices, deleteService } from "../../../redux/actions/serviceActions";
 import { getUsers } from "../../../redux/actions/userActions";
 import EditOrder from "./EditOrder";
+import Pagination from "./pagination/Pagination";
 import { CiEdit } from "react-icons/ci";
 import { MdDeleteOutline } from "react-icons/md";
 
 const OrdersTable = () => {
   const dispatch = useDispatch();
   const orders = useSelector((state) => state.order.orders);
+  const totalOrders = useSelector((state) => state.order.totalOrders);
   const funeralHomes = useSelector((state) => state.funeralHome.funeralHomes);
   const services = useSelector((state) => state.service.services);
   const users = useSelector((state) => state.user.users);
   const [showEdit, setShowEdit] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const limit = 12;
 
   useEffect(() => {
     dispatch(getOrders());
     dispatch(getFuneralHomes());
     dispatch(getServices());
     dispatch(getUsers());
-  }, [dispatch]);
+  }, [dispatch, currentPage, limit]);
 
   const getFuneralHomeName = (id) => {
     const home = funeralHomes.find((home) => home.id === id);
@@ -48,6 +52,8 @@ const OrdersTable = () => {
     setSelectedOrder(order);
     setShowEdit(!showEdit);
   };
+
+  const totalPages = Math.ceil(totalOrders / limit);
 
   return (
     <div className={s.dashboard}>
@@ -120,6 +126,7 @@ const OrdersTable = () => {
         </tbody>
       </table>
       {showEdit && <EditOrder order={selectedOrder} onClose={() => setShowEdit(false)} />}
+      <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
     </div>
   );
 };
