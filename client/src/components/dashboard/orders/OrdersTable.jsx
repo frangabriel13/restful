@@ -80,6 +80,15 @@ const OrdersTable = () => {
             <tr key={order.id}>
               <td>{order.status}</td>
               <td>{formatDate(order.statusDate.date)} by {order.statusDate.updatedBy}</td>
+              <td>
+                <ul>
+                  {order.updates.map((update, index) => (
+                    <li key={index}>
+                      {formatDate(update.date)} by {update.updatedBy}
+                    </li>
+                  ))}
+                </ul>
+              </td>
               <td>{order.insurance}</td>
               <td>{getFuneralHomeName(order.funeralHomeId)}</td>
               <td>
