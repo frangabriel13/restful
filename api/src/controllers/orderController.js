@@ -90,10 +90,11 @@ const createOrder = async (req, res) => {
 
 const updateOrder = async (req, res) => {
   const { id } = req.params;
-  const { contactDate, contactName, phoneNumber, email, comission, relationship, deceasedName, status, statusDate, serviceId, userId, funeralHomeId } = req.body;
+  const { status, contactName, phoneNumber, email, comission, relationship, deceasedName, serviceId, price, insurance, tracking, age, funeralHomeId, userId, source, updatedBy } = req.body;
+  console.log("req.body", req.body);
   try {
     const order = await Order.findByPk(id);
-    if(!order) {
+    if (!order) {
       return res.status(404).json({ message: 'No se encontró ninguna orden con ese ID' });
     }
 
@@ -121,22 +122,32 @@ const updateOrder = async (req, res) => {
       order.funeralHomeId = funeralHomeId;
     }
 
+    const updateEntry = {
+      date: new Date(),
+      updatedBy: updatedBy || 'system',
+    };
+
     await order.update({
-      contactDate,
+      status,
+      // statusDate,
       contactName,
       phoneNumber,
       email,
       comission,
       relationship,
       deceasedName,
-      status,
-      statusDate,
       serviceId,
+      price,
+      insurance,
+      tracking,
+      age,
       userId,
       funeralHomeId,
+      source,
+      updates: [...order.updates, updateEntry],
     });
     res.status(200).json(order);
-  } catch(error) {
+  } catch (error) {
     console.log(error);
     res.status(500).json({ message: 'Internal server error' });
   }
