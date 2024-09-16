@@ -57,6 +57,7 @@ const OrdersTable = () => {
           <tr>
           <th>Status</th>
             <th>Contact Day</th>
+            <th>Updates</th>
             <th>Insurance</th>
             <th>Funeral Home</th>
             <th>Tracking</th>
