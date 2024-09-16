@@ -1,8 +1,55 @@
 const { Order, Service, User, FuneralHome } = require('../db');
 
+// const getOrders = async (req, res) => {
+//   const { page = 1, limit = 12 } = req.query; // Valores por defecto: página 1, 12 órdenes por página
+//   const offset = (page - 1) * limit;
+
+//   try {
+//     // Obtener el número total de órdenes
+//     const totalOrders = await Order.count();
+
+//     // Obtener las órdenes paginadas
+//     const orders = await Order.findAll({
+//       limit: parseInt(limit), // Limitar el número de órdenes
+//       offset: parseInt(offset), // Saltar las órdenes según la página
+//       include: [
+//         {
+//           model: Service,
+//           attributes: ['name'],
+//         },
+//         {
+//           model: User,
+//           attributes: ['name'],
+//         },
+//         {
+//           model: FuneralHome,
+//           attributes: ['name'],
+//         },
+//       ],
+//     });
+
+//     // Devolver las órdenes y el número total de órdenes
+//     res.status(200).json({
+//       totalOrders,
+//       orders,
+//     });
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).json({ message: 'Internal server error' });
+//   }
+// };
 const getOrders = async (req, res) => {
+  const { page = 1, limit = 12 } = req.query; // Valores por defecto: página 1, 12 órdenes por página
+  const offset = (page - 1) * limit;
+
   try {
+    // Obtener el número total de órdenes
+    const totalOrders = await Order.count();
+
+    // Obtener las órdenes paginadas
     const orders = await Order.findAll({
+      limit: parseInt(limit), // Limitar el número de órdenes
+      offset: parseInt(offset), // Saltar las órdenes según la página
       include: [
         {
           model: Service,
@@ -18,8 +65,13 @@ const getOrders = async (req, res) => {
         },
       ],
     });
-    res.status(200).json(orders);
-  } catch(error) {
+
+    // Devolver las órdenes y el número total de órdenes
+    res.status(200).json({
+      totalOrders,
+      orders,
+    });
+  } catch (error) {
     console.log(error);
     res.status(500).json({ message: 'Internal server error' });
   }

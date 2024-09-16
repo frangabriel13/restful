@@ -1,13 +1,28 @@
 import { instance } from "../../utils/axiosConfig";
 
-export const getOrders = () => async (dispatch) => {
+// export const getOrders = () => async (dispatch) => {
+//   try {
+//     const response = await instance.get("orders");
+//     dispatch({
+//       type: "GET_ORDERS",
+//       payload: response.data,
+//     });
+//   } catch(error) {
+//     console.error(error);
+//   }
+// };
+export const getOrders = (page = 1, limit = 12) => async (dispatch) => {
   try {
-    const response = await instance.get("orders");
+    const response = await instance.get(`orders?page=${page}&limit=${limit}`);
     dispatch({
       type: "GET_ORDERS",
-      payload: response.data,
+      payload: response.data.orders,
     });
-  } catch(error) {
+    dispatch({
+      type: "SET_TOTAL_ORDERS",
+      payload: response.data.totalOrders,
+    });
+  } catch (error) {
     console.error(error);
   }
 };
