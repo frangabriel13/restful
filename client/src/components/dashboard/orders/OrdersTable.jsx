@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import s from "./OrdersTable.module.css";
 import { getOrders } from "../../../redux/actions/orderActions";
 import { getFuneralHomes } from "../../../redux/actions/funeralHomeActions";
-import { getServices } from "../../../redux/actions/serviceActions";
+import { getServices, deleteService } from "../../../redux/actions/serviceActions";
 import { getUsers } from "../../../redux/actions/userActions";
 import EditOrder from "./EditOrder";
 import { CiEdit } from "react-icons/ci";
@@ -15,6 +15,8 @@ const OrdersTable = () => {
   const funeralHomes = useSelector((state) => state.funeralHome.funeralHomes);
   const services = useSelector((state) => state.service.services);
   const users = useSelector((state) => state.user.users);
+  const [showEdit, setShowEdit] = useState(false);
+  const [selectedOrder, setSelectedOrder] = useState(false);
 
   useEffect(() => {
     dispatch(getOrders());
@@ -40,6 +42,11 @@ const OrdersTable = () => {
 
   const formatDate = (dateString) => {
     return dateString.split('T')[0];
+  };
+
+  const handleEdit = (order) => {
+    setSelectedOrder(order);
+    setShowEdit(!showEdit);
   };
 
   return (
@@ -94,7 +101,7 @@ const OrdersTable = () => {
               <td>{order.comission.join(", ")}</td>
               <td>
                 <div className={s.divIcons}>
-                  <CiEdit className={s.iconEdit} />
+                  <CiEdit onClick={() => handleEdit(order)} className={s.iconEdit} />
                   <MdDeleteOutline className={s.iconDelete} />
                 </div>
               </td>
@@ -102,6 +109,7 @@ const OrdersTable = () => {
           ))}
         </tbody>
       </table>
+      {showEdit && <EditOrder order={selectedOrder} onClose={() => setShowEdit(false)} />}
     </div>
   );
 };
