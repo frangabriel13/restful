@@ -23,14 +23,15 @@ const OrdersTable = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [status, setStatus] = useState("");
   const [service, setService] = useState("");
+  const [user, setUser] = useState("");
   const limit = 12;
 
   useEffect(() => {
-    dispatch(getOrders(currentPage, limit, status, service));
+    dispatch(getOrders(currentPage, limit, status, service, user));
     dispatch(getFuneralHomes());
     dispatch(getServices());
     dispatch(getUsers());
-  }, [dispatch, currentPage, limit, status, service]);
+  }, [dispatch, currentPage, limit, status, service, user]);
 
   const handleStatusChange = (e) => {
     setStatus(e.target.value);
@@ -39,6 +40,11 @@ const OrdersTable = () => {
 
   const handleServiceChange = (e) => {
     setService(e.target.value);
+    setCurrentPage(1);
+  };
+
+  const handleUserChange = (e) => {
+    setUser(e.target.value);
     setCurrentPage(1);
   };
 
@@ -77,6 +83,9 @@ const OrdersTable = () => {
         service={service}
         handleServiceChange={handleServiceChange}
         services={services}
+        user={user}
+        handleUserChange={handleUserChange}
+        users={users}
       />
       <table className={s.table}>
         <thead>
