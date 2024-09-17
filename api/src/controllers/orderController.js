@@ -1,7 +1,7 @@
 const { Order, Service, User, FuneralHome } = require('../db');
 
 const getOrders = async (req, res) => {
-  const { page = 1, limit = 12, status, service } = req.query;
+  const { page = 1, limit = 12, status, service, user } = req.query;
   const offset = (page - 1) * limit;
 
   try {
@@ -11,6 +11,9 @@ const getOrders = async (req, res) => {
     }
     if(service) {
       where.serviceId = service;
+    }
+    if(user) {
+      where.userId = user;
     }
 
     const totalOrders = await Order.count({ where });

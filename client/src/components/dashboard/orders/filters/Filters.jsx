@@ -1,7 +1,7 @@
 import React from "react";
 import s from "./Filters.module.css";
 
-const Filters = ({ status, handleStatusChange, service, handleServiceChange, services }) => {
+const Filters = ({ status, handleStatusChange, service, handleServiceChange, services, user, handleUserChange, users }) => {
   return (
     <div>
       <div>
@@ -22,6 +22,17 @@ const Filters = ({ status, handleStatusChange, service, handleServiceChange, ser
           {services.map((service) => (
             <option key={service.id} value={service.id}>
               {service.name}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div>
+        <label htmlFor="userFilter">Filter by Assigned User: </label>
+        <select id="userFilter" value={user} onChange={handleUserChange}>
+          <option value="">All</option>
+          {users.map((user) => (
+            <option key={user.id} value={user.id}>
+              {user.name}
             </option>
           ))}
         </select>
