@@ -20,14 +20,19 @@ const OrdersTable = () => {
   const [showEdit, setShowEdit] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+  const [status, setStatus] = useState("");
   const limit = 12;
 
   useEffect(() => {
-    dispatch(getOrders(currentPage, limit));
+    dispatch(getOrders(currentPage, limit, status));
     dispatch(getFuneralHomes());
     dispatch(getServices());
     dispatch(getUsers());
-  }, [dispatch, currentPage, limit]);
+  }, [dispatch, currentPage, limit, status]);
+
+  const handleStatusChange = (e) => {
+    setStatus(e.target.value);
+  };
 
   const getFuneralHomeName = (id) => {
     const home = funeralHomes.find((home) => home.id === id);
@@ -60,6 +65,17 @@ const OrdersTable = () => {
   return (
     <div className={s.dashboard}>
       <h2>Orders</h2>
+      <div>
+        <label htmlFor="statusFilter">Filter by Status: </label>
+        <select id="statusFilter" value={status} onChange={handleStatusChange}>
+          <option value="">All</option>
+          <option value="new">New</option>
+          <option value="inProgress">In Progress</option>
+          <option value="pending">Pending</option>
+          <option value="sold">Sold</option>
+          <option value="notSold">Not Sold</option>
+        </select>
+      </div>
       <table className={s.table}>
         <thead>
           <tr>
