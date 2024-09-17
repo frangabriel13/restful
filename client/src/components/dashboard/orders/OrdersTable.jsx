@@ -7,6 +7,7 @@ import { getServices, deleteService } from "../../../redux/actions/serviceAction
 import { getUsers } from "../../../redux/actions/userActions";
 import EditOrder from "./EditOrder";
 import Pagination from "./pagination/Pagination";
+import Filters from "./filters/Filters";
 import { CiEdit } from "react-icons/ci";
 import { MdDeleteOutline } from "react-icons/md";
 
@@ -32,6 +33,7 @@ const OrdersTable = () => {
 
   const handleStatusChange = (e) => {
     setStatus(e.target.value);
+    setCurrentPage(1);
   };
 
   const getFuneralHomeName = (id) => {
@@ -60,22 +62,10 @@ const OrdersTable = () => {
 
   const totalPages = Math.ceil(totalOrders / limit);
 
-  console.log(orders);
-
   return (
     <div className={s.dashboard}>
       <h2>Orders</h2>
-      <div>
-        <label htmlFor="statusFilter">Filter by Status: </label>
-        <select id="statusFilter" value={status} onChange={handleStatusChange}>
-          <option value="">All</option>
-          <option value="new">New</option>
-          <option value="inProgress">In Progress</option>
-          <option value="pending">Pending</option>
-          <option value="sold">Sold</option>
-          <option value="notSold">Not Sold</option>
-        </select>
-      </div>
+      <Filters status={status} handleStatusChange={handleStatusChange} />
       <table className={s.table}>
         <thead>
           <tr>
