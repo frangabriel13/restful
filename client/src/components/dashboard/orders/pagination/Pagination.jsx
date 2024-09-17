@@ -14,16 +14,34 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
     }
   };
 
+  const handleFirstPage = () => {
+    if (currentPage !== 1) {
+      onPageChange(1);
+    }
+  };
+
+  const handleLastPage = () => {
+    if (currentPage !== totalPages) {
+      onPageChange(totalPages);
+    }
+  };
+
   return (
     <div className={s.pagination}>
+      <button onClick={handleFirstPage} disabled={currentPage === 1}>
+        {'<<'}
+      </button>
       <button onClick={handlePreviousPage} disabled={currentPage === 1}>
-        Previous
+        {'<'}
       </button>
       <span>
         Page {currentPage} of {totalPages}
       </span>
       <button onClick={handleNextPage} disabled={currentPage === totalPages}>
-        Next
+        {'>'}
+      </button>
+      <button onClick={handleLastPage} disabled={currentPage === totalPages}>
+        {'>>'}
       </button>
     </div>
   );
