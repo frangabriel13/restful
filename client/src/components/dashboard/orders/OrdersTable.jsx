@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import s from "./OrdersTable.module.css";
-import { getOrders } from "../../../redux/actions/orderActions";
+import { getOrders, deleteOrder } from "../../../redux/actions/orderActions";
 import { getFuneralHomes } from "../../../redux/actions/funeralHomeActions";
-import { getServices, deleteService } from "../../../redux/actions/serviceActions";
+import { getServices } from "../../../redux/actions/serviceActions";
 import { getUsers } from "../../../redux/actions/userActions";
 import EditOrder from "./EditOrder";
 import Pagination from "./pagination/Pagination";
@@ -52,6 +52,10 @@ const OrdersTable = () => {
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
     setCurrentPage(1);
+  };
+
+  const handleDelete = (orderId) => {
+    dispatch(deleteOrder(orderId));
   };
 
   const getFuneralHomeName = (id) => {
@@ -155,7 +159,7 @@ const OrdersTable = () => {
               <td>
                 <div className={s.divIcons}>
                   <CiEdit onClick={() => handleEdit(order)} className={s.iconEdit} />
-                  <MdDeleteOutline className={s.iconDelete} />
+                  <MdDeleteOutline onClick={() => handleDelete(order.id)} className={s.iconDelete} />
                 </div>
               </td>
             </tr>
