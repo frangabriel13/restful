@@ -11,11 +11,14 @@ import { instance } from "../../utils/axiosConfig";
 //     console.error(error);
 //   }
 // };
-export const getOrders = (page = 1, limit = 12, status) => async (dispatch) => {
+export const getOrders = (page = 1, limit = 12, status, service) => async (dispatch) => {
   try {
     let url = `orders?page=${page}&limit=${limit}`;
     if(status) {
       url += `&status=${status}`;
+    }
+    if(service) {
+      url += `&service=${service}`;
     }
     const response = await instance.get(url);
     dispatch({
@@ -26,7 +29,7 @@ export const getOrders = (page = 1, limit = 12, status) => async (dispatch) => {
       type: "SET_TOTAL_ORDERS",
       payload: response.data.totalOrders,
     });
-  } catch (error) {
+  } catch(error) {
     console.error(error);
   }
 };

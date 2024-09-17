@@ -22,17 +22,23 @@ const OrdersTable = () => {
   const [selectedOrder, setSelectedOrder] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [status, setStatus] = useState("");
+  const [service, setService] = useState("");
   const limit = 12;
 
   useEffect(() => {
-    dispatch(getOrders(currentPage, limit, status));
+    dispatch(getOrders(currentPage, limit, status, service));
     dispatch(getFuneralHomes());
     dispatch(getServices());
     dispatch(getUsers());
-  }, [dispatch, currentPage, limit, status]);
+  }, [dispatch, currentPage, limit, status, service]);
 
   const handleStatusChange = (e) => {
     setStatus(e.target.value);
+    setCurrentPage(1);
+  };
+
+  const handleServiceChange = (e) => {
+    setService(e.target.value);
     setCurrentPage(1);
   };
 
@@ -65,7 +71,13 @@ const OrdersTable = () => {
   return (
     <div className={s.dashboard}>
       <h2>Orders</h2>
-      <Filters status={status} handleStatusChange={handleStatusChange} />
+      <Filters 
+        status={status} 
+        handleStatusChange={handleStatusChange}
+        service={service}
+        handleServiceChange={handleServiceChange}
+        services={services}
+      />
       <table className={s.table}>
         <thead>
           <tr>
