@@ -1,7 +1,8 @@
 const { Order, Service, User, FuneralHome } = require('../db');
+const { Op } = require('sequelize');
 
 const getOrders = async (req, res) => {
-  const { page = 1, limit = 12, status, service, user } = req.query;
+  const { page = 1, limit = 12, status, service, user, search } = req.query;
   const offset = (page - 1) * limit;
 
   try {
@@ -14,6 +15,13 @@ const getOrders = async (req, res) => {
     }
     if(user) {
       where.userId = user;
+    }
+    if(search) {
+      where[Op.or] = [
+        { contactName: { [Op.iLike]: `%${search}%` } },
+        { deceasedName: { [Op.iLike]: `%${search}%` } },
+        { email: { [Op.iLike]: `%${search}%` } },
+      ];
     }
 
     const totalOrders = await Order.count({ where });

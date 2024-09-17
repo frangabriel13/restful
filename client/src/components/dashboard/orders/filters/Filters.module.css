@@ -1,0 +1,22 @@
+.container {
+  display: flex;
+  gap: 2rem;
+}
+
+.divFilter {
+  display: flex;
+  flex-direction: column;
+  gap: .2rem;
+}
+
+.divFilter select {
+  border-radius: .3rem;
+  border: 1px solid #333;
+  padding: .4rem;
+}
+
+.divFilter input {
+  border-radius: .3rem;
+  border: .1rem solid #333;
+  padding: .5rem;
+}
