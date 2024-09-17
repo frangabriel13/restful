@@ -11,9 +11,13 @@ import { instance } from "../../utils/axiosConfig";
 //     console.error(error);
 //   }
 // };
-export const getOrders = (page = 1, limit = 12) => async (dispatch) => {
+export const getOrders = (page = 1, limit = 12, status) => async (dispatch) => {
   try {
-    const response = await instance.get(`orders?page=${page}&limit=${limit}`);
+    let url = `orders?page=${page}&limit=${limit}`;
+    if(status) {
+      url += `&status=${status}`;
+    }
+    const response = await instance.get(url);
     dispatch({
       type: "GET_ORDERS",
       payload: response.data.orders,

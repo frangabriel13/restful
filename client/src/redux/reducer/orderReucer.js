@@ -1,5 +1,6 @@
 const initialState = {
   orders: [],
+  allOrders: [],
   totalOrders: 0,
 };
 
@@ -9,6 +10,7 @@ const orderReducer = (state = initialState, action) => {
       return {
         ...state,
         orders: action.payload,
+        allOrders: action.payload,
       };
     case "SET_TOTAL_ORDERS":
       return {
