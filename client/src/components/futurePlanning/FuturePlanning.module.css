@@ -71,7 +71,7 @@
   color: var(--second-color);
 }
 
-@media screen and (max-width: 768px) {
+@media (max-width: 768px) {
   .divTitle {
     height: 10rem;
   }

@@ -14,7 +14,7 @@
   font-size: 4rem;
   color: var(--second-color);
   text-align: center;
-  padding-top: 12rem;
+  padding-top: 6rem;
 }
 
 .divData {
@@ -74,4 +74,46 @@
   background-position: -100% 0;
   transition: .5s;
   color: var(--second-color);
+}
+
+@media (max-width: 768px) {
+  .divTitle {
+    height: 10rem;
+  }
+
+  .divTitle h2 {
+    font-size: 2rem;
+    padding-top: 3rem;
+  }
+
+  .divData {
+    padding: 1rem;
+    flex-direction: column;
+  }
+
+  .description {
+    padding: 1rem;
+  }
+
+  .description h3 {
+    font-size: 2.5rem;
+  }
+
+  .description p {
+    font-size: 1.2rem;
+    line-height: 1.8rem;
+  }
+
+  .divData img {
+    width: 90vw;
+  }
+
+  .callToAction {
+    margin: 5rem;
+  }
+
+  .callToAction h3 {
+    font-size: 2rem;
+    text-align: center;
+  }
 }
