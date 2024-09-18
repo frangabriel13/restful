@@ -1,4 +1,5 @@
-.container {}
+.container {
+}
 
 .container h3 {
   font-size: 4rem;
@@ -30,4 +31,21 @@
 .benefit p {
   font-size: 3rem;
   color: var(--text-color);
+}
+
+@media (max-width: 768px) {
+  .container h3 {
+    font-size: 3rem;
+  }
+
+  .divBenefits {
+  }
+
+  .icon {
+    font-size: 2rem;
+  }
+
+  .benefit p {
+    font-size: 2rem;
+  }
 }

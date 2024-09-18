@@ -21,6 +21,7 @@
   display: flex;
   justify-content: center;
   gap: 1rem;
+  flex-wrap: wrap;
 }
 
 .thumbnail {
@@ -37,4 +38,26 @@
 .selectedThumbnail {
   border: .2rem solid var(--main-color);
   transform: scale(1.1);
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+  }
+
+  .selectedImageContainer {
+    margin-bottom: 1rem;
+  }
+
+  .selectedImage {
+    max-width: 100%;
+  }
+
+  .thumbnailContainer {
+    gap: 0.5rem;
+  }
+
+  .thumbnail {
+    width: 5rem; /* Reducido para pantallas pequeñas */
+  }
 }
