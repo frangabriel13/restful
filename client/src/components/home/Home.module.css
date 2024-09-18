@@ -71,3 +71,40 @@
 .divContact button:hover {
   background-color: var(--second-color);
 }
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 1rem;
+    height: auto;
+  }
+
+  .divContainer {
+    flex-direction: column;
+    gap: 2rem;
+    padding: 2rem;
+    height: auto;
+  }
+
+  .divData h1 {
+    font-size: 4rem;
+  }
+
+  .divData p {
+    font-size: 2rem;
+  }
+
+  .divContact h2 {
+    font-size: 3rem;
+  }
+
+  .divContact p {
+    font-size: 2rem;
+  }
+
+  .divContact button {
+    font-size: 1.5rem;
+    padding: 1rem;
+  }
+}
