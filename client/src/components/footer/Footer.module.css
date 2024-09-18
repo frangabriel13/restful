@@ -92,3 +92,39 @@
   font-size: 1.5rem;
   color: var(--second-color);
 }
+
+@media (max-width: 768px) {
+  .container {
+    padding: 5rem 2rem;
+  }
+
+  .divContent {
+    flex-direction: column;
+    gap: 5rem;
+  }
+
+  .divData img {
+    width: 15rem;
+  }
+
+  .divSocial {
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .divContact {
+    gap: 1rem;
+  }
+
+  .divInfo p {
+    font-size: 1.2rem;
+  }
+
+  .divFaq p {
+    font-size: 1.2rem;
+  }
+
+  .divCopy p {
+    font-size: 1.2rem;
+  }
+}
