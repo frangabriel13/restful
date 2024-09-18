@@ -103,21 +103,17 @@
 }
 
 @media (max-width: 768px) {
-  /* .navbar {
-    position: absolute;
-    display: none;
-    top: 5rem;
-    flex-direction: column;
-    background: var(--second-bg-color);
-    left: 0;
+  .container {
     width: 100%;
-    padding-top: 0.2rem;
-    padding-bottom: 0.2rem;
-  }  */
+    padding: 1rem;
+  }
+
+  .logo {
+    width: 12rem;
+  }
 
   .navToggle {
     display: flex;
-    /* display: block; */
   }
 
   .btnMenu {
@@ -129,26 +125,17 @@
   .navToggle i {
     position: relative;
   }
-  /* puede no ser necesario */
-
-  /* .open {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  } */
 
   .navbar {
     position: absolute;
     top: 10rem;
     right: 0;
     flex-direction: column;
-    /* background: var(--second-bg-color); */
     background: rgba(0, 0, 0, 0.2);
     width: 100%;
     padding-top: 0.2rem;
     padding-bottom: 0.2rem;
     transform: translateX(100%);
-    /* transition: transform 0.5s ease; */
     transition: transform 0.5s ease, opacity 0.5s ease, visibility 0.5s ease;
     opacity: 0;
     visibility: hidden;
