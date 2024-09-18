@@ -59,3 +59,17 @@
 .target:hover::after {
   transform: scale(1.05); /* Efecto de zoom */
 }
+
+@media screen and (max-width: 768px) {
+  .redirect {
+    flex-direction: column;
+  }
+
+  .target {
+    height: 20rem;
+  }
+
+  .target h4 {
+    font-size: 1.5rem;
+  }
+}
