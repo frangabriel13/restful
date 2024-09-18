@@ -65,7 +65,7 @@ const OrdersTable = () => {
 
   const getServiceName = (id) => {
     const service = services.find((service) => service.id === id);
-    return service ? service.name : "N/A";
+    return service ? service.name : "Not sure";
   };
 
   const getUserName = (id) => {

@@ -4,6 +4,7 @@ module.exports = (sequelize) => {
   sequelize.define('order', {
     status: {
       type: DataTypes.ENUM('new', 'inProgress', 'pending', 'sold', 'notSold'),
+      defaultValue: 'new',
     },
     statusDate: {
       type: DataTypes.JSON,

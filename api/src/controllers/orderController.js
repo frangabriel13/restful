@@ -74,24 +74,47 @@ const createOrder = async (req, res) => {
   console.log("req.body", req.body);
   const { status, contactName, phoneNumber, email, comission, relationship, deceasedName, serviceId, price, insurance, tracking, age, funeralHomeId, userId, createdBy, source } = req.body;
   try {
-    const service = await Service.findByPk(serviceId);
-    if(!service) {
-      return res.status(404).json({ message: 'No se encontró ningun servicio con ese ID' });
+    // const service = await Service.findByPk(serviceId);
+    // if(!service) {
+    //   return res.status(404).json({ message: 'No se encontró ningun servicio con ese ID' });
+    // }
+
+    // const user = await User.findByPk(userId);
+    // if(!user) {
+    //   return res.status(404).json({ message: 'No se encontró ningun usuario con ese ID' });
+    // }
+
+    // const funeralHome = await FuneralHome.findByPk(funeralHomeId);
+    // if(!funeralHome) {
+    //   return res.status(404).json({ message: 'No se encontró ninguna funeraria con ese ID' });
+    // }
+    let service = null;
+    if (serviceId && serviceId !== 'not_sure') {
+      service = await Service.findByPk(serviceId);
+      if (!service) {
+        return res.status(404).json({ message: 'No se encontró ningun servicio con ese ID' });
+      }
     }
 
-    const user = await User.findByPk(userId);
-    if(!user) {
-      return res.status(404).json({ message: 'No se encontró ningun usuario con ese ID' });
+    let user = null;
+    if (userId) {
+      user = await User.findByPk(userId);
+      if (!user) {
+        return res.status(404).json({ message: 'No se encontró ningun usuario con ese ID' });
+      }
     }
 
-    const funeralHome = await FuneralHome.findByPk(funeralHomeId);
-    if(!funeralHome) {
-      return res.status(404).json({ message: 'No se encontró ninguna funeraria con ese ID' });
+    let funeralHome = null;
+    if (funeralHomeId) {
+      funeralHome = await FuneralHome.findByPk(funeralHomeId);
+      if (!funeralHome) {
+        return res.status(404).json({ message: 'No se encontró ninguna funeraria con ese ID' });
+      }
     }
 
     const statusDate = {
       date: new Date(),
-      updatedBy: createdBy,
+      updatedBy: createdBy || 'system',
     };
 
     const newOrder = await Order.create({
