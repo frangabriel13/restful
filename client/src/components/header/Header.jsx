@@ -59,6 +59,7 @@ function Header() {
       <div className={s.navToggle}>
         <IoMdMenu className={s.btnMenu} onClick={toggleMenu} />
       </div>
+      <div id="google_translate_element" className={s.googleTranslateContainer}></div>
     </div>
   );
 }

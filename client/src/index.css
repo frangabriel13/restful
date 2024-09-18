@@ -1,9 +1,10 @@
+/* Global CSS */
+
 * {
   margin: 0;
-  padding: 0;
+  padding-top: 4rem;
   box-sizing: border-box;
   text-decoration: none;
-  /* font-family: 'PT Sans Narrow', sans-serif; */
   font-family: "Open Sans", sans-serif;
   border: none;
   outline: none;
@@ -15,9 +16,7 @@
   --second-bg-color: #49525c;
   --dark-color: #0F1422;
   --text-color: #69717a;
-  /* --main-color: #5a4937; */
   --main-color: #6f67b3;
-  /* --second-color: #bba376; */
   --second-color: #aab8c7;
 }
 
@@ -29,4 +28,47 @@ html {
 body {
   background: var(--bg-color);
   color: var(--text-color);
+}
+
+/* Ocultar el logotipo de Google Translate */
+.goog-te-gadget img {
+  display: none;
+}
+
+/* Estilo para el selector de idiomas */
+.goog-te-combo {
+  padding: 10px;
+  background-color: #007bff; /* Fondo azul */
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+/* Añadir efecto hover */
+.goog-te-combo:hover {
+  background-color: #0056b3; /* Azul más oscuro al hacer hover */
+}
+
+/* Ocultar el cuadro emergente de Google Translate (opcional) */
+.goog-te-banner-frame.skiptranslate {
+  display: none !important;
+}
+
+.goog-te-banner-frame {
+  display: none !important;
+}
+
+body {
+  top: 0px !important;
+}
+
+/* Mueve el iframe a la parte inferior */
+iframe.goog-te-banner-frame {
+  position: fixed !important;
+  bottom: 0 !important;
+  top: auto !important;
+  width: 100% !important;
+  z-index: 9999 !important; /* Asegúrate de que esté sobre otros elementos */
 }

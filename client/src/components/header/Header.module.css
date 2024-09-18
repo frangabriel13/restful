@@ -161,3 +161,8 @@
     visibility: visible;
   }
 }
+
+.googleTranslateContainer {
+  margin-left: 20px;
+  display: inline-block;
+}
