@@ -113,7 +113,7 @@ const EditOrder = ({ order, onClose }) => {
   return (
     <div className={s.modal} onClick={handleClickOutside}>
       <div className={s.modalContent}>
-      <button onClick={onClose} className={s.btnClose}>Cerrar</button>
+        <button onClick={onClose} className={s.btnClose}>Cerrar</button>
         <div className={s.container}>
           <h3 className={s.title}>Edit Order</h3>
           <form onSubmit={handleSubmit} className={s.form}>
