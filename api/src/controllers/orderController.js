@@ -1,22 +1,80 @@
 const { Order, Service, User, FuneralHome } = require('../db');
 const { Op } = require('sequelize');
 
+// const getOrders = async (req, res) => {
+//   const { page = 1, limit = 12, status, service, user, search } = req.query;
+//   const offset = (page - 1) * limit;
+
+//   try {
+//     const where = {};
+//     if(status) {
+//       where.status = status;
+//     }
+//     if(service) {
+//       where.serviceId = service;
+//     }
+//     if(user) {
+//       where.userId = user;
+//     }
+//     if(search) {
+//       where[Op.or] = [
+//         { contactName: { [Op.iLike]: `%${search}%` } },
+//         { deceasedName: { [Op.iLike]: `%${search}%` } },
+//         { email: { [Op.iLike]: `%${search}%` } },
+//       ];
+//     }
+
+//     const totalOrders = await Order.count({ where });
+
+//     const orders = await Order.findAll({
+//       limit: parseInt(limit),
+//       offset: parseInt(offset),
+//       where,
+//       include: [
+//         {
+//           model: Service,
+//           attributes: ['name'],
+//         },
+//         {
+//           model: User,
+//           attributes: ['name'],
+//         },
+//         {
+//           model: FuneralHome,
+//           attributes: ['name'],
+//         },
+//       ],
+//     });
+
+//     res.status(200).json({
+//       totalOrders,
+//       orders,
+//     });
+//   } catch(error) {
+//     console.log(error);
+//     res.status(500).json({ message: 'Internal server error' });
+//   }
+// };
 const getOrders = async (req, res) => {
   const { page = 1, limit = 12, status, service, user, search } = req.query;
   const offset = (page - 1) * limit;
 
   try {
     const where = {};
-    if(status) {
-      where.status = status;
+    if (status) {
+      if (status.includes(',')) {
+        where.status = { [Op.in]: status.split(',') };
+      } else {
+        where.status = status;
+      }
     }
-    if(service) {
+    if (service) {
       where.serviceId = service;
     }
-    if(user) {
+    if (user) {
       where.userId = user;
     }
-    if(search) {
+    if (search) {
       where[Op.or] = [
         { contactName: { [Op.iLike]: `%${search}%` } },
         { deceasedName: { [Op.iLike]: `%${search}%` } },
@@ -50,7 +108,7 @@ const getOrders = async (req, res) => {
       totalOrders,
       orders,
     });
-  } catch(error) {
+  } catch (error) {
     console.log(error);
     res.status(500).json({ message: 'Internal server error' });
   }

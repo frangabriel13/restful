@@ -30,11 +30,11 @@ const OrdersTable = () => {
   useEffect(() => {
     let status = "";
     if (selectedTab === "pending") {
-      status = "new";
+      status = "new,pending";
     } else if (selectedTab === "inProgress") {
       status = "inProgress";
     } else if (selectedTab === "soldNotSold") {
-      status = "sold";
+      status = "sold,notSold";
     }
     dispatch(getOrders(currentPage, limit, status, service, user, search));
     dispatch(getFuneralHomes());
