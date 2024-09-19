@@ -21,21 +21,29 @@ const OrdersTable = () => {
   const [showEdit, setShowEdit] = useState(false);
   const [selectedOrder, setSelectedOrder] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  const [status, setStatus] = useState("");
   const [service, setService] = useState("");
   const [user, setUser] = useState("");
   const [search, setSearch] = useState("");
+  const [selectedTab, setSelectedTab] = useState("pending");
   const limit = 12;
 
   useEffect(() => {
+    let status = "";
+    if (selectedTab === "pending") {
+      status = "new";
+    } else if (selectedTab === "inProgress") {
+      status = "inProgress";
+    } else if (selectedTab === "soldNotSold") {
+      status = "sold";
+    }
     dispatch(getOrders(currentPage, limit, status, service, user, search));
     dispatch(getFuneralHomes());
     dispatch(getServices());
     dispatch(getUsers());
-  }, [dispatch, currentPage, limit, status, service, user, search]);
+  }, [dispatch, currentPage, limit, selectedTab, service, user, search]);
 
-  const handleStatusChange = (e) => {
-    setStatus(e.target.value);
+  const handleTabChange = (tab) => {
+    setSelectedTab(tab);
     setCurrentPage(1);
   };
 
@@ -84,12 +92,17 @@ const OrdersTable = () => {
 
   const totalPages = Math.ceil(totalOrders / limit);
 
+  console.log('selectedTab', selectedTab);
+
   return (
     <div className={s.dashboard}>
       <h2>Orders</h2>
+      <div className={s.tabs}>
+        <button className={selectedTab === "pending" ? s.active : ""} onClick={() => handleTabChange("pending")}>Pending - New</button>
+        <button className={selectedTab === "inProgress" ? s.active : ""} onClick={() => handleTabChange("inProgress")}>In Progress</button>
+        <button className={selectedTab === "soldNotSold" ? s.active : ""} onClick={() => handleTabChange("soldNotSold")}>Sold - Not Sold</button>
+      </div>
       <Filters 
-        status={status} 
-        handleStatusChange={handleStatusChange}
         service={service}
         handleServiceChange={handleServiceChange}
         services={services}
@@ -102,7 +115,7 @@ const OrdersTable = () => {
       <table className={s.table}>
         <thead>
           <tr>
-          <th>Status</th>
+            <th>Status</th>
             <th>Contact Day</th>
             <th>Updates</th>
             <th>Insurance</th>
@@ -144,7 +157,7 @@ const OrdersTable = () => {
                     <li key={index}>{track}</li>
                   ))}
                 </ul>
-               </td>
+              </td>
               <td>{order.price}</td>
               <td>{order.contactName}</td>
               <td>{order.phoneNumber}</td>
