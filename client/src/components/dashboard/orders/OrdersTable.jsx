@@ -92,8 +92,6 @@ const OrdersTable = () => {
 
   const totalPages = Math.ceil(totalOrders / limit);
 
-  console.log('selectedTab', selectedTab);
-
   return (
     <div className={s.dashboard}>
       <h2>Orders</h2>
