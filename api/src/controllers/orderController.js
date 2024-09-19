@@ -1,60 +1,6 @@
 const { Order, Service, User, FuneralHome } = require('../db');
 const { Op } = require('sequelize');
 
-// const getOrders = async (req, res) => {
-//   const { page = 1, limit = 12, status, service, user, search } = req.query;
-//   const offset = (page - 1) * limit;
-
-//   try {
-//     const where = {};
-//     if(status) {
-//       where.status = status;
-//     }
-//     if(service) {
-//       where.serviceId = service;
-//     }
-//     if(user) {
-//       where.userId = user;
-//     }
-//     if(search) {
-//       where[Op.or] = [
-//         { contactName: { [Op.iLike]: `%${search}%` } },
-//         { deceasedName: { [Op.iLike]: `%${search}%` } },
-//         { email: { [Op.iLike]: `%${search}%` } },
-//       ];
-//     }
-
-//     const totalOrders = await Order.count({ where });
-
-//     const orders = await Order.findAll({
-//       limit: parseInt(limit),
-//       offset: parseInt(offset),
-//       where,
-//       include: [
-//         {
-//           model: Service,
-//           attributes: ['name'],
-//         },
-//         {
-//           model: User,
-//           attributes: ['name'],
-//         },
-//         {
-//           model: FuneralHome,
-//           attributes: ['name'],
-//         },
-//       ],
-//     });
-
-//     res.status(200).json({
-//       totalOrders,
-//       orders,
-//     });
-//   } catch(error) {
-//     console.log(error);
-//     res.status(500).json({ message: 'Internal server error' });
-//   }
-// };
 const getOrders = async (req, res) => {
   const { page = 1, limit = 12, status, service, user, search } = req.query;
   const offset = (page - 1) * limit;
@@ -132,20 +78,6 @@ const createOrder = async (req, res) => {
   console.log("req.body", req.body);
   const { status, contactName, phoneNumber, email, comission, relationship, deceasedName, serviceId, price, insurance, tracking, age, funeralHomeId, userId, createdBy, source } = req.body;
   try {
-    // const service = await Service.findByPk(serviceId);
-    // if(!service) {
-    //   return res.status(404).json({ message: 'No se encontró ningun servicio con ese ID' });
-    // }
-
-    // const user = await User.findByPk(userId);
-    // if(!user) {
-    //   return res.status(404).json({ message: 'No se encontró ningun usuario con ese ID' });
-    // }
-
-    // const funeralHome = await FuneralHome.findByPk(funeralHomeId);
-    // if(!funeralHome) {
-    //   return res.status(404).json({ message: 'No se encontró ninguna funeraria con ese ID' });
-    // }
     let service = null;
     if (serviceId && serviceId !== 'not_sure') {
       service = await Service.findByPk(serviceId);
@@ -175,6 +107,11 @@ const createOrder = async (req, res) => {
       updatedBy: createdBy || 'system',
     };
 
+    const trackingWithDate = tracking.map((track) => ({
+      date: new Date(),
+      track,
+    }));
+
     const newOrder = await Order.create({
       status,
       statusDate,
@@ -187,7 +124,7 @@ const createOrder = async (req, res) => {
       serviceId,
       price,
       insurance,
-      tracking,
+      tracking: trackingWithDate,
       age,
       userId,
       funeralHomeId,
