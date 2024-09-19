@@ -10,6 +10,7 @@ import Pagination from "./pagination/Pagination";
 import Filters from "./filters/Filters";
 import { CiEdit } from "react-icons/ci";
 import { MdDeleteOutline } from "react-icons/md";
+import UpdateModal from "./modals/UpdateModal";
 
 const OrdersTable = () => {
   const dispatch = useDispatch();
@@ -25,6 +26,8 @@ const OrdersTable = () => {
   const [user, setUser] = useState("");
   const [search, setSearch] = useState("");
   const [selectedTab, setSelectedTab] = useState("pending");
+  const [showUpdateModal, setShowUpdateModal] = useState(false);
+  const [selectedUpdates, setSelectedUpdates] = useState([]);
   const limit = 12;
 
   useEffect(() => {
@@ -90,6 +93,11 @@ const OrdersTable = () => {
     setShowEdit(!showEdit);
   };
 
+  const handleShowUpdates = (updates) => {
+    setSelectedUpdates(updates);
+    setShowUpdateModal(true);
+  };
+
   const totalPages = Math.ceil(totalOrders / limit);
 
   console.log(orders);
@@ -140,7 +148,7 @@ const OrdersTable = () => {
             <tr key={order.id}>
               <td>{order.status}</td>
               <td>{formatDate(order.statusDate.date)} by {order.statusDate.updatedBy}</td>
-              <td>
+              {/* <td>
                 <ul>
                   {order.updates.map((update, index) => (
                     <li key={index}>
@@ -148,6 +156,9 @@ const OrdersTable = () => {
                     </li>
                   ))}
                 </ul>
+              </td> */}
+              <td>
+                <button onClick={() => handleShowUpdates(order.updates)}>Ver más</button>
               </td>
               <td>{order.insurance}</td>
               <td>{getFuneralHomeName(order.funeralHomeId)}</td>
@@ -180,6 +191,7 @@ const OrdersTable = () => {
         </tbody>
       </table>
       {showEdit && <EditOrder order={selectedOrder} onClose={() => setShowEdit(false)} />}
+      {showUpdateModal && <UpdateModal updates={selectedUpdates} onClose={() => setShowUpdateModal(false)} />}
       <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
     </div>
   );
