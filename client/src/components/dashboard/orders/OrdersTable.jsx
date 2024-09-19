@@ -92,6 +92,8 @@ const OrdersTable = () => {
 
   const totalPages = Math.ceil(totalOrders / limit);
 
+  console.log(orders);
+
   return (
     <div className={s.dashboard}>
       <h2>Orders</h2>
@@ -149,13 +151,13 @@ const OrdersTable = () => {
               </td>
               <td>{order.insurance}</td>
               <td>{getFuneralHomeName(order.funeralHomeId)}</td>
-              <td>
+              {/* <td>
                 <ul>
                   {order.tracking.map((track, index) => (
                     <li key={index}>{track}</li>
                   ))}
                 </ul>
-              </td>
+              </td> */}
               <td>{order.price}</td>
               <td>{order.contactName}</td>
               <td>{order.phoneNumber}</td>
