@@ -229,7 +229,7 @@ const EditOrder = ({ order, onClose }) => {
                   </div>
                 ))}
               </div>
-              <div className={s.formGroup}>
+              {/* <div className={s.formGroup}>
                 <h4>Tracking</h4>
                 <input
                   type="text"
@@ -245,7 +245,7 @@ const EditOrder = ({ order, onClose }) => {
                     <button type="button" onClick={() => removeComment(index)} className={s.removeButton}>Remove</button>
                   </div>
                 ))}
-              </div>
+              </div> */}
             </div>
             <div className={s.divBtnSubmit}>
               <button type="submit">Update Order</button>

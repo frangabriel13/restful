@@ -4,7 +4,7 @@ import s from "./Filters.module.css";
 const Filters = ({ status, handleStatusChange, service, handleServiceChange, services, user, handleUserChange, users, search, handleSearchChange }) => {
   return (
     <div className={s.container}>
-      <div className={s.divFilter}>
+      {/* <div className={s.divFilter}>
         <label htmlFor="statusFilter">Status: </label>
         <select id="statusFilter" value={status} onChange={handleStatusChange}>
           <option value="">All</option>
@@ -14,7 +14,7 @@ const Filters = ({ status, handleStatusChange, service, handleServiceChange, ser
           <option value="sold">Sold</option>
           <option value="notSold">Not Sold</option>
         </select>
-      </div>
+      </div> */}
       <div className={s.divFilter}>
         <label htmlFor="serviceFilter">Service: </label>
         <select id="serviceFilter" value={service} onChange={handleServiceChange}>
