@@ -110,6 +110,8 @@ const EditOrder = ({ order, onClose }) => {
     }
   };
 
+  console.log('tracking', form.tracking);
+
   return (
     <div className={s.modal} onClick={handleClickOutside}>
       <div className={s.modalContent}>
@@ -239,7 +241,7 @@ const EditOrder = ({ order, onClose }) => {
                 <button type="button" onClick={addComment} className={s.button}>Add Comment</button>
                 {form.tracking.map((track, index) => (
                   <div key={index} className={s.comment}>
-                    <p>{track}</p>
+                    <p>{track.track}</p>
                     <button type="button" onClick={() => removeComment(index)} className={s.removeButton}>Remove</button>
                   </div>
                 ))}
