@@ -158,7 +158,7 @@ const OrdersTable = () => {
                 </ul>
               </td> */}
               <td>
-                <button onClick={() => handleShowUpdates(order.updates)}>Ver más</button>
+                <button className={s.btnMore} onClick={() => handleShowUpdates(order.updates)}>Ver más</button>
               </td>
               <td>{order.insurance}</td>
               <td>{getFuneralHomeName(order.funeralHomeId)}</td>
