@@ -76,7 +76,14 @@ const getOrderById = async (req, res) => {
 
 const createOrder = async (req, res) => {
   console.log("req.body", req.body);
-  const { status, contactName, phoneNumber, email, comission, relationship, deceasedName, serviceId, price, insurance, tracking, age, funeralHomeId, userId, createdBy, source } = req.body;
+  let { status, contactName, phoneNumber, email, comission, relationship, deceasedName, serviceId, price, insurance, tracking, age, funeralHomeId, userId, createdBy, source } = req.body;
+
+  // Verificar si userId, funeralHomeId y serviceId son cadenas vacías y asignarles null si es el caso
+  userId = userId === '' ? null : userId;
+  funeralHomeId = funeralHomeId === '' ? null : funeralHomeId;
+  serviceId = serviceId === '' ? null : serviceId;
+  age = age === '' ? null : age;
+
   try {
     let service = null;
     if (serviceId && serviceId !== 'not_sure') {
@@ -107,10 +114,6 @@ const createOrder = async (req, res) => {
       updatedBy: createdBy || 'system',
     };
 
-    // const trackingWithDate = tracking.map((track) => ({
-    //   date: new Date(),
-    //   track,
-    // }));
     const trackingWithDate = (tracking || []).map((track) => ({
       date: new Date(),
       track,
