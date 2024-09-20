@@ -11,6 +11,7 @@ import Filters from "./filters/Filters";
 import { CiEdit } from "react-icons/ci";
 import { MdDeleteOutline } from "react-icons/md";
 import UpdateModal from "./modals/UpdateModal";
+import TrackingModal from "./modals/TrackingModal";
 
 const OrdersTable = () => {
   const dispatch = useDispatch();
@@ -28,6 +29,8 @@ const OrdersTable = () => {
   const [selectedTab, setSelectedTab] = useState("pending");
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [selectedUpdates, setSelectedUpdates] = useState([]);
+  const [showTrackingModal, setShowTrackingModal] = useState(false);
+  const [selectedTracking, setSelectedTracking] = useState([]);
   const limit = 12;
 
   useEffect(() => {
@@ -98,6 +101,11 @@ const OrdersTable = () => {
     setShowUpdateModal(true);
   };
 
+  const handleShowTracking = (tracking) => {
+    setSelectedTracking(tracking);
+    setShowTrackingModal(true);
+  };
+
   const totalPages = Math.ceil(totalOrders / limit);
 
   console.log(orders);
@@ -148,27 +156,14 @@ const OrdersTable = () => {
             <tr key={order.id}>
               <td>{order.status}</td>
               <td>{formatDate(order.statusDate.date)} by {order.statusDate.updatedBy}</td>
-              {/* <td>
-                <ul>
-                  {order.updates.map((update, index) => (
-                    <li key={index}>
-                      {formatDate(update.date)} by {update.updatedBy}
-                    </li>
-                  ))}
-                </ul>
-              </td> */}
               <td>
                 <button className={s.btnMore} onClick={() => handleShowUpdates(order.updates)}>Ver más</button>
               </td>
               <td>{order.insurance}</td>
               <td>{getFuneralHomeName(order.funeralHomeId)}</td>
-              {/* <td>
-                <ul>
-                  {order.tracking.map((track, index) => (
-                    <li key={index}>{track}</li>
-                  ))}
-                </ul>
-              </td> */}
+              <td>
+                <button className={s.btnMore} onClick={() => handleShowTracking(order.tracking)}>Ver más</button>
+              </td>
               <td>{order.price}</td>
               <td>{order.contactName}</td>
               <td>{order.phoneNumber}</td>
@@ -192,6 +187,7 @@ const OrdersTable = () => {
       </table>
       {showEdit && <EditOrder order={selectedOrder} onClose={() => setShowEdit(false)} />}
       {showUpdateModal && <UpdateModal updates={selectedUpdates} onClose={() => setShowUpdateModal(false)} />}
+      {showTrackingModal && <TrackingModal tracking={selectedTracking} onClose={() => setShowTrackingModal(false)} />}
       <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
     </div>
   );

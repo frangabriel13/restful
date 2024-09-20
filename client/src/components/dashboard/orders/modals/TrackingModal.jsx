@@ -1,36 +1,36 @@
-import React from 'react';
-import s from './UpdateModal.module.css';
+import React from "react";
+import s from "./TrackingModal.module.css";
 
-const UpdateModal = ({ updates, onClose }) => {
+const TrackingModal = ({ tracking, onClose }) => {
   const handleClickOutside = (e) => {
     if (e.target === e.currentTarget) {
       onClose();
     }
   };
 
-  console.log(updates);
+  console.log(tracking);
 
   return (
     <div className={s.modal} onClick={handleClickOutside}>
       <div className={s.modalContent}>
-        <button onClick={onClose} className={s.btnClose}>Close</button>
+        <button className={s.btnClose} onClick={onClose}>Close</button>
         <div className={s.container}>
-          <h3 className={s.title}>Updates</h3>
+          <h3 className={s.title}>Tracking</h3>
           <div className={s.tableContainer}>
             <table className={s.table}>
               <thead>
                 <tr>
                   <th>Date</th>
                   <th>Time</th>
-                  <th>Updated By</th>
+                  <th>Comment</th>
                 </tr>
               </thead>
               <tbody>
-                {updates.map((update) => (
-                  <tr key={update.id}>
-                    <td>{new Date(update.date).toLocaleDateString()}</td>
-                    <td>{new Date(update.date).toLocaleTimeString()}</td>
-                    <td>{update.updatedBy}</td>
+                {tracking.map((track) => (
+                  <tr key={track.id}>
+                    <td>{new Date(track.date).toLocaleDateString()}</td>
+                    <td>{new Date(track.date).toLocaleTimeString()}</td>
+                    <td>{track.track}</td>
                   </tr>
                 ))}
               </tbody>
@@ -39,8 +39,8 @@ const UpdateModal = ({ updates, onClose }) => {
         </div>
       </div>
     </div>
-  );
+  )
 };
 
 
-export default UpdateModal;
+export default TrackingModal;
