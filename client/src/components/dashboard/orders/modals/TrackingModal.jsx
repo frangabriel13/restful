@@ -8,7 +8,7 @@ const TrackingModal = ({ tracking, onClose }) => {
     }
   };
 
-  console.log(tracking);
+  console.log('tracking:', tracking);
 
   return (
     <div className={s.modal} onClick={handleClickOutside}>

@@ -107,7 +107,11 @@ const createOrder = async (req, res) => {
       updatedBy: createdBy || 'system',
     };
 
-    const trackingWithDate = tracking.map((track) => ({
+    // const trackingWithDate = tracking.map((track) => ({
+    //   date: new Date(),
+    //   track,
+    // }));
+    const trackingWithDate = (tracking || []).map((track) => ({
       date: new Date(),
       track,
     }));
