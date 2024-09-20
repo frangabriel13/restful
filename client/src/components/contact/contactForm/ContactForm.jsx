@@ -75,7 +75,8 @@ const ContactForm = () => {
   return (
     <div className={s.container}>
       <div className={s.divTitle}>
-        <h3>Completa el formulario para recibir asesoramiento</h3>
+        <h3>Completa el formulario para información personalizada.
+        </h3>
         <p>Te responderemos a la brevedad</p>
       </div>
       <div className={s.divForm}>

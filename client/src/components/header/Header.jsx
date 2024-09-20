@@ -52,7 +52,7 @@ function Header() {
             {/* <Link to="/faq" onClick={() => toggleMenu('faq')}>Preguntas frecuentes</Link> */}
             {/* <button className={s.btnQuote}>Pedir cotización</button> */}
             <Link to="/contact" onClick={() => toggleMenu('contact')}>
-              <button className={s.btnQuote}>Pedir cotización</button>
+              <button className={s.btnQuote}>Solicitar Presupuesto</button>
             </Link>
         </nav>
       </div>
