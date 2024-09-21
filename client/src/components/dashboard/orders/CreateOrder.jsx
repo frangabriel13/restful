@@ -57,6 +57,27 @@ const CreateOrder = () => {
     }
 
     dispatch(createOrder(form));
+    setForm({
+      status: "new",
+      insurance: "pending",
+      funeralHomeId: "",
+      tracking: [],
+      price: "",
+      contactName: "",
+      phoneNumber: "",
+      email: "",
+      comission: [],
+      relationship: "",
+      deceasedName: "",
+      age: "",
+      serviceId: "",
+      userId: "",
+      source: "",
+      createdBy: authUserName,
+    });
+    setComment("");
+    setSelectedComission("");
+    setErrors({});
   };
 
   const handleCommentChange = (e) => {

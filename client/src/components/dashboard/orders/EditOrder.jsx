@@ -64,11 +64,24 @@ const EditOrder = ({ order, onClose }) => {
     setComment(e.target.value);
   };
 
+  // const addComment = () => {
+  //   if (comment.trim()) {
+  //     setForm({
+  //       ...form,
+  //       tracking: [...form.tracking, comment.trim()],
+  //     });
+  //     setComment("");
+  //   }
+  // };
   const addComment = () => {
     if (comment.trim()) {
+      const newComment = {
+        date: new Date().toISOString(),
+        track: comment.trim(),
+      };
       setForm({
         ...form,
-        tracking: [...form.tracking, comment.trim()],
+        tracking: [...form.tracking, newComment],
       });
       setComment("");
     }
@@ -109,6 +122,8 @@ const EditOrder = ({ order, onClose }) => {
       onClose();
     }
   };
+
+  console.log('tracking', form.tracking);
 
   return (
     <div className={s.modal} onClick={handleClickOutside}>
@@ -239,7 +254,7 @@ const EditOrder = ({ order, onClose }) => {
                 <button type="button" onClick={addComment} className={s.button}>Add Comment</button>
                 {form.tracking.map((track, index) => (
                   <div key={index} className={s.comment}>
-                    <p>{track}</p>
+                    <p>{track.track}</p>
                     <button type="button" onClick={() => removeComment(index)} className={s.removeButton}>Remove</button>
                   </div>
                 ))}

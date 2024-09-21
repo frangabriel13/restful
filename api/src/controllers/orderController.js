@@ -146,8 +146,14 @@ const createOrder = async (req, res) => {
 
 const updateOrder = async (req, res) => {
   const { id } = req.params;
-  const { status, contactName, phoneNumber, email, comission, relationship, deceasedName, serviceId, price, insurance, tracking, age, funeralHomeId, userId, source, updatedBy } = req.body;
+  let { status, contactName, phoneNumber, email, comission, relationship, deceasedName, serviceId, price, insurance, tracking, age, funeralHomeId, userId, source, updateBy } = req.body;
   console.log("req.body", req.body);
+
+  userId = userId === '' ? null : userId;
+  funeralHomeId = funeralHomeId === '' ? null : funeralHomeId;
+  serviceId = serviceId === '' ? null : serviceId;
+  age = age === '' ? null : age;
+
   try {
     const order = await Order.findByPk(id);
     if (!order) {
@@ -180,8 +186,13 @@ const updateOrder = async (req, res) => {
 
     const updateEntry = {
       date: new Date(),
-      updatedBy: updatedBy || 'system',
+      updatedBy: updateBy || 'system',
     };
+
+    // const trackingWithDate = (tracking || []).map((track) => ({
+    //   date: new Date(),
+    //   track,
+    // }));
 
     await order.update({
       status,
