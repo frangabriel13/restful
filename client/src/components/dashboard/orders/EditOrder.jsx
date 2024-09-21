@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import s from "./EditOrder.module.css";
-import { updateOrder } from "../../../redux/actions/orderActions";
+// import { updateOrder } from "../../../redux/actions/orderActions";
 import { getFuneralHomes } from "../../../redux/actions/funeralHomeActions";
 import { getServices } from "../../../redux/actions/serviceActions";
 import { getUsers } from "../../../redux/actions/userActions";
 import { validateOrderForm } from "../../../utils/validations";
 
-const EditOrder = ({ order, onClose }) => {
+const EditOrder = ({ order, onClose, updateOrder }) => {
   const dispatch = useDispatch();
   const funeralHomes = useSelector((state) => state.funeralHome.funeralHomes);
   const services = useSelector((state) => state.service.services);
@@ -48,6 +48,18 @@ const EditOrder = ({ order, onClose }) => {
     });
   };
 
+  // const handleSubmit = (e) => {
+  //   e.preventDefault();
+  //   const validationErrors = validateOrderForm(form);
+  //   if (Object.keys(validationErrors).length > 0) {
+  //     setErrors(validationErrors);
+  //     return;
+  //   }
+
+  //   // dispatch(updateOrder(order.id, form));
+  //   updateOrder(order.id, form);
+  //   onClose();
+  // };
   const handleSubmit = (e) => {
     e.preventDefault();
     const validationErrors = validateOrderForm(form);
@@ -55,8 +67,22 @@ const EditOrder = ({ order, onClose }) => {
       setErrors(validationErrors);
       return;
     }
-
-    dispatch(updateOrder(order.id, form));
+  
+    const updatedForm = {
+      ...form,
+      funeralHomeId: form.funeralHomeId ? Number(form.funeralHomeId) : null,
+      serviceId: form.serviceId ? Number(form.serviceId) : null,
+      userId: form.userId ? Number(form.userId) : null,
+    };
+  
+    // Remove keys with null values
+    Object.keys(updatedForm).forEach(key => {
+      if (updatedForm[key] === null) {
+        delete updatedForm[key];
+      }
+    });
+  
+    updateOrder(order.id, updatedForm);
     onClose();
   };
 
@@ -64,15 +90,6 @@ const EditOrder = ({ order, onClose }) => {
     setComment(e.target.value);
   };
 
-  // const addComment = () => {
-  //   if (comment.trim()) {
-  //     setForm({
-  //       ...form,
-  //       tracking: [...form.tracking, comment.trim()],
-  //     });
-  //     setComment("");
-  //   }
-  // };
   const addComment = () => {
     if (comment.trim()) {
       const newComment = {
@@ -122,8 +139,6 @@ const EditOrder = ({ order, onClose }) => {
       onClose();
     }
   };
-
-  console.log('tracking', form.tracking);
 
   return (
     <div className={s.modal} onClick={handleClickOutside}>
@@ -270,5 +285,6 @@ const EditOrder = ({ order, onClose }) => {
     </div>
   )
 };
+
 
 export default EditOrder;
