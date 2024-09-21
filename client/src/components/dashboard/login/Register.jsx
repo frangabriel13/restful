@@ -4,6 +4,7 @@ import { registerSuperAdmin } from "../../../redux/actions/authActions";
 import s from "./Register.module.css";
 import { useNavigate } from "react-router-dom";
 import { validateLogin } from "../../../utils/validations";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 const Register = () => {
   const dispatch = useDispatch();
@@ -13,6 +14,7 @@ const Register = () => {
     password: "",
   });
   const [errors, setErrors] = useState({});
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleChange = (e) => {
     setData({
@@ -37,6 +39,10 @@ const Register = () => {
     }
   };
 
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+  }
+
   return (
     <div className={s.container}>
       <h2>Register</h2>
@@ -54,12 +60,18 @@ const Register = () => {
         </div>
         <div className={s.divInput}>
           <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            value={data.password}
-            onChange={handleChange}
-          />
+          <div className={s.divPass}>
+            <input
+              // type="password"
+              type={showPassword ? "text" : "password"}
+              name="password"
+              value={data.password}
+              onChange={handleChange}
+            />
+            <span className={s.eye} onClick={handleShowPassword}>
+              {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
+            </span>
+          </div>
           {errors.password && <p className={s.error}>{errors.password}</p>}
         </div>
         <button className={s.btn} type="submit">Register</button>
