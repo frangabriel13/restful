@@ -19,16 +19,16 @@ const Home = () => {
         <div className={s.divContainer}>
           <div className={s.divData}>
             <h1>Eternal Restful</h1>
-            <p>En Eternal Restful nos dedicamos a la creación de jarrones funerarios</p>
+            <p>Nos dedicamos a ofrecer servicios funerarios personalizados, anticipados y de necesidad inmediata, con sensibilidad y profesionalismo.</p>
           </div>
           <div className={s.divContact}>
-            <h2>Pide tu cotización</h2>
+            <h2>Estamos para ayudarte</h2>
             <p>
-              Contáctanos para obtener tu cotización de jarrones funerarios
+            Planes funerales con precios accesibles y diferentes tipos de Pago.
             </p>
             {/* <button>Pedir cotización</button> */}
             <Link to="/contact" className={s.link} onClick={handleScroll} > 
-              <button className={s.button}>Pedir cotización</button>
+              <button className={s.button}>Solicitar Presupuesto</button>
             </Link>
           </div>
         </div>

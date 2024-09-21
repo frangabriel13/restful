@@ -43,7 +43,12 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin: 10rem;
+  margin: 2rem;
+}
+
+.callToAction h1 {
+  font-size: 3rem;
+  text-align: center;
 }
 
 .callToAction h3 {
@@ -71,40 +76,52 @@
   color: var(--second-color);
 }
 
+/* Media query para móviles */
 @media (max-width: 768px) {
   .divTitle {
     height: 10rem;
   }
 
   .divTitle h2 {
-    font-size: 2rem;
+    font-size: 2.5rem; /* Reducir tamaño de la fuente */
     padding-top: 3rem;
   }
 
   .description {
-    padding: 5rem 2rem;
+    padding: 5rem 2rem; /* Reducir padding */
   }
 
   .description h3 {
-    font-size: 2rem;
+    font-size: 2.5rem; /* Reducir tamaño de la fuente */
+    text-align: center;
   }
 
   .description p {
-    font-size: 1.5rem;
-    line-height: 2rem;
+    font-size: 1.6rem; /* Reducir el tamaño de la fuente */
+    line-height: 2.2rem; /* Ajustar el espacio entre líneas */
   }
 
   .sectionTwo {
-    flex-direction: column;
-    gap: 5rem;
+    flex-direction: column; /* Colocar los elementos uno debajo del otro en móviles */
+    gap: 5rem; /* Reducir el espacio entre los elementos */
   }
 
   .callToAction {
-    margin: 5rem;
+    margin: 5rem 2rem; /* Ajustar el margen para pantallas más pequeñas */
+  }
+
+  .callToAction h1 {
+    font-size: 2.5rem; /* Reducir tamaño de la fuente */
+    text-align: center; /* Centrar el texto */
   }
 
   .callToAction h3 {
-    font-size: 2rem;
-    text-align: center;
+    font-size: 2rem; /* Reducir tamaño de la fuente */
+    text-align: center; /* Centrar el texto */
+  }
+
+  .callToAction button {
+    font-size: 1.8rem; /* Reducir el tamaño del botón */
+    padding: 1rem 1.5rem; /* Ajustar el padding del botón */
   }
 }

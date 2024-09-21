@@ -75,7 +75,8 @@ const ContactForm = () => {
   return (
     <div className={s.container}>
       <div className={s.divTitle}>
-        <h3>Completa el formulario para recibir asesoramiento</h3>
+        <h3>Completa el formulario para información personalizada.
+        </h3>
         <p>Te responderemos a la brevedad</p>
       </div>
       <div className={s.divForm}>
@@ -110,7 +111,7 @@ const ContactForm = () => {
           </div>
           <div className={s.mail}>
             <div className={s.divEmail}>
-              <input type="email" name="email" placeholder="Correo electrónico" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
+              <input type="email" name="email" placeholder="Correo electrónico (opcional)" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
               { errors.email && <p className={s.error}>{errors.email}</p> }
             </div>
             <div className={s.phoneInputContainer}>

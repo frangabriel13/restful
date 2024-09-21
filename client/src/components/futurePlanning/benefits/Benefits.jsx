@@ -9,27 +9,35 @@ const Benefits = () => {
       <div className={s.divBenefits}>
         <div className={s.benefit}>
           <TiTickOutline className={s.icon} />
-          <p>Planificación personalizada</p>
+          <p>Planes funerales con precios accesibles.</p>
         </div>
         <div className={s.benefit}>
           <TiTickOutline className={s.icon} />
-          <p>Alivio de la carga emocional</p>
+          <p>Plan funeral no cuenta con vigencia.
+          </p>
         </div>
         <div className={s.benefit}>
           <TiTickOutline className={s.icon} />
-          <p>Reducción de costos</p>
+          <p>El Precio se congela al firmar contrato y se le respeta su servicio integro.</p>
         </div>
         <div className={s.benefit}>
           <TiTickOutline className={s.icon} />
-          <p>Evita decisiones apresuradas</p>
+          <p>No hay pago inicial (aplican restricciones)</p>
         </div>
         <div className={s.benefit}>
           <TiTickOutline className={s.icon} />
-          <p>Apoyo integral a las familias</p>
+          <p>Comodos pagos mensuales</p>
         </div>
         <div className={s.benefit}>
           <TiTickOutline className={s.icon} />
-          <p>Cumplimiento del deseo del fallecido</p>
+          <p>Contamos con diferentes opciones de pago.
+          </p>
+        </div>
+        <div className={s.benefit}>
+          <TiTickOutline className={s.icon} />
+          <p>Plan funeral personalizado a tus necesidades
+
+          </p>
         </div>
       </div>
     </div>

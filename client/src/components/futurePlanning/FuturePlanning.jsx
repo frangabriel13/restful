@@ -21,16 +21,14 @@ const FuturePlanning = () => {
           <h2>Planes a futuro</h2>
         </div>
         <div className={s.description}>
-          <h3>Qué son los planes a futuro?</h3>
+          <h3>PREVISION FUNERARIA </h3>
+          <h3>¿Por qué es importante prepararnos?
+          </h3>
           <p>
-            Los planes futuros en una funeraria son estrategias y servicios anticipados diseñados para garantizar que los deseos 
-            y necesidades de los clientes se cumplan de manera respetuosa y efectiva en el momento adecuado. 
-            Estos planes incluyen la pre-planificación de funerales, donde las personas pueden decidir con antelación los detalles 
-            de su propio funeral o el de un ser querido, asegurando que todo se maneje según sus preferencias. 
-            Esta planificación previa alivia la carga emocional y financiera de las familias en momentos difíciles, 
-            permitiendo que se tomen decisiones meditadas y personalizadas. Además, las funerarias también desarrollan planes 
-            a largo plazo para mejorar sus servicios, expandir su alcance y adaptarse a las nuevas tendencias y 
-            necesidades del sector, siempre con el objetivo de proporcionar un apoyo integral y de alta calidad a las comunidades que sirven.
+              Contar con un plan funerario de prevención es de suma importancia, ya que representa un alivio para el futuro, para esos momentos difíciles, asi mismo se esta garantizando que los deseos y necesidades de los clientes se cumplan de manera respetuosa y efectiva en el momento adecuado.
+              En los planes de prevención las personas tienen la facultad de decidir con antelación los detalles de su propio servicio o el de un ser querido, asegurando que todo se maneje según sus deseos.
+              Esta planificación previa alivia la carga emocional y financiera de las familias en momentos difíciles, permitiendo que se tomen decisiones meditadas y personalizadas.
+
           </p>
         </div>
       </div>
@@ -43,7 +41,13 @@ const FuturePlanning = () => {
         </div>
       </div>
       <div className={s.callToAction}>
-        <h3>Contáctate con nosotros para mas información</h3>
+        <h1>A tener en cuenta</h1>
+        <br />
+       <h2>Si el fallecimiento ocurre fuera de Estados Unidos y/o el servicio se brinda en alguna otra funeraria por desconocimiento de la familia, con el acta de defuncion se realiza el tramite pertinente y recupera el dinero pagado.
+       </h2>
+       <br />
+        <h3>Anticipate al futuro, es momento de prevenir. Contactanos para mas información.
+        </h3>
         <button onClick={handleContactClick}>Contacta</button>
       </div>
     </div>
