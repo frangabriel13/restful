@@ -2,6 +2,8 @@ const initialState = {
   user: null,
   isAuthenticated: false,
   token: null,
+  error: null,
+  registrationLink: null,
 };
 
 const authReducer = (state = initialState, action) => {
@@ -26,6 +28,27 @@ const authReducer = (state = initialState, action) => {
         user: action.payload.user,
         isAuthenticated: true,
         token: action.payload.token,
+      };
+    case 'REGISTER_SUPERADMIN':
+      return {
+        ...state,
+        user: action.payload.user,
+        isAuthenticated: true,
+        token: action.payload.token,
+      };
+    case 'REGISTRATION_TOKEN_SUCCESS':
+      return {
+        ...state,
+        registrationLink: action.payload.registrationLink,
+        error: null,
+        token: action.payload.token,
+      };
+    case 'REGISTRATION_TOKEN_FAILURE':
+      return {
+        ...state,
+        registrationLink: null,
+        error: action.payload,
+        token: null,
       };
     default:
       return state;

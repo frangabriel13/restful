@@ -33,8 +33,38 @@
 .cardsContainer {
   display: flex;
   flex-direction: column;
-  /* flex-wrap: wrap; */
   padding-bottom: 10rem;
   gap: 2rem;
   align-items: center;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .divTitle {
+    height: auto; /* Ajustar la altura automáticamente en móviles */
+    padding: 5rem 0; /* Reducir padding en móviles */
+  }
+
+  .divTitle h2 {
+    font-size: 2.5rem; /* Reducir tamaño del título */
+    padding-top: 0; /* Eliminar padding superior */
+  }
+
+  .description {
+    padding: 5rem 2rem; /* Reducir padding */
+  }
+
+  .description h3 {
+    font-size: 2.5rem; /* Reducir tamaño del subtítulo */
+  }
+
+  .description p {
+    font-size: 1.6rem; /* Reducir tamaño del texto */
+    line-height: 2rem; /* Reducir el espaciado entre líneas */
+  }
+
+  .cardsContainer {
+    gap: 1.5rem; /* Reducir el espacio entre las tarjetas */
+    padding-bottom: 5rem; /* Reducir el padding inferior */
+  }
 }

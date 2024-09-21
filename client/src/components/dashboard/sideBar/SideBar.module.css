@@ -1,5 +1,5 @@
 .sideBar {
-  position: sticky;
+  position: fixed;
   background-color: var(--second-bg-color);
   display: flex;
   flex-direction: column;
@@ -7,6 +7,7 @@
   padding: 2rem;
   height: 100vh;
   gap: 2rem;
+  width: 12rem;
 }
 
 .divIcon {
@@ -14,12 +15,14 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  cursor: pointer;
 }
 
 .divIcon p {
   font-size: 1.6rem;
   font-weight: 600;
   color: var(--bg-color);
+  text-align: center;
 }
 
 .icon {

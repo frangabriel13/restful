@@ -32,3 +32,27 @@
   transition: .5s;
   color: var(--second-bg-color);
 }
+
+/* Ajustes para móviles */
+@media (max-width: 768px) {
+  .container {
+    padding: 3rem 1rem; /* Reducir padding en móviles */
+    gap: 1.5rem; /* Reducir la brecha entre elementos */
+  }
+
+  .container h3 {
+    font-size: 2.5rem; /* Reducir tamaño del título en móviles */
+    text-align: center; /* Asegurar que el título esté centrado */
+  }
+
+  .container p {
+    font-size: 1.6rem; /* Ajustar el tamaño del texto */
+    text-align: center; /* Centrar el párrafo */
+    padding: 0 1rem; /* Agregar algo de padding lateral en móviles */
+  }
+
+  .container button {
+    font-size: 1.6rem; /* Ajustar el tamaño del botón */
+    padding: 0.8rem 1.5rem; /* Reducir el padding del botón en móviles */
+  }
+}

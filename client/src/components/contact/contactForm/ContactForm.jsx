@@ -5,6 +5,7 @@ import 'react-phone-input-2/lib/style.css'
 import { sendEmail } from "../../../redux/actions/emailActions";
 import { validateForm } from "../../../utils/validations";
 import { getServices } from "../../../redux/actions/serviceActions";
+import { createOrder } from "../../../redux/actions/orderActions";
 import { useDispatch, useSelector } from "react-redux";
 
 const ContactForm = () => {
@@ -19,6 +20,8 @@ const ContactForm = () => {
     email: "",
   });
   const [errors, setErrors] = useState({});
+  const [selectedServiceName, setSelectedServiceName] = useState("");
+  console.log("selectServiceName", selectedServiceName);
 
   useEffect(() => {
     dispatch(getServices());
@@ -33,8 +36,18 @@ const ContactForm = () => {
       return;
     }
     const { email, service, name, lastname, age, phone } = form;
-    const subject = `Solicitud de asesoramiento para el servicio ${service}`;
-    const text = `Nombre: ${name} ${lastname}\nEdad: ${age}\nTeléfono: ${phone}\nCorreo electrónico: ${email}\nServicio: ${service}`;
+    const subject = `Solicitud de asesoramiento para el servicio ${selectedServiceName}`;
+    const text = `Nombre: ${name} ${lastname}\nEdad: ${age}\nTeléfono: ${phone}\nCorreo electrónico: ${email}\nServicio: ${selectedServiceName}`;
+
+    const orderData = {
+      contactName: `${name} ${lastname}`,
+      phoneNumber: phone,
+      email,
+      serviceId: service !== 'not_sure' ? service : null,
+      age,
+    };
+
+    dispatch(createOrder(orderData));
     dispatch(sendEmail(email, subject, text));
     clearForm();
   };
@@ -51,12 +64,19 @@ const ContactForm = () => {
     setErrors({});
   };
 
+  const handleServiceChange = (e) => {
+    const selectedService = services.find(service => service.id === parseInt(e.target.value));
+    setForm({ ...form, service: e.target.value });
+    setSelectedServiceName(selectedService ? selectedService.name : "Not sure");
+  };
+
   console.log(errors);
 
   return (
     <div className={s.container}>
       <div className={s.divTitle}>
-        <h3>Completa el formulario para recibir asesoramiento</h3>
+        <h3>Completa el formulario para información personalizada.
+        </h3>
         <p>Te responderemos a la brevedad</p>
       </div>
       <div className={s.divForm}>
@@ -77,10 +97,10 @@ const ContactForm = () => {
               { errors.age && <p className={s.error}>{errors.age}</p> }
             </div>
             <div className={s.divService}>
-              <select name="service" value={form.service} onChange={(e) => setForm({ ...form, service: e.target.value })}>
+              <select name="service" value={form.service} onChange={handleServiceChange}>
                 <option value="">Selecciona un servicio</option>
                 {services.map((service) => (
-                  <option key={service.id} value={service.name}>
+                  <option key={service.id} value={service.id}>
                     {service.name}
                   </option>
                 ))}
@@ -91,7 +111,7 @@ const ContactForm = () => {
           </div>
           <div className={s.mail}>
             <div className={s.divEmail}>
-              <input type="email" name="email" placeholder="Correo electrónico" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
+              <input type="email" name="email" placeholder="Correo electrónico (opcional)" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
               { errors.email && <p className={s.error}>{errors.email}</p> }
             </div>
             <div className={s.phoneInputContainer}>
@@ -112,5 +132,6 @@ const ContactForm = () => {
     </div>
   )
 };
+
 
 export default ContactForm;

@@ -1,5 +1,7 @@
 const { User } = require('../db.js');
 const bcrypt = require('bcryptjs');
+const jwt = require('jsonwebtoken');
+const { JWT_SECRET } = process.env;
 
 const getUsers = async (req, res) => {
   try {
@@ -73,7 +75,25 @@ const deleteUser = async (req, res) => {
     if(!user) {
       res.status(404).json({ message: 'User not found' });
     }
+    if (user.role === 'superAdmin') {
+      const superAdminCount = await User.count({ where: { role: 'superAdmin' } });
+      if (superAdminCount <= 1) {
+        return res.status(400).json({ message: 'Debe haber al menos un superAdmin.' });
+      }
+    }
     await user.destroy();
+    res.status(200).json({ message: 'User deleted successfully' });
+  } catch(error) {
+    console.log(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
+const generateRegistrationToken = async (req, res) => {
+  const { name } = req.body;
+  try {
+    const token = jwt.sign({ name }, JWT_SECRET, { expiresIn: '1h' });
+    res.status(200).json({ token, name });
   } catch(error) {
     console.log(error);
     res.status(500).json({ message: 'Internal server error' });
@@ -87,4 +107,5 @@ module.exports = {
   createUser,
   updateUser,
   deleteUser,
+  generateRegistrationToken,
 };

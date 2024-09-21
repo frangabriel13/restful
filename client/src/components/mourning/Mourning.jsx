@@ -9,7 +9,7 @@ const Mourning = () => {
       </div>
       <div className={s.description}>
         {/* <h3>Qué hacer en caso de fallecimiento?</h3> */}
-        <p>
+        <p className={s.peel}>
           El duelo es una respuesta emocional natural ante la pérdida de un ser querido. 
           Es un proceso único para cada persona, que puede manifestarse de diferentes maneras y durar distintos periodos de tiempo. 
           Comprender las etapas del duelo puede ayudar a sobrellevar esta difícil experiencia, 

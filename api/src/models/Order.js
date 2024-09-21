@@ -4,11 +4,7 @@ module.exports = (sequelize) => {
   sequelize.define('order', {
     status: {
       type: DataTypes.ENUM('new', 'inProgress', 'pending', 'sold', 'notSold'),
-    },
-    contactDate: {
-      type: DataTypes.DATE,
-      allowNull: false,
-      defaultValue: DataTypes.NOW,
+      defaultValue: 'new',
     },
     statusDate: {
       type: DataTypes.JSON,
@@ -52,6 +48,10 @@ module.exports = (sequelize) => {
     },
     comission: {
       type: DataTypes.ARRAY(DataTypes.STRING),
+      defaultValue: [],
+    },
+    updates: {
+      type: DataTypes.ARRAY(DataTypes.JSONB),
       defaultValue: [],
     },
   });

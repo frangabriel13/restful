@@ -12,9 +12,21 @@ const serviceReducer = (state = initialState, action) => {
     case "UPDATE_SERVICE":
       return {
         ...state,
-        // services: state.services.map((service) =>
-        //   service.id === action.payload.id ? action.payload : service
-        // ),
+        services: state.services.map((service) =>
+          service.id === action.payload.id ? action.payload : service
+        ),
+      };
+    case "CREATE_SERVICE":
+      return {
+        ...state,
+        services: [...state.services, action.payload],
+      };
+    case "DELETE_SERVICE":
+      return {
+        ...state,
+        services: state.services.filter(
+          (service) => service.id !== action.payload
+        ),
       };
     default:
       return state;

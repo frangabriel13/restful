@@ -1,0 +1,98 @@
+.dashboard {
+  width: 100%;
+  border-radius: 0.3rem;
+  box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
+  padding: 2rem;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.dashboard h2 {
+  font-size: 2.4rem;
+  color: #333;
+  padding-bottom: 2rem;
+  border-bottom: 0.1rem solid #ddd;
+}
+
+.tabs {
+  display: flex;
+  gap: 1rem;
+  /* margin-bottom: 2rem; */
+}
+
+.tabs button {
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 0.3rem;
+  background-color: #f4f4f4;
+  color: #333;
+  cursor: pointer;
+  font-size: 1.3rem;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.tabs button:hover {
+  background-color: #ddd;
+}
+
+.tabs button.active {
+  background-color: #333;
+  color: #fff;
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table th,
+.table td {
+  padding: 1.2rem 1.5rem;
+  text-align: left;
+  border-bottom: 0.1rem solid #ddd;
+}
+
+.table th {
+  background-color: #f4f4f4;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+}
+
+.table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.table tr:hover {
+  background-color: #f1f1f1;
+}
+
+.divIcons {
+  display: flex;
+  gap: 1rem;
+}
+
+.iconEdit {
+  font-size: 1.5rem;
+  color: #007bff;
+  cursor: pointer;
+}
+
+.iconDelete {
+  font-size: 1.5rem;
+  color: #dc3545;
+  cursor: pointer;
+}
+
+.btnMore {
+  border: none;
+  font-size: 1rem;
+  background: none;
+  color: #333;
+  cursor: pointer;
+  text-decoration: none;
+  border-bottom: .1rem solid #333;
+  padding: 0;
+}

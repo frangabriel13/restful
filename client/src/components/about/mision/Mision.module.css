@@ -34,3 +34,27 @@
   font-size: 1.6rem;
   color: var(--text-color);
 }
+
+@media (max-width: 769px) {
+  .container {
+    flex-direction: column; /* Cambiado a columna para móviles */
+    padding: 2rem; /* Reducido padding para móviles */
+  }
+
+  .divIcon {
+    width: 100%; /* Ajustado a 100% para móviles */
+    margin-bottom: 2rem; /* Añadido margen inferior para separar los elementos */
+  }
+
+  .icon {
+    font-size: 3rem; /* Reducido tamaño de fuente para móviles */
+  }
+
+  .divData h4 {
+    font-size: 1.5rem; /* Reducido tamaño de fuente para móviles */
+  }
+
+  .divData p {
+    font-size: 1.2rem; /* Reducido tamaño de fuente para móviles */
+  }
+}

@@ -56,7 +56,7 @@
 .step p {
   font-size: 1.5rem;
   color: var(--text-color);
-  /* line-height: 2.5rem; */
+  line-height: 2rem;
 }
 
 .callToAction {
@@ -90,4 +90,62 @@
   background-position: -100% 0;
   transition: .5s;
   color: var(--second-color);
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .divTitle {
+    height: auto;
+    padding-top: 5rem;
+  }
+
+  .divTitle h2 {
+    font-size: 2.5rem; /* Ajustar tamaño del texto para pantallas más pequeñas */
+    padding-top: 3rem;
+  }
+
+  .description {
+    padding: 5rem 2rem; /* Reducir padding para pantallas pequeñas */
+  }
+
+  .description h3 {
+    font-size: 2.5rem; /* Reducir el tamaño del texto */
+  }
+
+  .description p {
+    font-size: 1.6rem; /* Reducir el tamaño del texto */
+    line-height: 2rem;
+  }
+
+  .divSteps {
+    width: 100%; /* Asegura que ocupe el 100% del ancho */
+    padding: 0 2rem; /* Añadir algo de padding lateral */
+  }
+
+  .divSteps h4 {
+    font-size: 2.5rem; /* Ajustar el tamaño del texto */
+  }
+
+  .step h5 {
+    font-size: 1.8rem; /* Ajustar el tamaño del texto */
+  }
+
+  .step p {
+    font-size: 1.4rem; /* Ajustar el tamaño del texto */
+    line-height: 1.8rem; /* Reducir el espaciado entre líneas */
+  }
+
+  .callToAction {
+    margin: 5rem 2rem; /* Reducir el margen en pantallas pequeñas */
+  }
+
+  .callToAction h3 {
+    font-size: 2.5rem; /* Reducir tamaño del texto */
+    text-align: center; /* Asegurar que el texto esté centrado */
+  }
+
+  .callToAction button {
+    font-size: 1.8rem; /* Ajustar el tamaño del botón */
+    padding: 1rem 1.5rem; /* Reducir el padding del botón */
+  }
 }

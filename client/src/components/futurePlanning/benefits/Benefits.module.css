@@ -1,9 +1,10 @@
-.container {}
+.container {
+}
 
 .container h3 {
   font-size: 4rem;
   color: var(--second-bg-color);
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
   text-align: center;
 }
 
@@ -28,6 +29,23 @@
 }
 
 .benefit p {
-  font-size: 3rem;
+  font-size: 2rem;
   color: var(--text-color);
+}
+
+@media (max-width: 768px) {
+  .container h3 {
+    font-size: 3rem;
+  }
+
+  .divBenefits {
+  }
+
+  .icon {
+    font-size: 2rem;
+  }
+
+  .benefit p {
+    font-size: 2rem;
+  }
 }

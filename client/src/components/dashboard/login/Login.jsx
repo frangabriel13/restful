@@ -4,6 +4,7 @@ import s from "./Login.module.css";
 import { useNavigate } from "react-router-dom";
 import { login } from "../../../redux/actions/authActions";
 import { validateLogin } from "../../../utils/validations";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -11,6 +12,7 @@ const Login = () => {
   const [errors, setErrors] = useState({});
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -33,6 +35,10 @@ const Login = () => {
     }
   };
 
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+  }
+
   return (
     <div className={s.container}>
       <h2>Login</h2>
@@ -49,11 +55,23 @@ const Login = () => {
         </div>
         <div className={s.divInput}>
           <label>Password</label>
-          <input
+          {/* <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-          />
+          /> */}
+          <div className={s.divPass}>
+            <input
+              // type="password"
+              type={showPassword ? "text" : "password"}
+              name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+            />
+            <span className={s.eye} onClick={handleShowPassword}>
+              {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
+            </span>
+          </div>
           {errors.password && <p className={s.error}>{errors.password}</p>}
         </div>
         <button className={s.btn} type="submit">Login</button>

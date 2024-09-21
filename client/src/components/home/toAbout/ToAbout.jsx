@@ -10,7 +10,7 @@ const ToAbout = () => {
 
   return (
     <div className={s.container}>
-      <h3>Conoce más sobre nosotros</h3>
+      <h3>Conoce más sobre Eternal Restful</h3>
       <Link to="/about" onClick={handleScroll}>
         <button>Ir</button>
       </Link>

@@ -2,8 +2,11 @@ const { Router } = require('express');
 const { User } = require('../db.js');
 const bcrypt = require('bcryptjs');
 const passport = require('passport');
-const { deleteUser, getUsers } = require('../controllers/userController');
+// const passport = require('../utils/localAuth.js');
+const { deleteUser, getUsers, generateRegistrationToken } = require('../controllers/userController');
 const { isSuperAdmin } = require('../middlewares/authMiddleware');
+const jwt = require('jsonwebtoken');
+const { JWT_SECRET } = process.env;
 
 const router = Router();
 
@@ -29,11 +32,14 @@ router.post('/register-superadmin', async (req, res) => {
   }
 });
 
-router.post('/register', passport.authenticate('jwt', { session: false }), isSuperAdmin, async (req, res) => {
+router.post('/register/:token', async (req, res) => {
+  const { token } = req.params;
   const { email, password } = req.body;
   try {
+    const decoded = jwt.verify(token, JWT_SECRET);
     const hashedPassword = await bcrypt.hash(password, 10);
     const user = await User.create({
+      name: decoded.name,
       email,
       password: hashedPassword,
       role: 'admin',
@@ -63,6 +69,8 @@ router.post('/login', (req, res, next) => {
     });
   })(req, res, next);
 });
+
+router.post('/generate-token', generateRegistrationToken);
 
 router.delete('/:id', deleteUser);
 

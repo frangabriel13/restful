@@ -50,7 +50,6 @@
 }
 
 .divName input {
-  /* width: 50%; */
   height: 4rem;
   padding: 1rem;
   font-size: 1.6rem;
@@ -75,7 +74,6 @@
 }
 
 .services input {
-  /* width: 30%; */
   height: 4rem;
   padding: 1rem;
   font-size: 1.6rem;
@@ -83,7 +81,6 @@
 }
 
 .services select {
-  /* width: 70%; */
   height: 4rem;
   padding: 1rem;
   font-size: 1.6rem;
@@ -102,7 +99,6 @@
 }
 
 .divEmail input {
-  /* width: 50%; */
   height: 4rem;
   padding: 1rem;
   font-size: 1.6rem;
@@ -149,3 +145,49 @@
 .error {
   color: white;
 }
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .divTitle {
+    padding: 5rem 2rem;
+  }
+
+  .divTitle h3 {
+    font-size: 3rem;
+  }
+
+  .divTitle p {
+    font-size: 1.6rem;
+    line-height: 2rem;
+  }
+
+  .divForm {
+    padding: 3rem 1rem;
+  }
+
+  .form {
+    width: 90%; /* El formulario ocupará el 90% del ancho de la pantalla en móviles */
+    max-width: 500px; /* Evita que crezca demasiado en pantallas más grandes */
+    margin: 0 auto; /* Centra el formulario */
+  }
+
+  .divName, .mail, .services {
+    flex-direction: column; /* Elementos en columna para móviles */
+    gap: 1rem;
+  }
+
+  .divNombre, .divAge, .divService, .divEmail, .phoneInputContainer {
+    width: 100%; /* Ajustar ancho completo en móviles */
+  }
+
+  .divName input, .services input, .services select, .divEmail input, .phoneInput {
+    width: 100%; /* Hacer que los inputs ocupen el 100% del contenedor */
+    font-size: 1.4rem;
+  }
+
+  .divBtn button {
+    font-size: 1.5rem;
+    padding: 1rem;
+  }
+}
+

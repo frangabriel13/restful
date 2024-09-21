@@ -2,6 +2,7 @@
   padding: 2rem;
   width: 60%;
   display: flex;
+  flex-direction: row;
   border-radius: .3rem;
   gap: 2rem;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
@@ -13,7 +14,6 @@
   display: block;
   margin: 0 auto;
   border-radius: .3rem;
-  /* object-fit: cover; */
 }
 
 .divDataContainer {
@@ -54,7 +54,6 @@
 }
 
 .divFeatures ul {
-  /* list-style: none; */
   font-size: 1.4rem;
 }
 
@@ -85,4 +84,63 @@
   background-position: -100% 0;
   transition: .5s;
   color: var(--second-bg-color);
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .card {
+    flex-direction: column; /* Colocar los elementos uno debajo del otro */
+    width: 90%; /* Ajustar el ancho en móviles */
+    padding: 1.5rem; /* Reducir el padding en móviles */
+    gap: 1.5rem; /* Reducir la separación entre los elementos */
+    margin: 0 auto; /* Centrar la tarjeta en móviles */
+  }
+
+  .divImg img {
+    max-width: 100%; /* Asegurar que la imagen ocupe el ancho del contenedor */
+  }
+
+  .divDataContainer {
+    flex-direction: column; /* Colocar el contenido en columna en móviles */
+    align-items: center; /* Centrar el contenido en móviles */
+  }
+
+  .containerData {
+    width: 90%; /* Ocupa el 100% del ancho en móviles */
+    font-size: 2rem;
+  }
+
+  .dataContainer {
+    flex-direction: column; /* Colocar los textos y datos en columna */
+    gap: 2rem; /* Ajustar el espacio entre los textos */
+  }
+
+  .divData {
+    width: 100%; /* Asegurar que el contenido ocupe el 100% en móviles */
+  }
+
+  .divData h3 {
+    font-size: 1.8rem; /* Reducir el tamaño del título */
+  }
+
+  .divData p {
+    font-size: 1.4rem; /* Reducir el tamaño del texto */
+  }
+
+  .divFeatures h4 {
+    font-size: 1.6rem; /* Reducir el tamaño del subtítulo */
+  }
+
+  .divFeatures ul {
+    font-size: 1.2rem; /* Reducir el tamaño del texto en la lista */
+  }
+
+  .divMoreInfo button {
+    font-size: 1.5rem; /* Reducir el tamaño del botón */
+    padding: 0.8rem 1.5rem; /* Ajustar el padding del botón */
+  }
+
+  .divDisclaimer p {
+    font-size: 1rem; /* Reducir el tamaño del disclaimer */
+  }
 }
