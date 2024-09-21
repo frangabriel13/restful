@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import s from "./OrdersTable.module.css";
-import { getOrders, deleteOrder } from "../../../redux/actions/orderActions";
+import { getOrders, deleteOrder, updateOrder } from "../../../redux/actions/orderActions";
 import { getFuneralHomes } from "../../../redux/actions/funeralHomeActions";
 import { getServices } from "../../../redux/actions/serviceActions";
 import { getUsers } from "../../../redux/actions/userActions";
@@ -110,6 +110,12 @@ const OrdersTable = () => {
 
   console.log(orders);
 
+  const handleUpdateOrder = (orderId, formData) => {
+    dispatch(updateOrder(orderId, formData));
+  };
+
+  console.log('orders', orders);
+
   return (
     <div className={s.dashboard}>
       <h2>Orders</h2>
@@ -185,12 +191,13 @@ const OrdersTable = () => {
           ))}
         </tbody>
       </table>
-      {showEdit && <EditOrder order={selectedOrder} onClose={() => setShowEdit(false)} />}
+      {showEdit && <EditOrder order={selectedOrder} onClose={() => setShowEdit(false)} updateOrder={handleUpdateOrder} />}
       {showUpdateModal && <UpdateModal updates={selectedUpdates} onClose={() => setShowUpdateModal(false)} />}
       {showTrackingModal && <TrackingModal tracking={selectedTracking} onClose={() => setShowTrackingModal(false)} />}
       <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
     </div>
   );
 };
+
 
 export default OrdersTable;
