@@ -111,7 +111,7 @@ const ContactForm = () => {
           </div>
           <div className={s.mail}>
             <div className={s.divEmail}>
-              <input type="email" name="email" placeholder="Correo electrónico" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
+              <input type="email" name="email" placeholder="Correo electrónico (opcional)" value={form.email} onChange={(e) => setForm({ ...form, email: e.target.value })} />
               { errors.email && <p className={s.error}>{errors.email}</p> }
             </div>
             <div className={s.phoneInputContainer}>

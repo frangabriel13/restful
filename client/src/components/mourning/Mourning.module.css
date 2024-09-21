@@ -1,24 +1,24 @@
 .container {
   background-image: url('../../assets/elduelo.png');
+  background-size: cover;
+  background-position: center;
 }
 
 .divTitle {
   background-color: var(--second-bg-color);
-  height: 20rem;
+  height: 10rem !important;
 }
 
 .divTitle h2 {
   font-size: 4rem;
   color: var(--second-color);
   text-align: center;
-  padding-top: 12rem;
+  padding-top: 5rem !important;
 }
 
 .description {
   padding: 10rem 5rem;
 }
-
-
 
 .description h3 {
   font-size: 4rem;
@@ -80,4 +80,51 @@
   font-size: 2rem;
   color: var(--text-color);
   line-height: 2.5rem;
+}
+
+/* Responsive para móviles */
+@media (max-width: 768px) {
+  .divTitle {
+    height: auto;
+    padding: 5rem 2rem;
+  }
+
+  .divTitle h2 {
+    font-size: 4rem;
+    color: var(--second-color);
+    text-align: center;
+    padding-top: 0rem !important;
+  }
+
+  .description {
+    padding: 5rem 2rem;
+  }
+
+  .description p {
+    font-size: 1.6rem;
+    line-height: 2rem;
+  }
+
+  .divMourning h3 {
+    font-size: 2.5rem;
+  }
+
+  .divStages {
+    padding: 3rem 2rem;
+    width: 90%; /* Ajuste del ancho al 90% en pantallas móviles */
+  }
+
+  .stage {
+    padding-bottom: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .stage h4 {
+    font-size: 2rem;
+  }
+
+  .stage p {
+    font-size: 1.6rem;
+    line-height: 2rem;
+  }
 }
