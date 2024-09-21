@@ -189,10 +189,10 @@ const updateOrder = async (req, res) => {
       updatedBy: updateBy || 'system',
     };
 
-    const trackingWithDate = (tracking || []).map((track) => ({
-      date: new Date(),
-      track,
-    }));
+    // const trackingWithDate = (tracking || []).map((track) => ({
+    //   date: new Date(),
+    //   track,
+    // }));
 
     await order.update({
       status,
@@ -206,7 +206,7 @@ const updateOrder = async (req, res) => {
       serviceId,
       price,
       insurance,
-      tracking: trackingWithDate,
+      tracking,
       age,
       userId,
       funeralHomeId,
