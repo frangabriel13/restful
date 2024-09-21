@@ -4,6 +4,7 @@ import { useParams, useLocation, useNavigate } from "react-router-dom";
 import s from "./RegisterUser.module.css";
 import { registerAdminWithToken } from "../../../redux/actions/authActions";
 import { validateRegisterAdmin } from "../../../utils/validations";
+import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 
 const RegisterUser = ({ registrationLink }) => {
   const dispatch = useDispatch();
@@ -11,6 +12,9 @@ const RegisterUser = ({ registrationLink }) => {
   const { token } = useParams();
   const location = useLocation();
   const name = new URLSearchParams(location.search).get("name");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
 
   const [formData, setFormData] = useState({
     email: "",
@@ -44,7 +48,14 @@ const RegisterUser = ({ registrationLink }) => {
       setErrors(result.errors);
     }
   };
-  console.log(name)
+
+  const handleShowPassword = () => {
+    setShowPassword(!showPassword);
+  };
+
+  const handleShowConfirmPassword = () => {
+    setShowConfirmPassword(!showConfirmPassword);
+  };
 
   return (
     <div className={s.container}>
@@ -63,22 +74,33 @@ const RegisterUser = ({ registrationLink }) => {
           </div>
           <div className={s.divInput}>
             <label>Password</label>
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-            />
+            <div className={s.divPass}>
+              <input
+                // type="password"
+                type={showPassword ? "text" : "password"}
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+              />
+              <span className={s.eye} onClick={handleShowPassword}>
+                {showPassword ? <FaRegEyeSlash /> : <FaRegEye />}
+              </span>
+            </div>
             {errors.password && <p className={s.error}>{errors.password}</p>}
           </div>
           <div className={s.divInput}>
             <label>Confirm Password</label>
-            <input
-              type="password"
-              name="confirmPassword"
-              value={formData.confirmPassword}
-              onChange={handleChange}
-            />
+            <div className={s.divPass}>
+              <input
+                type={showConfirmPassword ? "text" : "password"}
+                name="confirmPassword"
+                value={formData.confirmPassword}
+                onChange={handleChange}
+              />
+              <span className={s.eye} onClick={handleShowConfirmPassword}>
+                {showConfirmPassword ? <FaRegEyeSlash /> : <FaRegEye />}
+              </span>
+            </div>
             {errors.confirmPassword && <p className={s.error}>{errors.confirmPassword}</p>}
           </div>
         </div>

@@ -58,3 +58,21 @@
   color: red;
   font-size: 1.2rem;
 }
+
+.divPass {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.divPass input {
+  padding-right: 3rem;
+}
+
+.eye {
+  position: absolute;
+  right: 1rem;
+  cursor: pointer;
+  font-size: 2rem;
+  color: #555;
+}
