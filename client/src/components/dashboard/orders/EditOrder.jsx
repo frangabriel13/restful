@@ -35,11 +35,12 @@ const EditOrder = ({ order, onClose, updateOrder }) => {
   const [selectedComission, setSelectedComission] = useState("");
   const [errors, setErrors] = useState({});
 
-  useEffect(() => {
-    dispatch(getFuneralHomes());
-    dispatch(getServices());
-    dispatch(getUsers());
-  }, [dispatch]);
+  // Ésto se solucionó cambiando el id de string a number porque al actualizar se cambiaba y no buscaba.
+  // useEffect(() => {
+  //   dispatch(getFuneralHomes());
+  //   dispatch(getServices());
+  //   dispatch(getUsers());
+  // }, [dispatch]);
 
   const handleChange = (e) => {
     setForm({
