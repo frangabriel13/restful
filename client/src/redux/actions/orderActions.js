@@ -1,4 +1,4 @@
-import { instance } from "../../utils/axiosConfig";
+import { instance, instanceFile } from "../../utils/axiosConfig";
 
 // export const getOrders = () => async (dispatch) => {
 //   try {
@@ -72,6 +72,20 @@ export const deleteOrder = (id) => async (dispatch) => {
     dispatch({
       type: "DELETE_ORDER",
       payload: id,
+    });
+  } catch(error) {
+    console.error(error);
+  }
+};
+
+export const createOrdersFromExcel = (file) => async (dispatch) => {
+  try {
+    const formData = new FormData();
+    formData.append("file", file);
+    const response = await instanceFile.post("orders/excel", formData);
+    dispatch({
+      type: "CREATE_ORDERS_FROM_EXCEL",
+      payload: response.data,
     });
   } catch(error) {
     console.error(error);
