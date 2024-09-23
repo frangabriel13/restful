@@ -1,5 +1,9 @@
 const { Order, Service, User, FuneralHome } = require('../db');
 const { Op } = require('sequelize');
+const fs = require('fs');
+const path = require('path');
+const xlsx = require('xlsx');
+const { mapStatus } = require('../utils/helpers');
 
 const getOrders = async (req, res) => {
   const { page = 1, limit = 12, status, service, user, search } = req.query;
@@ -235,6 +239,93 @@ const deleteOrder = async (req, res) => {
   }
 };
 
+const createOrdersFromExcel = async (req, res) => {
+  const filePath = req.file.path;
+
+  try {
+    const workbook = xlsx.readFile(filePath);
+    const sheetName = workbook.SheetNames[0];
+    const sheet = workbook.Sheets[sheetName];
+    const rows = xlsx.utils.sheet_to_json(sheet);
+
+    const orders = [];
+
+    for(const row of rows) {
+      let {
+        'Status': excelStatus,
+        'Dia de contacto': contactDate,
+        'Funeraria': funeralHomeName,
+        'Seguimiento': tracking,
+        'PRECIO': price,
+        'Contact Name': contactName,
+        'Phone Number': phoneNumber,
+        'Email': email,
+        'Relationship': relationship,
+        'Deceased Name': deceasedName,
+        'Service Type': serviceName,
+        'Asignado A:': userName
+      } = row;
+
+      const status = mapStatus(excelStatus) || 'pending';
+
+      let funeralHome = null;
+      if (funeralHomeName) {
+        funeralHome = await FuneralHome.findOne({ where: { name: funeralHomeName } });
+        if (!funeralHome) {
+          funeralHome = await FuneralHome.create({ name: funeralHomeName });
+        }
+      }
+
+      let service = null;
+      if (serviceName) {
+        service = await Service.findOne({ where: { name: serviceName } });
+        if (!service) {
+          service = await Service.create({ name: serviceName });
+        }
+      }
+
+      let user = null;
+      if (userName) {
+        user = await User.findOne({ where: { name: userName } });
+        if (!user) {
+          user = await User.create({ name: userName });
+        }
+      }
+
+      const createdAt = new Date(contactDate).toISOString();
+
+      const newOrder = {
+        status,
+        createdAt,
+        contactName,
+        phoneNumber,
+        email,
+        comission: [], // Asumiendo que comission no está en el Excel
+        relationship,
+        deceasedName,
+        // serviceId: service ? service.id : null,
+        price,
+        insurance: null, // Asumiendo que insurance no está en el Excel
+        // tracking: trackingWithDate,
+        age: null, // Asumiendo que age no está en el Excel
+        // userId: user ? user.id : null,
+        // funeralHomeId: funeralHome ? funeralHome.id : null,
+        source: null, // Asumiendo que source no está en el Excel
+      }
+
+      orders.push(newOrder);
+    }
+    
+    const createdOrders = await Order.bulkCreate(orders);
+    res.status(201).json(createdOrders);
+  } catch(error) {
+    console.log(error);
+    res.status(500).json({ message: 'Internal server error' });
+  } finally {
+    fs.unlinkSync(filePath);
+  }
+};
+
 
 module.exports = {
   getOrders,
@@ -242,4 +333,5 @@ module.exports = {
   createOrder,
   updateOrder,
   deleteOrder,
+  createOrdersFromExcel,
 };
