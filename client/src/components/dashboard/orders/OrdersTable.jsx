@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import s from "./OrdersTable.module.css";
-import { getOrders, deleteOrder, updateOrder } from "../../../redux/actions/orderActions";
+import { getOrders, deleteOrder, updateOrder, createOrdersFromExcel } from "../../../redux/actions/orderActions";
 import { getFuneralHomes } from "../../../redux/actions/funeralHomeActions";
 import { getServices } from "../../../redux/actions/serviceActions";
 import { getUsers } from "../../../redux/actions/userActions";
