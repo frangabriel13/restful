@@ -81,7 +81,7 @@ export const generateToken = (data) => async (dispatch) => {
       },
     });
     const registrationToken = response.data.token;
-    const registrationLink = `http://localhost:5173/dashboard/register/${registrationToken}?name=${encodeURIComponent(data.name)}`;
+    const registrationLink = `https://www.eternalrestfulfuneralservices.com/dashboard/register/${registrationToken}?name=${encodeURIComponent(data.name)}`;
     
     dispatch({
       type: "GENERATE_TOKEN_SUCCESS",

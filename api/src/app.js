@@ -22,7 +22,8 @@ app.use(passport.initialize());
 // app.use(passport.session());
 
 const corsOptions = {
-  origin: 'http://191.101.232.23/',
+  // origin: 'http://191.101.232.23/',
+  origin: 'https://www.eternalrestfulfuneralservices.com/',
   credentials: true,
   optionsSuccessStatus: 200
 };
