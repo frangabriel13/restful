@@ -29,6 +29,11 @@ const orderReducer = (state = initialState, action) => {
         ...state,
         orders: [...state.orders, action.payload],
       };
+    case 'CREATE_ORDERS_FROM_EXCEL':
+      return {
+        ...state,
+        orders: action.payload,
+      };
     case "DELETE_ORDER":
       return {
         ...state,
