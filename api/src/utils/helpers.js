@@ -7,7 +7,7 @@ const statusExcel = {
 };
 
 const mapStatus = (excelStatus) => {
-  return statusExcel[excelStatus] || null;
+  return statusExcel[excelStatus] || 'pending';
 };
 
 
