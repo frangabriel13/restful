@@ -80,6 +80,7 @@ export const deleteOrder = (id) => async (dispatch) => {
 
 export const createOrdersFromExcel = (file) => async (dispatch) => {
   try {
+    console.log("file", file);
     const formData = new FormData();
     formData.append("file", file);
     const response = await instanceFile.post("orders/excel", formData);

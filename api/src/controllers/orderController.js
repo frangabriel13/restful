@@ -240,6 +240,9 @@ const deleteOrder = async (req, res) => {
 };
 
 const createOrdersFromExcel = async (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ message: 'No file uploaded' });
+  }
   const filePath = req.file.path;
 
   try {
@@ -266,36 +269,47 @@ const createOrdersFromExcel = async (req, res) => {
         'Asignado A:': userName
       } = row;
 
+      contactName = contactName || 'Nombre no especificado';
+      phoneNumber = phoneNumber || '000-000-0000';
+
+      // console.log("row", row);
+
       const status = mapStatus(excelStatus) || 'pending';
 
-      let funeralHome = null;
-      if (funeralHomeName) {
-        funeralHome = await FuneralHome.findOne({ where: { name: funeralHomeName } });
-        if (!funeralHome) {
-          funeralHome = await FuneralHome.create({ name: funeralHomeName });
-        }
-      }
+      // let funeralHome = null;
+      // if (funeralHomeName) {
+      //   funeralHome = await FuneralHome.findOne({ where: { name: funeralHomeName } });
+      //   if (!funeralHome) {
+      //     return res.status(404).json({ message: 'No se encontró ninguna funeraria con ese ID' });
+      //   }
+      // }
 
-      let service = null;
-      if (serviceName) {
-        service = await Service.findOne({ where: { name: serviceName } });
-        if (!service) {
-          service = await Service.create({ name: serviceName });
-        }
-      }
+      // let service = null;
+      // if (serviceName) {
+      //   service = await Service.findOne({ where: { name: serviceName } });
+      //   if (!service) {
+      //     return res.status(404).json({ message: 'No se encontró ningun servicio con ese ID' });
+      //   }
+      // }
 
-      let user = null;
-      if (userName) {
-        user = await User.findOne({ where: { name: userName } });
-        if (!user) {
-          user = await User.create({ name: userName });
-        }
-      }
+      // let user = null;
+      // if (userName) {
+      //   user = await User.findOne({ where: { name: userName } });
+      //   if (!user) {
+      //     return res.status(404).json({ message: 'No se encontró ningun usuario con ese ID' });
+      //   }
+      // }
 
-      const createdAt = new Date(contactDate).toISOString();
+      // const createdAt = new Date(contactDate).toISOString();
+
+      const statusDate = {
+        date: new Date(),
+        updatedBy: 'system', // Puedes cambiar 'system' por el usuario que creó la orden si está disponible
+      };
 
       const newOrder = {
         // status,
+        statusDate,
         // createdAt,
         contactName,
         phoneNumber,

@@ -112,6 +112,11 @@ const OrdersTable = () => {
     setShowExcelModal(true);
   };
 
+  const handleImportExcel = (data) => {
+    dispatch(createOrdersFromExcel(data));
+    setShowExcelModal(false);
+  };
+
   const totalPages = Math.ceil(totalOrders / limit);
 
   console.log(orders);
@@ -203,7 +208,7 @@ const OrdersTable = () => {
       {showEdit && <EditOrder order={selectedOrder} onClose={() => setShowEdit(false)} updateOrder={handleUpdateOrder} />}
       {showUpdateModal && <UpdateModal updates={selectedUpdates} onClose={() => setShowUpdateModal(false)} />}
       {showTrackingModal && <TrackingModal tracking={selectedTracking} onClose={() => setShowTrackingModal(false)} />}
-      {showExcelModal && <ExcelModal onClose={() => setShowExcelModal(false)} />}
+      {showExcelModal && <ExcelModal onClose={() => setShowExcelModal(false)} onImport={handleImportExcel} />}
       <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
     </div>
   );
