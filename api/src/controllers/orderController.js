@@ -308,7 +308,7 @@ const createOrdersFromExcel = async (req, res) => {
       };
 
       const newOrder = {
-        // status,
+        status,
         statusDate,
         // createdAt,
         contactName,
