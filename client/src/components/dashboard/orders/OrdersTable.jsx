@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import s from "./OrdersTable.module.css";
-import { getOrders, deleteOrder, updateOrder } from "../../../redux/actions/orderActions";
+import { getOrders, deleteOrder, updateOrder, createOrdersFromExcel } from "../../../redux/actions/orderActions";
 import { getFuneralHomes } from "../../../redux/actions/funeralHomeActions";
 import { getServices } from "../../../redux/actions/serviceActions";
 import { getUsers } from "../../../redux/actions/userActions";
@@ -12,6 +12,7 @@ import { CiEdit } from "react-icons/ci";
 import { MdDeleteOutline } from "react-icons/md";
 import UpdateModal from "./modals/UpdateModal";
 import TrackingModal from "./modals/TrackingModal";
+import ExcelModal from "./modals/ExcelModal";
 
 const OrdersTable = () => {
   const dispatch = useDispatch();
@@ -31,6 +32,7 @@ const OrdersTable = () => {
   const [selectedUpdates, setSelectedUpdates] = useState([]);
   const [showTrackingModal, setShowTrackingModal] = useState(false);
   const [selectedTracking, setSelectedTracking] = useState([]);
+  const [showExcelModal, setShowExcelModal] = useState(false);
   const limit = 12;
 
   useEffect(() => {
@@ -106,6 +108,10 @@ const OrdersTable = () => {
     setShowTrackingModal(true);
   };
 
+  const handleShowExcelModal = () => {
+    setShowExcelModal(true);
+  };
+
   const totalPages = Math.ceil(totalOrders / limit);
 
   console.log(orders);
@@ -118,7 +124,10 @@ const OrdersTable = () => {
 
   return (
     <div className={s.dashboard}>
-      <h2>Orders</h2>
+      <div className={s.divTitle}>
+        <h2>Orders</h2>
+        <button onClick={handleShowExcelModal}>Import</button>
+      </div>
       <div className={s.tabs}>
         <button className={selectedTab === "pending" ? s.active : ""} onClick={() => handleTabChange("pending")}>Pending - New</button>
         <button className={selectedTab === "inProgress" ? s.active : ""} onClick={() => handleTabChange("inProgress")}>In Progress</button>
@@ -194,6 +203,7 @@ const OrdersTable = () => {
       {showEdit && <EditOrder order={selectedOrder} onClose={() => setShowEdit(false)} updateOrder={handleUpdateOrder} />}
       {showUpdateModal && <UpdateModal updates={selectedUpdates} onClose={() => setShowUpdateModal(false)} />}
       {showTrackingModal && <TrackingModal tracking={selectedTracking} onClose={() => setShowTrackingModal(false)} />}
+      {showExcelModal && <ExcelModal onClose={() => setShowExcelModal(false)} />}
       <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
     </div>
   );
