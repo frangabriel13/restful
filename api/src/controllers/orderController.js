@@ -295,22 +295,22 @@ const createOrdersFromExcel = async (req, res) => {
       const createdAt = new Date(contactDate).toISOString();
 
       const newOrder = {
-        status,
-        createdAt,
+        // status,
+        // createdAt,
         contactName,
         phoneNumber,
-        email,
-        comission: [], // Asumiendo que comission no está en el Excel
-        relationship,
-        deceasedName,
+        // email,
+        // comission: [],
+        // relationship,
+        // deceasedName,
         // serviceId: service ? service.id : null,
-        price,
-        insurance: null, // Asumiendo que insurance no está en el Excel
+        // price,
+        // insurance: null,
         // tracking: trackingWithDate,
-        age: null, // Asumiendo que age no está en el Excel
+        // age: null,
         // userId: user ? user.id : null,
         // funeralHomeId: funeralHome ? funeralHome.id : null,
-        source: null, // Asumiendo que source no está en el Excel
+        // source: null,
       }
 
       orders.push(newOrder);
