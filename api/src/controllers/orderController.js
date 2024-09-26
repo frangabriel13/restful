@@ -240,9 +240,6 @@ const deleteOrder = async (req, res) => {
 };
 
 const createOrdersFromExcel = async (req, res) => {
-  if (!req.file) {
-    return res.status(400).json({ message: 'No file uploaded' });
-  }
   const filePath = req.file.path;
 
   try {
@@ -271,36 +268,12 @@ const createOrdersFromExcel = async (req, res) => {
 
       contactName = contactName || 'Nombre no especificado';
       phoneNumber = phoneNumber || '000-000-0000';
-
-      // console.log("row", row);
+      email = email || 'No';
+      relationship = relationship || 'No';
+      deceasedName = deceasedName || 'No';
+      price = price || 'No';
 
       const status = mapStatus(excelStatus) || 'pending';
-
-      // let funeralHome = null;
-      // if (funeralHomeName) {
-      //   funeralHome = await FuneralHome.findOne({ where: { name: funeralHomeName } });
-      //   if (!funeralHome) {
-      //     return res.status(404).json({ message: 'No se encontró ninguna funeraria con ese ID' });
-      //   }
-      // }
-
-      // let service = null;
-      // if (serviceName) {
-      //   service = await Service.findOne({ where: { name: serviceName } });
-      //   if (!service) {
-      //     return res.status(404).json({ message: 'No se encontró ningun servicio con ese ID' });
-      //   }
-      // }
-
-      // let user = null;
-      // if (userName) {
-      //   user = await User.findOne({ where: { name: userName } });
-      //   if (!user) {
-      //     return res.status(404).json({ message: 'No se encontró ningun usuario con ese ID' });
-      //   }
-      // }
-
-      // const createdAt = new Date(contactDate).toISOString();
 
       const statusDate = {
         date: new Date(),
@@ -310,21 +283,20 @@ const createOrdersFromExcel = async (req, res) => {
       const newOrder = {
         status,
         statusDate,
-        // createdAt,
         contactName,
         phoneNumber,
-        // email,
+        email,
         // comission: [],
-        // relationship,
-        // deceasedName,
+        relationship,
+        deceasedName,
         // serviceId: service ? service.id : null,
-        // price,
+        price,
         // insurance: null,
         // tracking: trackingWithDate,
         // age: null,
         // userId: user ? user.id : null,
         // funeralHomeId: funeralHome ? funeralHome.id : null,
-        // source: null,
+        source: null,
       }
 
       orders.push(newOrder);

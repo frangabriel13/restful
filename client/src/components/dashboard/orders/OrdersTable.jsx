@@ -175,7 +175,9 @@ const OrdersTable = () => {
           {orders.map((order) => (
             <tr key={order.id}>
               <td>{order.status}</td>
-              <td>{formatDate(order.statusDate.date)} by {order.statusDate.updatedBy}</td>
+              <td>
+                {order.statusDate.date ? formatDate(order.statusDate.date) : 'Fecha no disponible'} by {order.statusDate.updatedBy}
+              </td>
               <td>
                 <button className={s.btnMore} onClick={() => handleShowUpdates(order.updates)}>Ver más</button>
               </td>
