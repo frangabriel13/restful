@@ -1,5 +1,5 @@
 const { Order, Service, User, FuneralHome } = require('../db');
-const { Op } = require('sequelize');
+const { Op, Sequelize } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const xlsx = require('xlsx');
@@ -266,7 +266,7 @@ const createOrdersFromExcel = async (req, res) => {
         'Asignado A:': userName
       } = row;
 
-      contactName = contactName || 'Nombre no especificado';
+      contactName = contactName || 'No';
       phoneNumber = phoneNumber || '000-000-0000';
       email = email || 'No';
       relationship = relationship || 'No';
@@ -280,22 +280,33 @@ const createOrdersFromExcel = async (req, res) => {
         updatedBy: 'system', // Puedes cambiar 'system' por el usuario que creó la orden si está disponible
       };
 
+      let userId = null;
+      if (userName && typeof userName === 'string') {
+        const user = await User.findOne({
+          where: Sequelize.where(
+            Sequelize.fn('LOWER', Sequelize.col('name')),
+            Sequelize.fn('LOWER', userName)
+          )
+        });
+        userId = user ? user.id : null;
+      }
+
       const newOrder = {
         status,
         statusDate,
         contactName,
         phoneNumber,
         email,
-        // comission: [],
+        comission: [],
         relationship,
         deceasedName,
         // serviceId: service ? service.id : null,
         price,
-        // insurance: null,
-        // tracking: trackingWithDate,
+        insurance: null,
         tracking: parseTracking(tracking),
-        // age: null,
+        age: null,
         // userId: user ? user.id : null,
+        userId,
         // funeralHomeId: funeralHome ? funeralHome.id : null,
         source: null,
       }
