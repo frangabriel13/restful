@@ -14,10 +14,15 @@ import Login from './components/dashboard/login/Login'
 import ProtectedRoute from './components/dashboard/ProtectedRoute'
 import Register from './components/dashboard/login/Register'
 import RegisterUser from './components/dashboard/login/RegisterUser'
+import { useState } from 'react'
 
 function App() {
+  // Estado para manejar el idioma
+  const [language, setLanguage] = useState('es') // Idioma predeterminado
+
   return (
     <Routes>
+      {/* Rutas que no muestran el Header */}
       <Route path='/dashboard/login' element={<Login />} />
       <Route path='/dashboard/register/:token' element={<RegisterUser />} />
       <Route path='/dashboard/register' element={<Register />} />
@@ -29,19 +34,22 @@ function App() {
           </ProtectedRoute>
         }
       />
+      
+      {/* Rutas que sí muestran el Header */}
       <Route
         path='*'
         element={
           <>
-            <Header />
+            {/* Header visible en todas las rutas excepto en dashboard */}
+            <Header language={language} setLanguage={setLanguage} />
             <Routes>
-              <Route path='/' element={<Home />} />
-              <Route path='/contact' element={<Contact />} />
-              <Route path='/about' element={<About />} />
-              <Route path='/future-planning' element={<FuturePlanning />} />
-              <Route path='/immediate-need' element={<ImmediateNeed />} />
-              <Route path='/services' element={<Services />} />
-              <Route path='/mourning' element={<Mourning />} />
+              <Route path='/' element={<Home language={language} />} />
+              <Route path='/contact' element={<Contact language={language} />} />
+              <Route path='/about' element={<About language={language} />} />
+              <Route path='/future-planning' element={<FuturePlanning language={language} />} />
+              <Route path='/immediate-need' element={<ImmediateNeed language={language} />} />
+              <Route path='/services' element={<Services language={language} />} />
+              <Route path='/mourning' element={<Mourning language={language} />} />
             </Routes>
             <Footer />
           </>
@@ -52,3 +60,4 @@ function App() {
 }
 
 export default App;
+

@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import s from "./Header.module.css";
-import { IoMdMenu, IoMdClose } from "react-icons/io";  // Importamos el ícono de cierre
+import { IoMdMenu, IoMdClose } from "react-icons/io";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo.png";
 import { scrollToSection } from "../../utils/utilities";
 
-function Header() {
+function Header({ language, setLanguage }) { // Recibe el idioma como prop
+
   const [menuOpen, setMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const menuRef = useRef(null); // Ref para el menú
@@ -33,7 +34,6 @@ function Header() {
     }
   };
 
-  // Nueva función que no afecta el estado del menú, solo navega a la página de inicio
   const goToHome = () => {
     scrollToSection('home');
   };
@@ -57,6 +57,11 @@ function Header() {
     };
   }, [menuOpen]);
 
+  // Función para cambiar el idioma
+  const handleLanguageChange = (lang) => {
+    setLanguage(lang);
+  };
+
   return (
     <div className={`${s.container} ${isScrolled ? s.scrolled : ""}`}>
       <div>
@@ -76,6 +81,22 @@ function Header() {
           <Link to="/contact" onClick={() => toggleMenu('contact')}>
             <button className={s.btnQuote}>Solicitar Presupuesto</button>
           </Link>
+
+          {/* Selección de idioma */}
+          <div className={s.languageSwitcher}>
+            <button 
+              className={`${s.languageButton} ${language === 'es' ? s.active : ''}`}
+              onClick={() => handleLanguageChange('es')}
+            >
+              Español
+            </button>
+            <button 
+              className={`${s.languageButton} ${language === 'en' ? s.active : ''}`}
+              onClick={() => handleLanguageChange('en')}
+            >
+              English
+            </button>
+          </div>
         </nav>
       </div>
       <div className={s.navToggle}>
@@ -91,3 +112,4 @@ function Header() {
 }
 
 export default Header;
+

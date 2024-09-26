@@ -1,48 +1,46 @@
 import React from "react";
 import s from "./Benefits.module.css";
 import { TiTickOutline } from "react-icons/ti";
+import { translations } from "../../../components/translations"; // Importa las traducciones
 
-const Benefits = () => {
+const Benefits = ({ language }) => {
+  const t = translations[language]; // Selecciona el idioma adecuado
+
   return (
     <div className={s.container}>
-      <h3>Beneficios</h3>
+      <h3>{t.benefitsTitle}</h3> {/* Título traducido */}
       <div className={s.divBenefits}>
         <div className={s.benefit}>
           <TiTickOutline className={s.icon} />
-          <p>Planes funerales con precios accesibles.</p>
+          <p>{t.benefit1}</p> {/* Texto traducido */}
         </div>
         <div className={s.benefit}>
           <TiTickOutline className={s.icon} />
-          <p>Plan funeral no cuenta con vigencia.
-          </p>
+          <p>{t.benefit2}</p>
         </div>
         <div className={s.benefit}>
           <TiTickOutline className={s.icon} />
-          <p>El Precio se congela al firmar contrato y se le respeta su servicio integro.</p>
+          <p>{t.benefit3}</p>
         </div>
         <div className={s.benefit}>
           <TiTickOutline className={s.icon} />
-          <p>No hay pago inicial (aplican restricciones)</p>
+          <p>{t.benefit4}</p>
         </div>
         <div className={s.benefit}>
           <TiTickOutline className={s.icon} />
-          <p>Comodos pagos mensuales</p>
+          <p>{t.benefit5}</p>
         </div>
         <div className={s.benefit}>
           <TiTickOutline className={s.icon} />
-          <p>Contamos con diferentes opciones de pago.
-          </p>
+          <p>{t.benefit6}</p>
         </div>
         <div className={s.benefit}>
           <TiTickOutline className={s.icon} />
-          <p>Plan funeral personalizado a tus necesidades
-
-          </p>
+          <p>{t.benefit7}</p>
         </div>
       </div>
     </div>
-  )
+  );
 };
-
 
 export default Benefits;
