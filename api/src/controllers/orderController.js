@@ -3,7 +3,7 @@ const { Op } = require('sequelize');
 const fs = require('fs');
 const path = require('path');
 const xlsx = require('xlsx');
-const { mapStatus } = require('../utils/helpers');
+const { mapStatus, parseTracking } = require('../utils/helpers');
 
 const getOrders = async (req, res) => {
   const { page = 1, limit = 12, status, service, user, search } = req.query;
@@ -293,6 +293,7 @@ const createOrdersFromExcel = async (req, res) => {
         price,
         // insurance: null,
         // tracking: trackingWithDate,
+        tracking: parseTracking(tracking),
         // age: null,
         // userId: user ? user.id : null,
         // funeralHomeId: funeralHome ? funeralHome.id : null,
