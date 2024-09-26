@@ -240,9 +240,6 @@ const deleteOrder = async (req, res) => {
 };
 
 const createOrdersFromExcel = async (req, res) => {
-  if (!req.file) {
-    return res.status(400).json({ message: 'No file uploaded' });
-  }
   const filePath = req.file.path;
 
   try {
@@ -271,6 +268,10 @@ const createOrdersFromExcel = async (req, res) => {
 
       contactName = contactName || 'Nombre no especificado';
       phoneNumber = phoneNumber || '000-000-0000';
+      email = email || 'No';
+      relationship = relationship || 'No';
+      deceasedName = deceasedName || 'No';
+      price = price || 'No';
 
       const status = mapStatus(excelStatus) || 'pending';
 
@@ -282,21 +283,20 @@ const createOrdersFromExcel = async (req, res) => {
       const newOrder = {
         status,
         statusDate,
-        // createdAt,
         contactName,
         phoneNumber,
-        // email,
+        email,
         // comission: [],
-        // relationship,
-        // deceasedName,
+        relationship,
+        deceasedName,
         // serviceId: service ? service.id : null,
-        // price,
+        price,
         // insurance: null,
         // tracking: trackingWithDate,
         // age: null,
         // userId: user ? user.id : null,
         // funeralHomeId: funeralHome ? funeralHome.id : null,
-        // source: null,
+        source: null,
       }
 
       orders.push(newOrder);
