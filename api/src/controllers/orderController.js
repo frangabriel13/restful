@@ -41,6 +41,7 @@ const getOrders = async (req, res) => {
       limit: parseInt(limit),
       offset: parseInt(offset),
       where,
+      order: [['createdAt', 'DESC']],
       include: [
         {
           model: Service,
