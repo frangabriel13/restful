@@ -302,6 +302,17 @@ const createOrdersFromExcel = async (req, res) => {
         funeralHomeId = funeralHome ? funeralHome.id : null;
       }
 
+      let serviceId = null;
+      if (serviceName && typeof serviceName === 'string') {
+        const service = await Service.findOne({
+          where: Sequelize.where(
+            Sequelize.fn('LOWER', Sequelize.col('name')),
+            Sequelize.fn('LOWER', serviceName)
+          )
+        });
+        serviceId = service ? service.id : null;
+      }
+
       const newOrder = {
         status,
         statusDate,
@@ -311,7 +322,7 @@ const createOrdersFromExcel = async (req, res) => {
         comission: [],
         relationship,
         deceasedName,
-        // serviceId: service ? service.id : null,
+        serviceId,
         price,
         insurance: null,
         tracking: parseTracking(tracking),
