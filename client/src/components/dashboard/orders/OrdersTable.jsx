@@ -28,7 +28,7 @@ const OrdersTable = () => {
   const [user, setUser] = useState("");
   const [search, setSearch] = useState("");
   const [funeralHome, setFuneralHome] = useState("");
-  const [selectedTab, setSelectedTab] = useState("pending");
+  const [selectedTab, setSelectedTab] = useState("newInProgress");
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [selectedUpdates, setSelectedUpdates] = useState([]);
   const [showTrackingModal, setShowTrackingModal] = useState(false);
@@ -38,10 +38,10 @@ const OrdersTable = () => {
 
   useEffect(() => {
     let status = "";
-    if (selectedTab === "pending") {
-      status = "new,pending";
-    } else if (selectedTab === "inProgress") {
-      status = "inProgress";
+    if (selectedTab === "newInProgress") {
+      status = "new,inProgress";
+    } else if (selectedTab === "pending") {
+      status = "pending";
     } else if (selectedTab === "soldNotSold") {
       status = "sold,notSold";
     }
@@ -144,8 +144,8 @@ const OrdersTable = () => {
         <button onClick={handleShowExcelModal}>Import</button>
       </div>
       <div className={s.tabs}>
-        <button className={selectedTab === "pending" ? s.active : ""} onClick={() => handleTabChange("pending")}>Pending - New</button>
-        <button className={selectedTab === "inProgress" ? s.active : ""} onClick={() => handleTabChange("inProgress")}>In Progress</button>
+        <button className={selectedTab === "newInProgress" ? s.active : ""} onClick={() => handleTabChange("newInProgress")}>New - in Progress</button>
+        <button className={selectedTab === "pending" ? s.active : ""} onClick={() => handleTabChange("pending")}>Pending</button>
         <button className={selectedTab === "soldNotSold" ? s.active : ""} onClick={() => handleTabChange("soldNotSold")}>Sold - Not Sold</button>
       </div>
       <Filters 
