@@ -8,7 +8,10 @@ const TrackingModal = ({ tracking, onClose }) => {
     }
   };
 
-  console.log('tracking:', tracking);
+  const formatDate = (dateString) => {
+    const [month, day, year] = new Date(dateString).toLocaleDateString('en-US').split('/');
+    return `${month}-${day}-${year}`;
+  };
 
   return (
     <div className={s.modal} onClick={handleClickOutside}>
@@ -29,7 +32,7 @@ const TrackingModal = ({ tracking, onClose }) => {
               <tbody>
                 {tracking.map((track) => (
                   <tr key={track.id}>
-                    <td>{new Date(track.date).toLocaleDateString()}</td>
+                    <td>{formatDate(track.date)}</td>
                     <td>{new Date(track.date).toLocaleTimeString()}</td>
                     <td>{track.track}</td>
                     <td>{track.createdBy}</td>
