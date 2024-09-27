@@ -11,7 +11,7 @@ import { instance, instanceFile } from "../../utils/axiosConfig";
 //     console.error(error);
 //   }
 // };
-export const getOrders = (page = 1, limit = 12, status, service, user, search) => async (dispatch) => {
+export const getOrders = (page = 1, limit = 12, status, service, user, search, funeralHome) => async (dispatch) => {
   try {
     let url = `orders?page=${page}&limit=${limit}`;
     if(status) {
@@ -25,6 +25,9 @@ export const getOrders = (page = 1, limit = 12, status, service, user, search) =
     }
     if (search) {
       url += `&search=${search}`;
+    }
+    if (funeralHome) {
+      url += `&funeralHome=${funeralHome}`;
     }
     const response = await instance.get(url);
     dispatch({
