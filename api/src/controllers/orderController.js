@@ -6,7 +6,7 @@ const xlsx = require('xlsx');
 const { mapStatus, parseTracking } = require('../utils/helpers');
 
 const getOrders = async (req, res) => {
-  const { page = 1, limit = 12, status, service, user, search } = req.query;
+  const { page = 1, limit = 12, status, service, user, search, funeralHome } = req.query;
   const offset = (page - 1) * limit;
 
   try {
@@ -23,6 +23,9 @@ const getOrders = async (req, res) => {
     }
     if (user) {
       where.userId = user;
+    }
+    if (funeralHome) {
+      where.funeralHomeId = funeralHome;
     }
     if (search) {
       where[Op.or] = [

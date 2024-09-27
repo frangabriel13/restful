@@ -27,6 +27,7 @@ const OrdersTable = () => {
   const [service, setService] = useState("");
   const [user, setUser] = useState("");
   const [search, setSearch] = useState("");
+  const [funeralHome, setFuneralHome] = useState("");
   const [selectedTab, setSelectedTab] = useState("pending");
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [selectedUpdates, setSelectedUpdates] = useState([]);
@@ -44,11 +45,11 @@ const OrdersTable = () => {
     } else if (selectedTab === "soldNotSold") {
       status = "sold,notSold";
     }
-    dispatch(getOrders(currentPage, limit, status, service, user, search));
+    dispatch(getOrders(currentPage, limit, status, service, user, search, funeralHome));
     dispatch(getFuneralHomes());
     dispatch(getServices());
     dispatch(getUsers());
-  }, [dispatch, currentPage, limit, selectedTab, service, user, search]);
+  }, [dispatch, currentPage, limit, selectedTab, service, user, search, funeralHome]);
 
   const handleTabChange = (tab) => {
     setSelectedTab(tab);
@@ -67,6 +68,11 @@ const OrdersTable = () => {
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
+    setCurrentPage(1);
+  };
+
+  const handleFuneralHomeChange = (e) => {
+    setFuneralHome(e.target.value);
     setCurrentPage(1);
   };
 
@@ -151,6 +157,9 @@ const OrdersTable = () => {
         users={users}
         search={search}
         handleSearchChange={handleSearchChange}
+        funeralHome={funeralHome}
+        funeralHomes={funeralHomes}
+        handleFuneralHomeChange={handleFuneralHomeChange}
       />
       <table className={s.table}>
         <thead>
