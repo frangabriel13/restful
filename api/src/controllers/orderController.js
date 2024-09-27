@@ -1,8 +1,12 @@
 const { Order, Service, User, FuneralHome } = require('../db');
-const { Op } = require('sequelize');
+const { Op, Sequelize } = require('sequelize');
+const fs = require('fs');
+const path = require('path');
+const xlsx = require('xlsx');
+const { mapStatus, parseTracking } = require('../utils/helpers');
 
 const getOrders = async (req, res) => {
-  const { page = 1, limit = 12, status, service, user, search } = req.query;
+  const { page = 1, limit = 12, status, service, user, search, funeralHome } = req.query;
   const offset = (page - 1) * limit;
 
   try {
@@ -20,6 +24,9 @@ const getOrders = async (req, res) => {
     if (user) {
       where.userId = user;
     }
+    if (funeralHome) {
+      where.funeralHomeId = funeralHome;
+    }
     if (search) {
       where[Op.or] = [
         { contactName: { [Op.iLike]: `%${search}%` } },
@@ -34,6 +41,7 @@ const getOrders = async (req, res) => {
       limit: parseInt(limit),
       offset: parseInt(offset),
       where,
+      order: [['createdAt', 'DESC']],
       include: [
         {
           model: Service,
@@ -117,6 +125,7 @@ const createOrder = async (req, res) => {
     const trackingWithDate = (tracking || []).map((track) => ({
       date: new Date(),
       track,
+      createdBy: createdBy || 'system',
     }));
 
     const newOrder = await Order.create({
@@ -189,10 +198,10 @@ const updateOrder = async (req, res) => {
       updatedBy: updateBy || 'system',
     };
 
-    // const trackingWithDate = (tracking || []).map((track) => ({
-    //   date: new Date(),
-    //   track,
-    // }));
+    const trackingWithCreatedBy = (tracking || []).map((track) => ({
+      ...track,
+      createdBy: track.createdBy || updateBy || 'system',
+    }));
 
     await order.update({
       status,
@@ -206,7 +215,7 @@ const updateOrder = async (req, res) => {
       serviceId,
       price,
       insurance,
-      tracking,
+      tracking: trackingWithCreatedBy,
       age,
       userId,
       funeralHomeId,
@@ -235,6 +244,112 @@ const deleteOrder = async (req, res) => {
   }
 };
 
+const createOrdersFromExcel = async (req, res) => {
+  const filePath = req.file.path;
+
+  try {
+    const workbook = xlsx.readFile(filePath);
+    const sheetName = workbook.SheetNames[0];
+    const sheet = workbook.Sheets[sheetName];
+    const rows = xlsx.utils.sheet_to_json(sheet);
+
+    const orders = [];
+
+    for(const row of rows) {
+      let {
+        'Status': excelStatus,
+        'Dia de contacto': contactDate,
+        'Funeraria': funeralHomeName,
+        'Seguimiento': tracking,
+        'PRECIO': price,
+        'Contact Name': contactName,
+        'Phone Number': phoneNumber,
+        'Email': email,
+        'Relationship': relationship,
+        'Deceased Name': deceasedName,
+        'Service Type': serviceName,
+        'Asignado A:': userName
+      } = row;
+
+      contactName = contactName || 'No';
+      phoneNumber = phoneNumber || '000-000-0000';
+      email = email || 'No';
+      relationship = relationship || 'No';
+      deceasedName = deceasedName || 'No';
+      price = price || 'No';
+
+      const status = mapStatus(excelStatus) || 'pending';
+
+      const statusDate = {
+        date: new Date(),
+        updatedBy: 'system', // Puedes cambiar 'system' por el usuario que creó la orden si está disponible
+      };
+
+      let userId = null;
+      if (userName && typeof userName === 'string') {
+        const user = await User.findOne({
+          where: Sequelize.where(
+            Sequelize.fn('LOWER', Sequelize.col('name')),
+            Sequelize.fn('LOWER', userName)
+          )
+        });
+        userId = user ? user.id : null;
+      }
+
+      let funeralHomeId = null;
+      if (funeralHomeName && typeof funeralHomeName === 'string') {
+        const funeralHome = await FuneralHome.findOne({
+          where: Sequelize.where(
+            Sequelize.fn('LOWER', Sequelize.col('name')),
+            Sequelize.fn('LOWER', funeralHomeName)
+          )
+        });
+        funeralHomeId = funeralHome ? funeralHome.id : null;
+      }
+
+      let serviceId = null;
+      if (serviceName && typeof serviceName === 'string') {
+        const service = await Service.findOne({
+          where: Sequelize.where(
+            Sequelize.fn('LOWER', Sequelize.col('name')),
+            Sequelize.fn('LOWER', serviceName)
+          )
+        });
+        serviceId = service ? service.id : null;
+      }
+
+      const newOrder = {
+        status,
+        statusDate,
+        contactName,
+        phoneNumber,
+        email,
+        comission: [],
+        relationship,
+        deceasedName,
+        serviceId,
+        price,
+        insurance: null,
+        tracking: parseTracking(tracking),
+        age: null,
+        userId,
+        funeralHomeId,
+        source: null,
+      }
+
+      orders.push(newOrder);
+    }
+    
+    const createdOrders = await Order.bulkCreate(orders);
+    res.status(201).json(createdOrders);
+  } catch(error) {
+    console.log(error);
+    res.status(500).json({ message: 'Internal server error' });
+  } finally {
+    fs.unlinkSync(filePath);
+  }
+};
+
 
 module.exports = {
   getOrders,
@@ -242,4 +357,5 @@ module.exports = {
   createOrder,
   updateOrder,
   deleteOrder,
+  createOrdersFromExcel,
 };

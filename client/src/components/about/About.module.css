@@ -1,8 +1,12 @@
 .container {
+  width: 100%;
+  padding: 0;
+  margin: 0;
 }
 
 .about {
-  height: 100vh;
+  height: auto; /* Deja que el contenido ajuste la altura */
+  
 }
 
 .divTitle {
@@ -21,26 +25,31 @@
   display: flex;
   justify-content: space-between;
   gap: 2rem;
+  align-items: flex-start; /* Asegura que los elementos se alineen al inicio */
+  flex-wrap: wrap; /* Permite que los elementos se reorganicen si es necesario */
 }
 
 .description {
-  padding: 10rem 5rem;
+  flex: 1;
+  padding: 5rem 2rem; /* Reducir el padding para evitar desbordamientos */
 }
 
 .description h3 {
-  font-size: 4rem;
+  font-size: 3.5rem; /* Ajustar tamaño de texto en pantallas medianas */
   color: var(--second-bg-color);
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .description p {
-  font-size: 2rem;
+  font-size: 1.8rem;
   color: var(--text-color);
-  line-height: 2.5rem;
+  line-height: 2.3rem;
 }
 
 .divData img {
-  width: 56vw;
+  width: 50vw; /* Reduce el ancho de la imagen en pantallas medianas */
+  max-width: 500px; /* Asegura que no crezca demasiado */
+  height: auto;
   border-radius: 0.5rem;
 }
 
@@ -49,18 +58,18 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 10rem;
+  margin-top: 5rem; /* Espacio adicional entre los elementos */
 }
 
 .callToAction h3 {
-  font-size: 4rem;
+  font-size: 3rem; /* Reduce el tamaño de fuente */
   color: var(--second-bg-color);
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .callToAction button {
   padding: 1rem 2rem;
-  font-size: 2rem;
+  font-size: 1.8rem;
   border: .1rem solid var(--second-bg-color);
   border-radius: .3rem;
   cursor: pointer;
@@ -75,6 +84,42 @@
   background-position: -100% 0;
   transition: .5s;
   color: var(--second-color);
+}
+
+/* Media Query para pantallas medianas (laptops de 14-15 pulgadas) */
+@media (max-width: 1280px) {
+  .divData {
+    flex-direction: column;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .description {
+    padding: 1rem 1rem; /* Reducir padding en pantallas medianas */
+  }
+
+  .description h3 {
+    font-size: 2.5rem; /* Ajustar tamaño de texto */
+  }
+
+  .description p {
+    font-size: 1.6rem;
+    line-height: 2rem;
+  }
+
+  .divData img {
+    width: 70vw; /* Ajustar el ancho de la imagen para pantallas medianas */
+    max-width: 400px;
+  }
+
+  .callToAction h3 {
+    font-size: 2.5rem;
+  }
+
+  .callToAction button {
+    font-size: 1.6rem;
+    padding: 0.8rem 1.5rem;
+  }
 }
 
 /* Responsive para móviles */
@@ -130,3 +175,4 @@
     padding: 0.8rem 1.5rem; /* Reducir el tamaño del botón en móviles */
   }
 }
+

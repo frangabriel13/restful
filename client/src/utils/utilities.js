@@ -33,3 +33,4 @@ export const scrollToSection = (sectionId) => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 };
+

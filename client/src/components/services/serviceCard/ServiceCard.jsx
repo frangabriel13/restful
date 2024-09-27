@@ -2,10 +2,9 @@ import React from "react";
 import s from "./ServiceCard.module.css";
 import { servicesImages } from "../../../utils/utilities";
 import { scrollToSection } from "../../../utils/utilities";
-import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
-const ServiceCard = ({ service }) => {
+const ServiceCard = ({ service, language }) => {
   const navigate = useNavigate();
 
   const handleScroll = () => {
@@ -20,7 +19,7 @@ const ServiceCard = ({ service }) => {
           <div className={s.divImg}>
             <img 
               src={servicesImages.find(img => img.id === service.id)?.image} 
-              alt={service.name} 
+              alt={service.name[language]} 
             />
           </div>
         )
@@ -29,14 +28,14 @@ const ServiceCard = ({ service }) => {
         <div className={s.containerData}>
           <div className={s.dataContainer}>
             <div className={s.divData}>
-              <h3>{service.name}</h3>
-              <p>{service.description}</p>
+              <h3>{service.name[language]}</h3> {/* Título según el idioma */}
+              <p>{service.description[language]}</p> {/* Descripción según el idioma */}
             </div>
             <div className={s.divFeatures}>
-              <h4>Beneficios:</h4>
+              <h4>{language === 'es' ? 'Beneficios:' : 'Features:'}</h4>
               <ul>
                 {
-                  service.features.map((feature, index) => (
+                  service.features[language].map((feature, index) => (
                     <li key={index}>{feature}</li>
                   ))
                 }
@@ -44,19 +43,15 @@ const ServiceCard = ({ service }) => {
             </div>
           </div>
           <div className={s.divDisclaimer}>
-            <p>* {service.disclaimers}</p>
+            <p>* {service.disclaimers[language]}</p> {/* Aviso legal según el idioma */}
           </div>
         </div>
         <div className={s.divMoreInfo}>
-          <button onClick={handleScroll}>Más información</button>
-          {/* <Link to="/services" onClick={handleScroll}>
-            <button>Más información</button>
-          </Link> */}
+          <button onClick={handleScroll}>{language === 'es' ? 'Más información' : 'More information'}</button>
         </div>
       </div>
     </div>
   );
 };
-
 
 export default ServiceCard;

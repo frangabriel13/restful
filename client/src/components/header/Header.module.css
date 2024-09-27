@@ -1,3 +1,4 @@
+/* Estilos generales para el container */
 .container {
   position: sticky;
   top: 0;
@@ -9,14 +10,16 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  transition: .3s;
+  transition: 0.3s;
   z-index: 10;
 }
 
+/* Estilo del header cuando está scrolleado */
 .scrolled {
   background-color: rgba(73, 82, 92, 0.95);
 }
 
+/* Estilos para el logo */
 .logo {
   cursor: pointer;
   background-color: var(--second-color);
@@ -24,11 +27,13 @@
   height: auto;
 }
 
+/* Estilos para el contenedor del menú */
 .divNav {
   display: flex;
   align-items: center;
 }
 
+/* Navbar: estilos para los enlaces del menú */
 .navbar {
   display: flex;
   gap: 2rem;
@@ -40,7 +45,7 @@
   font-size: 1.7rem;
   color: var(--second-color);
   font-weight: 500;
-  transition: .3s;
+  transition: 0.3s;
   position: relative;
   opacity: 0.9;
 }
@@ -55,8 +60,8 @@
   left: 0;
   bottom: 0;
   width: 0;
-  height: .2rem;
-  background:var(--second-color);
+  height: 0.2rem;
+  background: var(--second-color);
   transition: all 0.45s;
 }
 
@@ -64,38 +69,87 @@
   width: 100%;
 }
 
+/* Toggle del menú hamburguesa para pantallas móviles */
 .navToggle {
   display: none;
 }
 
-.icon {
-  color: var(--text-color);
-  font-size: 2.5rem;
-  cursor: pointer;
-}
-
+/* Botón para solicitar presupuesto */
 .btnQuote {
   padding: 1rem 2rem;
   font-size: 1.7rem;
-  border: .1rem solid var(--second-color);
-  border-radius: .3rem;
+  border: 0.1rem solid var(--second-color);
+  border-radius: 0.3rem;
   cursor: pointer;
   transition: all 0.3s;
   background: linear-gradient(to right, var(--second-bg-color) 50%, var(--second-color) 50%);
-  box-shadow: inset 0 0 0 .1rem var(--second-color);
+  box-shadow: inset 0 0 0 0.1rem var(--second-color);
   background-size: 200% 100%;
   color: var(--second-color);
 }
 
 .btnQuote:hover {
   background-position: -100% 0;
-  transition: .5s;
+  transition: 0.5s;
   color: var(--second-bg-color);
 }
 
+/* Estilos para los botones de idioma */
+.languageSwitcher {
+  display: flex;
+  gap: 1rem;
+}
+
+.languageButton {
+  padding: 0.5rem 1rem;
+  font-size: 1.5rem;
+  border: 0.1rem solid var(--second-color);
+  border-radius: 0.3rem;
+  cursor: pointer;
+  background-color: transparent;
+  color: var(--second-color);
+  transition: all 0.3s;
+}
+
+.languageButton:hover {
+  background-color: var(--second-color);
+  color: var(--second-bg-color);
+}
+
+.languageButton.active {
+  background-color: var(--second-color);
+  color: var(--second-bg-color);
+  font-weight: bold;
+}
+
+/* Responsive para MacBook de 14 y 15 pulgadas */
+@media (max-width: 1440px) {
+  .container {
+    padding: 1rem 7%;
+  }
+
+  .logo {
+    width: 18rem;
+  }
+
+  .navbar a {
+    font-size: 1.6rem;
+  }
+
+  .btnQuote {
+    font-size: 1.6rem;
+    padding: 0.8rem 1.8rem;
+  }
+
+  .languageButton {
+    font-size: 1.4rem;
+    padding: 0.4rem 0.8rem;
+  }
+}
+
+/* Responsive para dispositivos móviles */
 @media (max-width: 768px) {
   .container {
-    /* width: 100%; */
     padding: 1rem;
     min-height: 7rem;
   }
@@ -133,10 +187,24 @@
     visibility: hidden;
     padding: 2rem 0;
   }
-  
+
   .open {
     transform: translateX(0);
     opacity: 1;
     visibility: visible;
+  }
+
+  .navbar a {
+    font-size: 1.5rem;
+    padding: 1rem 0;
+  }
+
+  .languageButton {
+    font-size: 1.3rem;
+    padding: 0.5rem;
+  }
+
+  .btnQuote {
+    font-size: 1.4rem;
   }
 }

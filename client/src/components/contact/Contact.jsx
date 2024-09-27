@@ -1,22 +1,20 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
 import s from "./Contact.module.css";
-import PhoneInput from 'react-phone-input-2'
-import 'react-phone-input-2/lib/style.css'
-import { sendEmail } from "../../redux/actions/emailActions";
-import { validateForm } from "../../utils/validations";
 import ContactForm from "./contactForm/ContactForm";
+import { translations } from "../../components/translations"; // Importa las traducciones
 
-const Contact = () => {
+const Contact = ({ language }) => {
+  const t = translations[language]; // Selecciona el idioma adecuado
+
   return (
     <div className={s.container}>
       <div className={s.divTitle}>
-        <h2>Iniciar arreglos</h2>
+        <h2>{t.contactTitle}</h2> {/* Título traducido */}
       </div>
-      <ContactForm />
+      {/* Pasamos la prop language al ContactForm */}
+      <ContactForm language={language} />
     </div>
   );
-}
-
+};
 
 export default Contact;

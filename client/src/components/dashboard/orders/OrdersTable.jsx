@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import s from "./OrdersTable.module.css";
-import { getOrders, deleteOrder, updateOrder } from "../../../redux/actions/orderActions";
+import { getOrders, deleteOrder, updateOrder, createOrdersFromExcel } from "../../../redux/actions/orderActions";
 import { getFuneralHomes } from "../../../redux/actions/funeralHomeActions";
 import { getServices } from "../../../redux/actions/serviceActions";
 import { getUsers } from "../../../redux/actions/userActions";
@@ -12,6 +12,7 @@ import { CiEdit } from "react-icons/ci";
 import { MdDeleteOutline } from "react-icons/md";
 import UpdateModal from "./modals/UpdateModal";
 import TrackingModal from "./modals/TrackingModal";
+import ExcelModal from "./modals/ExcelModal";
 
 const OrdersTable = () => {
   const dispatch = useDispatch();
@@ -26,27 +27,29 @@ const OrdersTable = () => {
   const [service, setService] = useState("");
   const [user, setUser] = useState("");
   const [search, setSearch] = useState("");
-  const [selectedTab, setSelectedTab] = useState("pending");
+  const [funeralHome, setFuneralHome] = useState("");
+  const [selectedTab, setSelectedTab] = useState("newInProgress");
   const [showUpdateModal, setShowUpdateModal] = useState(false);
   const [selectedUpdates, setSelectedUpdates] = useState([]);
   const [showTrackingModal, setShowTrackingModal] = useState(false);
   const [selectedTracking, setSelectedTracking] = useState([]);
+  const [showExcelModal, setShowExcelModal] = useState(false);
   const limit = 12;
 
   useEffect(() => {
     let status = "";
-    if (selectedTab === "pending") {
-      status = "new,pending";
-    } else if (selectedTab === "inProgress") {
-      status = "inProgress";
+    if (selectedTab === "newInProgress") {
+      status = "new,inProgress";
+    } else if (selectedTab === "pending") {
+      status = "pending";
     } else if (selectedTab === "soldNotSold") {
       status = "sold,notSold";
     }
-    dispatch(getOrders(currentPage, limit, status, service, user, search));
+    dispatch(getOrders(currentPage, limit, status, service, user, search, funeralHome));
     dispatch(getFuneralHomes());
     dispatch(getServices());
     dispatch(getUsers());
-  }, [dispatch, currentPage, limit, selectedTab, service, user, search]);
+  }, [dispatch, currentPage, limit, selectedTab, service, user, search, funeralHome]);
 
   const handleTabChange = (tab) => {
     setSelectedTab(tab);
@@ -65,6 +68,11 @@ const OrdersTable = () => {
 
   const handleSearchChange = (e) => {
     setSearch(e.target.value);
+    setCurrentPage(1);
+  };
+
+  const handleFuneralHomeChange = (e) => {
+    setFuneralHome(e.target.value);
     setCurrentPage(1);
   };
 
@@ -87,8 +95,12 @@ const OrdersTable = () => {
     return user ? user.name : "N/A";
   };
 
+  // const formatDate = (dateString) => {
+  //   return dateString.split('T')[0];
+  // };
   const formatDate = (dateString) => {
-    return dateString.split('T')[0];
+    const [year, month, day] = dateString.split('T')[0].split('-');
+    return `${month}-${day}-${year}`;
   };
 
   const handleEdit = (order) => {
@@ -106,6 +118,15 @@ const OrdersTable = () => {
     setShowTrackingModal(true);
   };
 
+  const handleShowExcelModal = () => {
+    setShowExcelModal(true);
+  };
+
+  const handleImportExcel = (data) => {
+    dispatch(createOrdersFromExcel(data));
+    setShowExcelModal(false);
+  };
+
   const totalPages = Math.ceil(totalOrders / limit);
 
   console.log(orders);
@@ -118,10 +139,13 @@ const OrdersTable = () => {
 
   return (
     <div className={s.dashboard}>
-      <h2>Orders</h2>
+      <div className={s.divTitle}>
+        <h2>Orders</h2>
+        <button onClick={handleShowExcelModal}>Import</button>
+      </div>
       <div className={s.tabs}>
-        <button className={selectedTab === "pending" ? s.active : ""} onClick={() => handleTabChange("pending")}>Pending - New</button>
-        <button className={selectedTab === "inProgress" ? s.active : ""} onClick={() => handleTabChange("inProgress")}>In Progress</button>
+        <button className={selectedTab === "newInProgress" ? s.active : ""} onClick={() => handleTabChange("newInProgress")}>New - in Progress</button>
+        <button className={selectedTab === "pending" ? s.active : ""} onClick={() => handleTabChange("pending")}>Pending</button>
         <button className={selectedTab === "soldNotSold" ? s.active : ""} onClick={() => handleTabChange("soldNotSold")}>Sold - Not Sold</button>
       </div>
       <Filters 
@@ -133,6 +157,9 @@ const OrdersTable = () => {
         users={users}
         search={search}
         handleSearchChange={handleSearchChange}
+        funeralHome={funeralHome}
+        funeralHomes={funeralHomes}
+        handleFuneralHomeChange={handleFuneralHomeChange}
       />
       <table className={s.table}>
         <thead>
@@ -161,7 +188,9 @@ const OrdersTable = () => {
           {orders.map((order) => (
             <tr key={order.id}>
               <td>{order.status}</td>
-              <td>{formatDate(order.statusDate.date)} by {order.statusDate.updatedBy}</td>
+              <td>
+                {order.statusDate.date ? formatDate(order.statusDate.date) : 'Fecha no disponible'} by {order.statusDate.updatedBy}
+              </td>
               <td>
                 <button className={s.btnMore} onClick={() => handleShowUpdates(order.updates)}>Ver más</button>
               </td>
@@ -194,6 +223,7 @@ const OrdersTable = () => {
       {showEdit && <EditOrder order={selectedOrder} onClose={() => setShowEdit(false)} updateOrder={handleUpdateOrder} />}
       {showUpdateModal && <UpdateModal updates={selectedUpdates} onClose={() => setShowUpdateModal(false)} />}
       {showTrackingModal && <TrackingModal tracking={selectedTracking} onClose={() => setShowTrackingModal(false)} />}
+      {showExcelModal && <ExcelModal onClose={() => setShowExcelModal(false)} onImport={handleImportExcel} />}
       <Pagination currentPage={currentPage} totalPages={totalPages} onPageChange={setCurrentPage} />
     </div>
   );
