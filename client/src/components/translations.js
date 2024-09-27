@@ -86,6 +86,44 @@ export const translations = {
     serviceTypeButton: "Ver servicios",
     toContactTitle: "O contáctanos directamente",
     toContactButton: "Contactar",
+    mourningTitle: "Duelo",
+    mourningDescription: `El duelo es una respuesta emocional natural ante la pérdida de un ser querido. Es un proceso único para cada persona, 
+    que puede manifestarse de diferentes maneras y durar distintos periodos de tiempo. Comprender las etapas del duelo puede ayudar a sobrellevar 
+    esta difícil experiencia, proporcionando un marco que facilita la comprensión de nuestras emociones durante el proceso de sanar.`,
+    mourningStagesTitle: "Las 5 etapas del duelo",
+    mourningStage1Title: "1. Negación",
+    mourningStage1Description: `La negación es una reacción que se produce de forma muy habitual inmediatamente después de una pérdida. No es infrecuente 
+    que, cuando experimentamos una pérdida súbita, tengamos una sensación de irrealidad o de incredulidad que puede verse acompañada de una congelación 
+    de las emociones. Se puede manifestar con expresiones tales como: “aún no me creo que sea verdad”, “es como si estuviera viviendo una pesadilla” 
+    e incluso con actitudes de aparente “entereza emocional” o de actuar “como si no hubiera pasado nada”.`,
+    mourningStage2Title: "2. Ira",
+    mourningStage2Description: `A medida que la negación comienza a disiparse, emerge la ira. Puede estar dirigida hacia uno mismo, hacia otras personas, 
+    o incluso hacia la persona que ha fallecido. Esta etapa es una forma de canalizar el dolor y la frustración.`,
+    mourningStage3Title: "3. Negociación",
+    mourningStage3Description: `En esta etapa, las personas pueden intentar negociar o hacer tratos, a menudo con una fuerza mayor o con su propia mente, 
+    en un intento de revertir o mitigar la realidad de la pérdida. Es una forma de buscar algún sentido o control en medio de la incertidumbre.`,
+    mourningStage4Title: "4. Depresión",
+    mourningStage4Description: `Esta es una de las etapas más difíciles del duelo, caracterizada por una profunda tristeza y la sensación de vacío. 
+    Durante esta fase, es normal sentir una pérdida de interés en actividades cotidianas y un deseo de aislarse.`,
+    mourningStage5Title: "5. Aceptación",
+    mourningStage5Description: `La aceptación no significa que el dolor haya desaparecido, sino que se ha encontrado una manera de seguir adelante. 
+    Es el reconocimiento de la realidad de la pérdida y la adaptación a una nueva vida sin la persona amada.`,
+    contactTitle: "Iniciar arreglos",
+    formTitle: "Completa el formulario para información personalizada.",
+    formSubtitle: "Te responderemos a la brevedad.",
+    name: "Nombre",
+    lastname: "Apellido",
+    namePlaceholder: "Nombre",
+    lastnamePlaceholder: "Apellido",
+    agePlaceholder: "Edad",
+    phone: "Teléfono",
+    email: "Correo Electrónico",
+    emailPlaceholder: "Correo electrónico (opcional)",
+    selectService: "Selecciona un servicio",
+    notSure: "No estoy seguro (a)",
+    service: "Servicio",
+    submit: "Enviar",
+    emailSubject: "Solicitud de asesoramiento para el servicio",
   },
   en: {
     aboutTitle: "Who are we?",
@@ -171,5 +209,42 @@ export const translations = {
     serviceTypeButton: "View services",
     toContactTitle: "Or contact us directly",
     toContactButton: "Contact",
+    mourningTitle: "Grief",
+    mourningDescription: `Grief is a natural emotional response to the loss of a loved one. It is a unique process for each person, which can manifest 
+    in different ways and last for varying periods of time. Understanding the stages of grief can help navigate this difficult experience, providing a 
+    framework that facilitates understanding of our emotions during the healing process.`,
+    mourningStagesTitle: "The 5 Stages of Grief",
+    mourningStage1Title: "1. Denial",
+    mourningStage1Description: `Denial is a common reaction immediately after a loss. It is not uncommon to experience a sense of disbelief, often 
+    accompanied by an emotional freeze, following a sudden loss. It can manifest with expressions such as: "I still can't believe it's true", "it's like 
+    I'm living a nightmare", and even attitudes of apparent emotional fortitude or acting "as if nothing had happened".`,
+    mourningStage2Title: "2. Anger",
+    mourningStage2Description: `As denial begins to fade, anger emerges. It may be directed towards oneself, towards others, or even towards the person 
+    who has passed away. This stage is a way of channeling pain and frustration.`,
+    mourningStage3Title: "3. Bargaining",
+    mourningStage3Description: `In this stage, people may try to negotiate or make deals, often with a higher power or with their own minds, in an 
+    attempt to reverse or mitigate the reality of the loss. It is a way of seeking some sense or control amid uncertainty.`,
+    mourningStage4Title: "4. Depression",
+    mourningStage4Description: `This is one of the most challenging stages of grief, characterized by deep sadness and a sense of emptiness. During 
+    this phase, it is common to lose interest in daily activities and feel the desire to isolate.`,
+    mourningStage5Title: "5. Acceptance",
+    mourningStage5Description: `Acceptance does not mean the pain has gone away, but that a way to move forward has been found. It is the recognition 
+    of the reality of the loss and the adaptation to a new life without the loved one.`,
+    contactTitle: "Start Arrangements",
+    formTitle: "Complete the form for personalized information.",
+    formSubtitle: "We will respond shortly.",
+    name: "Name",
+    lastname: "Last Name",
+    namePlaceholder: "Name",
+    lastnamePlaceholder: "Last Name",
+    agePlaceholder: "Age",
+    phone: "Phone",
+    email: "Email",
+    emailPlaceholder: "Email (optional)",
+    selectService: "Select a service",
+    notSure: "Not sure",
+    service: "Service",
+    submit: "Submit",
+    emailSubject: "Request for advice on service",
   }
 };
