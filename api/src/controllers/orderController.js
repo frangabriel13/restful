@@ -121,6 +121,7 @@ const createOrder = async (req, res) => {
     const trackingWithDate = (tracking || []).map((track) => ({
       date: new Date(),
       track,
+      createdBy: createdBy || 'system',
     }));
 
     const newOrder = await Order.create({
@@ -193,10 +194,10 @@ const updateOrder = async (req, res) => {
       updatedBy: updateBy || 'system',
     };
 
-    // const trackingWithDate = (tracking || []).map((track) => ({
-    //   date: new Date(),
-    //   track,
-    // }));
+    const trackingWithCreatedBy = (tracking || []).map((track) => ({
+      ...track,
+      createdBy: track.createdBy || updateBy || 'system',
+    }));
 
     await order.update({
       status,
@@ -210,7 +211,7 @@ const updateOrder = async (req, res) => {
       serviceId,
       price,
       insurance,
-      tracking,
+      tracking: trackingWithCreatedBy,
       age,
       userId,
       funeralHomeId,
