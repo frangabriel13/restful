@@ -23,6 +23,7 @@ const TrackingModal = ({ tracking, onClose }) => {
                   <th>Date</th>
                   <th>Time</th>
                   <th>Comment</th>
+                  <th>Created By</th>
                 </tr>
               </thead>
               <tbody>
@@ -31,6 +32,7 @@ const TrackingModal = ({ tracking, onClose }) => {
                     <td>{new Date(track.date).toLocaleDateString()}</td>
                     <td>{new Date(track.date).toLocaleTimeString()}</td>
                     <td>{track.track}</td>
+                    <td>{track.createdBy}</td>
                   </tr>
                 ))}
               </tbody>
