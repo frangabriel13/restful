@@ -89,8 +89,12 @@ const OrdersTable = () => {
     return user ? user.name : "N/A";
   };
 
+  // const formatDate = (dateString) => {
+  //   return dateString.split('T')[0];
+  // };
   const formatDate = (dateString) => {
-    return dateString.split('T')[0];
+    const [year, month, day] = dateString.split('T')[0].split('-');
+    return `${month}-${day}-${year}`;
   };
 
   const handleEdit = (order) => {

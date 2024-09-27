@@ -8,7 +8,10 @@ const UpdateModal = ({ updates, onClose }) => {
     }
   };
 
-  console.log(updates);
+  const formatDate = (dateString) => {
+    const [month, day, year] = new Date(dateString).toLocaleDateString('en-US').split('/');
+    return `${month}-${day}-${year}`;
+  };
 
   return (
     <div className={s.modal} onClick={handleClickOutside}>
@@ -28,7 +31,7 @@ const UpdateModal = ({ updates, onClose }) => {
               <tbody>
                 {updates.map((update) => (
                   <tr key={update.id}>
-                    <td>{new Date(update.date).toLocaleDateString()}</td>
+                    <td>{formatDate(update.date)}</td>
                     <td>{new Date(update.date).toLocaleTimeString()}</td>
                     <td>{update.updatedBy}</td>
                   </tr>
