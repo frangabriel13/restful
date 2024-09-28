@@ -32,6 +32,7 @@ const getOrders = async (req, res) => {
         { contactName: { [Op.iLike]: `%${search}%` } },
         { deceasedName: { [Op.iLike]: `%${search}%` } },
         { email: { [Op.iLike]: `%${search}%` } },
+        Sequelize.literal(`"tracking"::text ILIKE '%${search}%'`),
       ];
     }
 
