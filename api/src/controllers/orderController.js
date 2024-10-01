@@ -36,6 +36,12 @@ const getOrders = async (req, res) => {
       ];
     }
 
+    if (status === 'inProgress') {
+      const oneWeekAgo = new Date();
+      oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+      where.updatedAt = { [Op.lt]: oneWeekAgo };
+    }
+
     const totalOrders = await Order.count({ where });
 
     const orders = await Order.findAll({

@@ -44,6 +44,8 @@ const OrdersTable = () => {
       status = "pending";
     } else if (selectedTab === "soldNotSold") {
       status = "sold,notSold";
+    } else if (selectedTab === "noUpdates") {
+      status = "inProgress";
     }
     dispatch(getOrders(currentPage, limit, status, service, user, search, funeralHome));
     dispatch(getFuneralHomes());
@@ -95,9 +97,6 @@ const OrdersTable = () => {
     return user ? user.name : "N/A";
   };
 
-  // const formatDate = (dateString) => {
-  //   return dateString.split('T')[0];
-  // };
   const formatDate = (dateString) => {
     const [year, month, day] = dateString.split('T')[0].split('-');
     return `${month}-${day}-${year}`;
@@ -147,6 +146,7 @@ const OrdersTable = () => {
         <button className={selectedTab === "newInProgress" ? s.active : ""} onClick={() => handleTabChange("newInProgress")}>New - in Progress</button>
         <button className={selectedTab === "pending" ? s.active : ""} onClick={() => handleTabChange("pending")}>Pending</button>
         <button className={selectedTab === "soldNotSold" ? s.active : ""} onClick={() => handleTabChange("soldNotSold")}>Sold - Not Sold</button>
+        <button className={selectedTab === "noUpdates" ? s.active : ""} onClick={() => handleTabChange("noUpdates")}>No Updates (7+ days)</button>
       </div>
       <Filters 
         service={service}
