@@ -34,6 +34,8 @@ const DashService = () => {
     dispatch(deleteService(id));
   };
 
+  console.log(services);
+
   return (
     <div className={s.container}>
       <div className={s.dashboard}>
@@ -51,7 +53,7 @@ const DashService = () => {
             {services.map((service) => (
               <tr key={service._id}>
                 <td>{service.id}</td>
-                <td>{service.name}</td>
+                <td>{service.name.en}</td>
                 <td>${service.price}</td>
                 <td className={s.btnCell}>
                   <button onClick={() => handleEdit(service)}>Edit</button>
