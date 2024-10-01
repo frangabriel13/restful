@@ -159,7 +159,8 @@ const createService = async (req, res) => {
 };
 
 const updateService = async (req, res) => {
-  const { id, lang } = req.params;
+  console.log('req.body', req.body);
+  const { id } = req.params;
   const { name, price, features, disclaimers, isActive } = req.body;
   try {
     const service = await Service.findByPk(id);
@@ -167,10 +168,19 @@ const updateService = async (req, res) => {
       return res.status(404).json({ message: 'No se encontró ningun servicio con ese ID' });
     }
     await service.update({
-      name,
+      name: {
+        es: name.es,
+        en: name.en,
+      },
       price,
-      features,
-      disclaimers,
+      features: {
+        es: features.es,
+        en: features.en,
+      },
+      disclaimers: {
+        es: disclaimers.es,
+        en: disclaimers.en,
+      },
       isActive,
     });
     res.status(200).json(service);
