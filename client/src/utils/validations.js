@@ -95,11 +95,16 @@ export const validateCreateService = (formData) => {
     errors.disclaimers = "Los disclaimers son requeridos";
   }
 
-  // if(formData.features.length === 0) {
-  //   errors.features = "Al menos un feature es requerido";
+  // if(formData.features.length === 0 || formData.features.every(feature => feature.trim() === "")) {
+  //   errors.features = "Al menos un feature válido es requerido";
   // }
-  if(formData.features.length === 0 || formData.features.every(feature => feature.trim() === "")) {
-    errors.features = "Al menos un feature válido es requerido";
+  if (
+    formData.features.es.length === 0 ||
+    formData.features.es.every((feature) => feature.trim() === "") ||
+    formData.features.en.length === 0 ||
+    formData.features.en.every((feature) => feature.trim() === "")
+  ) {
+    errors.features = "Al menos un feature válido es requerido en ambos idiomas";
   }
 
   return errors;
