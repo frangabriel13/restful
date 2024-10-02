@@ -19,7 +19,6 @@
 .tabs {
   display: flex;
   gap: 1rem;
-  /* margin-bottom: 2rem; */
 }
 
 .tabs button {
@@ -42,8 +41,15 @@
   color: #fff;
 }
 
+/* Contenedor para hacer la tabla desplazable horizontalmente */
+.tableContainer {
+  width: 100%;
+  overflow-x: auto;
+}
+
 .table {
   width: 100%;
+  min-width: 1200px; /* Establecer un ancho mínimo */
   border-collapse: collapse;
 }
 
@@ -95,4 +101,26 @@
   text-decoration: none;
   border-bottom: .1rem solid #333;
   padding: 0;
+}
+
+/* Responsive para pantallas pequeñas */
+@media (max-width: 768px) {
+  .dashboard {
+    padding: 1rem;
+    gap: 1rem;
+  }
+
+  .tabs button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+  }
+
+  .table th, 
+  .table td {
+    padding: 0.8rem 1rem;
+  }
+
+  .iconEdit, .iconDelete {
+    font-size: 1.2rem;
+  }
 }
