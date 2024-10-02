@@ -4,5 +4,13 @@
 
 .dashboard {
   width: 100%;
-  margin-left: 12rem;
+  margin-left: 12rem; /* Margen para pantallas grandes */
+}
+
+/* Para pantallas pequeñas (celulares) y medianas (MacBook) */
+@media (max-width: 1024px) {
+  .dashboard {
+    margin-top: 12rem;
+    margin-left: 0; /* Elimina el margen en pantallas pequeñas y medianas */
+  }
 }
