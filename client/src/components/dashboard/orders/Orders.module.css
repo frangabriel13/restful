@@ -6,3 +6,19 @@
   flex-direction: column;
   gap: 2rem;
 }
+
+/* Responsive para pantallas pequeñas (celulares) */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem; /* Reducimos el padding */
+    gap: 1rem; /* Reducimos el espacio entre elementos */
+  }
+}
+
+/* Responsive para pantallas medianas (MacBook) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    padding: 1.5rem; /* Ajustamos el padding */
+    gap: 1.5rem; /* Ajustamos el espacio entre elementos */
+  }
+}

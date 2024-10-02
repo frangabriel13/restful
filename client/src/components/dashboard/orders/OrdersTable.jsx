@@ -162,6 +162,7 @@ const OrdersTable = ({ openModal }) => {
         funeralHomes={funeralHomes}
         handleFuneralHomeChange={handleFuneralHomeChange}
       />
+      <div className={s.tableContainer}>
       <table className={s.table}>
         <thead>
           <tr>
@@ -221,6 +222,7 @@ const OrdersTable = ({ openModal }) => {
           ))}
         </tbody>
       </table>
+      </div>
       {showEdit && <EditOrder order={selectedOrder} onClose={() => setShowEdit(false)} updateOrder={handleUpdateOrder} />}
       {showUpdateModal && <UpdateModal updates={selectedUpdates} onClose={() => setShowUpdateModal(false)} />}
       {showTrackingModal && <TrackingModal tracking={selectedTracking} onClose={() => setShowTrackingModal(false)} />}
