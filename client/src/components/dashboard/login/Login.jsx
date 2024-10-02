@@ -55,14 +55,8 @@ const Login = () => {
         </div>
         <div className={s.divInput}>
           <label>Password</label>
-          {/* <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          /> */}
           <div className={s.divPass}>
             <input
-              // type="password"
               type={showPassword ? "text" : "password"}
               name="password"
               value={password}
