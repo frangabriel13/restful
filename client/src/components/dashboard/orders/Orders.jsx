@@ -5,10 +5,21 @@ import OrdersTable from "./OrdersTable";
 import CreateOrder from "./CreateOrder";
 
 const Orders = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleModalOpen = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  };
+
   return (
     <div className={s.container}>
-      <OrdersTable />
-      <CreateOrder />
+      <OrdersTable openModal={handleModalOpen} />
+      {/* <CreateOrder /> */}
+      {isModalOpen && <CreateOrder closeModal={handleModalClose} />}
     </div>
   );
 };

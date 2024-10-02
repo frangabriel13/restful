@@ -14,7 +14,7 @@ import UpdateModal from "./modals/UpdateModal";
 import TrackingModal from "./modals/TrackingModal";
 import ExcelModal from "./modals/ExcelModal";
 
-const OrdersTable = () => {
+const OrdersTable = ({ openModal }) => {
   const dispatch = useDispatch();
   const orders = useSelector((state) => state.order.orders);
   const totalOrders = useSelector((state) => state.order.totalOrders);
@@ -140,6 +140,7 @@ const OrdersTable = () => {
     <div className={s.dashboard}>
       <div className={s.divTitle}>
         <h2>Orders</h2>
+        <button onClick={openModal}>Create</button>
         <button onClick={handleShowExcelModal}>Import</button>
       </div>
       <div className={s.tabs}>
