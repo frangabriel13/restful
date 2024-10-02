@@ -1,24 +1,29 @@
 export const validateForm = (formData) => {
   const errors = {};
 
-  if(!formData.name) {
+  if (!formData.name) {
     errors.name = "El nombre es requerido";
   }
 
-  if(!formData.lastname) {
+  if (!formData.lastname) {
     errors.lastName = "El apellido es requerido";
   }
 
-  if(!formData.age) {
+  if (!formData.age) {
     errors.age = "La edad es requerida";
   }
 
-  if(!formData.service) {
+  if (!formData.service) {
     errors.type = "El tipo de consulta es requerido";
   }
 
-  if(!formData.phone) {
+  if (!formData.phone) {
     errors.phone = "El teléfono es requerido";
+  } else {
+    const phoneDigits = formData.phone.replace(/\D/g, ''); // Eliminar todos los caracteres que no sean dígitos
+    if (phoneDigits.length !== 10) { // Verificar si tiene exactamente 10 dígitos
+      errors.phone = "El teléfono debe tener exactamente 10 dígitos";
+    }
   }
 
   return errors;
