@@ -21,7 +21,7 @@ const Filters = ({ status, handleStatusChange, service, handleServiceChange, ser
           <option value="">All</option>
           {services.map((service) => (
             <option key={service.id} value={service.id}>
-              {service.name}
+              {service.name.en}
             </option>
           ))}
         </select>

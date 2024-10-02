@@ -90,24 +90,33 @@
 
 const { Service } = require('../db');
 
+// const getServices = async (req, res) => {
+//   const { lang } = req.params;
+//   try {
+//     const services = await Service.findAll();
+//     const localizedServices = services.map(service => ({
+//       id: service.id,
+//       name: service.name[lang],
+//       description: service.description[lang],
+//       features: service.features[lang],
+//       disclaimers: service.disclaimers[lang],
+//       isActive: service.isActive
+//     }));
+//     res.status(200).json(localizedServices);
+//   } catch (error) {
+//     console.log(error);
+//     res.status(500).json({ message: 'Internal server error' });
+//   }
+// };
 const getServices = async (req, res) => {
-  const { lang } = req.params;
   try {
     const services = await Service.findAll();
-    const localizedServices = services.map(service => ({
-      id: service.id,
-      name: service.name[lang],
-      description: service.description[lang],
-      features: service.features[lang],
-      disclaimers: service.disclaimers[lang],
-      isActive: service.isActive
-    }));
-    res.status(200).json(localizedServices);
-  } catch (error) {
+    res.status(200).json(services);
+  } catch(error) {
     console.log(error);
     res.status(500).json({ message: 'Internal server error' });
   }
-};
+}
 
 const getServiceId = async (req, res) => {
   const { lang, id } = req.params;

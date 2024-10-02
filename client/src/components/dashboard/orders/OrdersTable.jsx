@@ -89,7 +89,7 @@ const OrdersTable = () => {
 
   const getServiceName = (id) => {
     const service = services.find((service) => service.id === id);
-    return service ? service.name : "Not sure";
+    return service ? service.name.en : "Not sure";
   };
 
   const getUserName = (id) => {
