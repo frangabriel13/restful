@@ -6,21 +6,72 @@
   background-color: #fff;
 }
 
-/* .container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-  background-color: #f9f9f9;
-} */
+/* Responsive para pantallas pequeñas (celulares) */
+@media (max-width: 768px) {
+  .container {
+    width: 100%; /* Ocupa todo el ancho en dispositivos móviles */
+    padding: 1.5rem; /* Reducimos el padding para móviles */
+  }
 
-.editService {
-  /* background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 600px; */
+  .divForm {
+    flex-direction: column; /* Coloca los elementos en una columna para pantallas pequeñas */
+  }
+
+  .divNamePrice,
+  .divFeatures {
+    width: 100%; /* Ajusta el ancho al 100% */
+  }
+
+  .divNamePrice .divInput {
+    width: 100%; /* Ajusta el ancho de los inputs */
+  }
+
+  .formGroup label {
+    font-size: 1.2rem; /* Reducimos el tamaño de los textos */
+  }
+
+  .formGroup input,
+  .formGroup textarea {
+    font-size: 1.2rem; /* Ajustamos el tamaño de las entradas */
+  }
+
+  .divBtn button {
+    font-size: 1.2rem; /* Ajustamos el tamaño de los botones */
+  }
+}
+
+/* Responsive para pantallas medianas (MacBook) */
+@media (min-width: 769px) and (max-width: 1280px) {
+  .container {
+    width: 80%; /* Ocupa un 80% del ancho en pantallas medianas */
+    padding: 2rem;
+  }
+
+  .divForm {
+    flex-direction: column; /* Coloca los elementos en una columna en pantallas medianas */
+  }
+
+  .divNamePrice,
+  .divFeatures {
+    width: 100%; /* Ajusta el ancho al 100% */
+  }
+
+  .divNamePrice .divInput {
+    width: 100%; /* Ajusta el ancho de los inputs */
+  }
+
+  .formGroup label {
+    font-size: 1.3rem; /* Ajustamos el tamaño de los textos */
+  }
+
+  .formGroup input,
+  .formGroup textarea {
+    font-size: 1.3rem; /* Ajustamos el tamaño de las entradas */
+  }
+
+  .divBtn button {
+    font-size: 1.3rem; /* Ajustamos el tamaño de los botones */
+  }
 }
 
 .editService h2 {

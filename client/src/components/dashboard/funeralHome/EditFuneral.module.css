@@ -6,6 +6,67 @@
   background-color: #fff;
 }
 
+/* Responsive para pantallas pequeñas (celulares) */
+@media (max-width: 768px) {
+  .container {
+    width: 100%; /* Ocupa todo el ancho en dispositivos móviles */
+    padding: 1.5rem; /* Ajustamos el padding para pantallas pequeñas */
+  }
+
+  .divForm {
+    flex-direction: column; /* Colocamos los elementos en columnas */
+  }
+
+  .divNamePriceDis,
+  .divNamePrice .divInput {
+    width: 100%; /* Ajustamos el ancho al 100% */
+  }
+
+  .formGroup label {
+    font-size: 1.3rem; /* Ajustamos el tamaño del texto */
+  }
+
+  .formGroup input[type="text"],
+  .formGroup textarea {
+    font-size: 1.2rem; /* Ajustamos el tamaño de las entradas */
+    padding: 0.6rem; /* Reducimos el padding */
+  }
+
+  .divBtn button {
+    font-size: 1.2rem; /* Ajustamos el tamaño de los botones */
+  }
+}
+
+/* Responsive para pantallas medianas (MacBook) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    width: 80%; /* Ajustamos el ancho al 80% en pantallas medianas */
+    padding: 2rem;
+  }
+
+  .divForm {
+    flex-direction: column; /* Colocamos los elementos en columnas */
+  }
+
+  .divNamePriceDis,
+  .divNamePrice .divInput {
+    width: 100%; /* Ajustamos el ancho al 100% */
+  }
+
+  .formGroup label {
+    font-size: 1.4rem; /* Ajustamos el tamaño del texto */
+  }
+
+  .formGroup input[type="text"],
+  .formGroup textarea {
+    font-size: 1.3rem; /* Ajustamos el tamaño de las entradas */
+  }
+
+  .divBtn button {
+    font-size: 1.3rem; /* Ajustamos el tamaño de los botones */
+  }
+}
+
 .editService h2 {
   margin-bottom: 2rem;
   font-size: 2.4rem;
