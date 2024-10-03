@@ -124,3 +124,38 @@
     font-size: 1.2rem;
   }
 }
+
+/* Mantén las otras reglas como están */
+
+/* Colores específicos solo para la celda de Status */
+.rowNew {
+  background-color: yellow;
+  
+}
+
+.rowInProgress {
+  background-color: #87cefa; /* Azul cielo */
+}
+
+.rowPending {
+  color: #f4f4f4;
+  background-color: #ffa500; /* Naranja suave */
+}
+
+.rowNotSold {
+  color: #f4f4f4;
+  background-color: rgb(207, 26, 26);
+}
+
+/* Ajustes para que las celdas individuales solo tengan el color del estado */
+.table td {
+  padding: 1.2rem 1.5rem;
+  text-align: left;
+  border-bottom: 0.1rem solid #ddd;
+}
+
+.table td.status {
+  /* Color especial solo para la celda de status */
+  font-weight: bold;
+}
+
