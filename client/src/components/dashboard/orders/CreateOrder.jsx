@@ -130,6 +130,20 @@ const CreateOrder = ({ closeModal }) => {
     }
   };
 
+  // Función para devolver la clase de color según el valor de insurance
+  const getInsuranceClass = () => {
+    switch (form.insurance) {
+      case "GWIC":
+        return s.gwic;
+      case "CMT":
+        return s.cmt;
+      case "pending":
+        return s.pending;
+      default:
+        return "";
+    }
+  };
+
   return (
     <div className={s.modal} onClick={handleClickOutside}>
       <div className={s.modalContent}>
@@ -148,7 +162,7 @@ const CreateOrder = ({ closeModal }) => {
                   <option value="notSold">Not Sold</option>
                 </select>
               </div>
-              <div className={s.formGroup}>
+              <div className={`${s.formGroup} ${getInsuranceClass()}`}>
                 <label htmlFor="insurance">Insurance</label>
                 <select name="insurance" value={form.insurance} onChange={handleChange}>
                   <option value="pending">Pending</option>
@@ -274,6 +288,5 @@ const CreateOrder = ({ closeModal }) => {
     </div>
   )
 };
-
 
 export default CreateOrder;

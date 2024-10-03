@@ -17,7 +17,6 @@
   padding: 1rem;
   border-radius: .4rem;
   overflow-y: auto;
-  max-height: 90%; /* Limita la altura del modal */
 }
 
 .btnClose {
@@ -57,14 +56,13 @@
 .divGroupFour {
   display: flex;
   gap: 2rem;
-  flex-wrap: wrap; /* Permite que los elementos se ajusten en pantallas pequeñas */
 }
 
 .formGroup {
   display: flex;
   flex-direction: column;
   gap: .5rem;
-  width: 100%; /* Cambiado para pantallas pequeñas */
+  width: 25%;
 }
 
 .formGroup label {
@@ -72,7 +70,12 @@
   color: #333;
 }
 
-.formGroup select, 
+.formGroup select {
+  padding: 0.8rem 1rem;
+  border: 0.1rem solid #ddd;
+  border-radius: 0.3rem;
+}
+
 .formGroup input {
   padding: 0.8rem 1rem;
   border: 0.1rem solid #ddd;
@@ -96,7 +99,6 @@
   display: flex;
   gap: 2rem;
   justify-content: center;
-  flex-wrap: wrap; /* Ajuste para pantallas pequeñas */
 }
 
 .comment {
@@ -195,4 +197,17 @@
     font-size: 1.8rem; /* Ajustamos el tamaño del botón */
     padding: 0.7rem 1rem;
   }
+}
+
+/* Colores suaves según el tipo de insurance */
+.gwic select {
+  background-color: #d9f8c4; /* Verde claro */
+}
+
+.cmt select {
+  background-color: #f8d9d9; /* Rosa suave */
+}
+
+.pending select {
+  background-color: #f9f0c4; /* Amarillo claro */
 }
