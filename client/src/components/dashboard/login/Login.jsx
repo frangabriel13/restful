@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import s from "./Login.module.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { login } from "../../../redux/actions/authActions";
 import { validateLogin } from "../../../utils/validations";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
@@ -70,6 +70,9 @@ const Login = () => {
         </div>
         <button className={s.btn} type="submit">Login</button>
       </form>
+      <div className={s.forgotPassword}>
+        <Link to="/forgot-password">¿Olvidaste tu contraseña?</Link>
+      </div>
     </div>
   );
 };
