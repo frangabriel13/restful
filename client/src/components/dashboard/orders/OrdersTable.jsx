@@ -152,8 +152,10 @@ const OrdersTable = ({ openModal }) => {
     <div className={s.dashboard}>
       <div className={s.divTitle}>
         <h2>Orders</h2>
-        <button onClick={openModal}>Create</button>
-        <button onClick={handleShowExcelModal}>Import</button>
+        <div className={s.divBtnOrder}>
+          <button onClick={openModal}>Create</button>
+          <button onClick={handleShowExcelModal}>Import</button>
+        </div>
       </div>
       <div className={s.tabs}>
         <button className={selectedTab === "newInProgress" ? s.active : ""} onClick={() => handleTabChange("newInProgress")}>New - in Progress</button>
