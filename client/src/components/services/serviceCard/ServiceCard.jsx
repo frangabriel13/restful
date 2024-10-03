@@ -29,7 +29,7 @@ const ServiceCard = ({ service, language }) => {
           <div className={s.dataContainer}>
             <div className={s.divData}>
               <h3>{service.name[language]}</h3> {/* Título según el idioma */}
-              <p>{service.description[language]}</p> {/* Descripción según el idioma */}
+              {/* <p>{service.description[language]}</p> */}
             </div>
             <div className={s.divFeatures}>
               <h4>{language === 'es' ? 'Beneficios:' : 'Features:'}</h4>
