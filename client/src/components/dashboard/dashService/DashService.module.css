@@ -3,11 +3,12 @@
   padding: 2rem;
   background-color: #f9f9f9;
   display: flex;
+  flex-direction: column;
   gap: 2rem;
 }
 
 .dashboard {
-  width: 40%;
+  width: 100%; /* Cambiamos a 100% para pantallas pequeñas */
   border-radius: 0.3rem;
   box-shadow: 0 0.2rem 0.4rem rgba(0, 0, 0, 0.1);
   padding: 2rem;
@@ -101,4 +102,48 @@
 
 .btnCreate:hover {
   background-color: #45a049;
+}
+
+/* Responsive para pantallas pequeñas (celulares) */
+@media (max-width: 768px) {
+  .dashboard {
+    width: 100%; /* Ocupa todo el ancho de la pantalla en celulares */
+    padding: 1.5rem;
+  }
+
+  .table th, 
+  .table td {
+    padding: 0.8rem 1rem; /* Reducimos el padding */
+    font-size: 1.2rem; /* Ajustamos el tamaño de la fuente */
+  }
+
+  .table button {
+    padding: 0.6rem 1rem; /* Reducimos el tamaño de los botones */
+  }
+
+  .dashboard h2 {
+    font-size: 2rem; /* Reducimos el tamaño del título */
+  }
+}
+
+/* Responsive para pantallas medianas (MacBook) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .dashboard {
+    width: 100%; /* Ocupa todo el ancho en MacBook */
+    padding: 2rem;
+  }
+
+  .table th, 
+  .table td {
+    padding: 1rem 1.2rem; /* Ajustamos el padding para pantallas medianas */
+    font-size: 1.4rem; /* Ajustamos el tamaño de la fuente */
+  }
+
+  .table button {
+    padding: 0.7rem 1.1rem; /* Ajustamos el tamaño de los botones */
+  }
+
+  .dashboard h2 {
+    font-size: 2.2rem; /* Ajustamos el tamaño del título */
+  }
 }

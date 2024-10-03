@@ -32,7 +32,14 @@ const getOrders = async (req, res) => {
         { contactName: { [Op.iLike]: `%${search}%` } },
         { deceasedName: { [Op.iLike]: `%${search}%` } },
         { email: { [Op.iLike]: `%${search}%` } },
+        Sequelize.literal(`"tracking"::text ILIKE '%${search}%'`),
       ];
+    }
+
+    if (status === 'inProgress') {
+      const oneWeekAgo = new Date();
+      oneWeekAgo.setDate(oneWeekAgo.getDate() - 7);
+      where.updatedAt = { [Op.lt]: oneWeekAgo };
     }
 
     const totalOrders = await Order.count({ where });
@@ -41,7 +48,7 @@ const getOrders = async (req, res) => {
       limit: parseInt(limit),
       offset: parseInt(offset),
       where,
-      order: [['createdAt', 'DESC']],
+      order: [['updatedAt', 'DESC']],
       include: [
         {
           model: Service,
@@ -309,12 +316,11 @@ const createOrdersFromExcel = async (req, res) => {
 
       let serviceId = null;
       if (serviceName && typeof serviceName === 'string') {
-        const service = await Service.findOne({
-          where: Sequelize.where(
-            Sequelize.fn('LOWER', Sequelize.col('name')),
-            Sequelize.fn('LOWER', serviceName)
-          )
-        });
+        const services = await Service.findAll();
+        const service = services.find(service => 
+          service.name.es.toLowerCase() === serviceName.toLowerCase() ||
+          service.name.en.toLowerCase() === serviceName.toLowerCase()
+        );
         serviceId = service ? service.id : null;
       }
 

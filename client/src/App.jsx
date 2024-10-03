@@ -14,6 +14,8 @@ import Login from './components/dashboard/login/Login'
 import ProtectedRoute from './components/dashboard/ProtectedRoute'
 import Register from './components/dashboard/login/Register'
 import RegisterUser from './components/dashboard/login/RegisterUser'
+import ForgotPassword from './components/dashboard/login/forgotPassword/ForgotPassword'
+import ResetPassword from './components/dashboard/login/resetPassword/ResetPassword'
 import { useState } from 'react'
 
 function App() {
@@ -26,6 +28,8 @@ function App() {
       <Route path='/dashboard/login' element={<Login />} />
       <Route path='/dashboard/register/:token' element={<RegisterUser />} />
       <Route path='/dashboard/register' element={<Register />} />
+      <Route path='/dashboard/forgot-password' element={<ForgotPassword />} />
+      <Route path='/dashboard/reset-password/:token' element={<ResetPassword />} />
       <Route
         path='/dashboard/*'
         element={

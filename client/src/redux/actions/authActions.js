@@ -68,12 +68,6 @@ export const registerSuperAdmin = (data) => async (dispatch) => {
 
 export const generateToken = (data) => async (dispatch) => {
   const token = localStorage.getItem('token');
-  //   dispatch(logout());
-  //   return {
-  //     success: false,
-  //     message: "Token expirado. Por favor, inicia sesión nuevamente.",
-  //   };
-  // }
   try {
     const response = await instance.post("/users/generate-token", data, {
       headers: {
@@ -116,6 +110,50 @@ export const registerAdminWithToken = (data, token) => async (dispatch) => {
       success: false,
       message: error.response.data.message,
       info: error.response.data.info,
+    };
+  }
+};
+
+// Nueva acción para solicitar la recuperación de contraseña
+export const forgotPassword = (email) => async (dispatch) => {
+  try {
+    const response = await instance.post("/users/forgot-password", { email });
+    dispatch({
+      type: "FORGOT_PASSWORD_SUCCESS",
+      payload: response.data.message,
+    });
+    return { success: true };
+  } catch (error) {
+    console.error(error);
+    dispatch({
+      type: "FORGOT_PASSWORD_FAILURE",
+      payload: error.response.data.message,
+    });
+    return {
+      success: false,
+      message: error.response.data.message,
+    };
+  }
+};
+
+// Nueva acción para restablecer la contraseña
+export const resetPassword = (token, password) => async (dispatch) => {
+  try {
+    const response = await instance.post(`/users/reset-password/${token}`, { password });
+    dispatch({
+      type: "RESET_PASSWORD_SUCCESS",
+      payload: response.data.message,
+    });
+    return { success: true };
+  } catch (error) {
+    console.error(error);
+    dispatch({
+      type: "RESET_PASSWORD_FAILURE",
+      payload: error.response.data.message,
+    });
+    return {
+      success: false,
+      message: error.response.data.message,
     };
   }
 };

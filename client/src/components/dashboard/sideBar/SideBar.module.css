@@ -8,8 +8,10 @@
   height: 100vh;
   gap: 2rem;
   width: 12rem;
+  transition: width 0.3s ease-in-out;
 }
 
+/* Estilo para los íconos y los textos */
 .divIcon {
   display: flex;
   flex-direction: column;
@@ -28,4 +30,52 @@
 .icon {
   font-size: 2.5rem;
   color: var(--bg-color);
+}
+
+/* Responsive para pantallas pequeñas (celulares) */
+@media (max-width: 768px) {
+  .sideBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 1rem;
+  }
+
+  .divIcon {
+    flex-direction: column;
+  }
+
+  .divIcon p {
+    display: none; /* Ocultamos los textos en celulares */
+  }
+
+  .icon {
+    font-size: 2rem; /* Reducimos el tamaño de los íconos en celulares */
+  }
+}
+
+/* Responsive para pantallas medianas (MacBook) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .sideBar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 1.5rem;
+  }
+
+  .divIcon p {
+    font-size: 1.2rem;
+  }
+
+  .icon {
+    font-size: 2.2rem;
+  }
 }

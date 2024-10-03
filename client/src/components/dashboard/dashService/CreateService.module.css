@@ -104,7 +104,6 @@
 .featureItem {
   display: flex;
   gap: 1rem;
-  /* padding: 0.5rem; */
 }
 
 .featureItem span {
@@ -169,4 +168,80 @@
 .error {
   color: #f44336;
   font-size: 1.2rem;
+}
+
+/* Responsive para pantallas pequeñas (celulares) */
+@media (max-width: 768px) {
+  .divForm {
+    flex-direction: column;
+  }
+
+  .divNamePriceDis, 
+  .divFeatures {
+    width: 100%;
+  }
+
+  .divNamePrice {
+    flex-direction: column;
+  }
+
+  .divNamePrice .divInput {
+    width: 100%;
+  }
+
+  .divInput label {
+    font-size: 1.2rem;
+  }
+
+  .divInput input,
+  .divInput textarea {
+    font-size: 1.2rem;
+    padding: 0.6rem;
+  }
+
+  .featureInput input {
+    padding: 0.6rem;
+  }
+
+  .featureItem span {
+    font-size: 1.2rem;
+  }
+}
+
+/* Responsive para pantallas medianas (MacBook) */
+@media (min-width: 769px) and (max-width: 1280px) {
+  .divForm {
+    flex-direction: column;
+  }
+
+  .divNamePriceDis, 
+  .divFeatures {
+    width: 100%;
+  }
+
+  .divNamePrice {
+    flex-direction: column;
+  }
+
+  .divNamePrice .divInput {
+    width: 100%;
+  }
+
+  .divInput label {
+    font-size: 1.3rem;
+  }
+
+  .divInput input,
+  .divInput textarea {
+    font-size: 1.3rem;
+    padding: 0.7rem;
+  }
+
+  .featureInput input {
+    padding: 0.7rem;
+  }
+
+  .featureItem span {
+    font-size: 1.3rem;
+  }
 }

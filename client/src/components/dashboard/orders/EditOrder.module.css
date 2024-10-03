@@ -148,3 +148,54 @@
 .error {
   color: #f44336;
 }
+
+
+/* Responsive para pantallas pequeñas (celulares) */
+@media (max-width: 768px) {
+  .modalContent {
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .container h3 {
+    font-size: 2rem; /* Reducimos el tamaño del título */
+  }
+
+  .divGroupFour, .divGroupThree {
+    flex-direction: column; /* Cambiamos a columna */
+    gap: 1rem;
+  }
+
+  .formGroup {
+    width: 100%; /* Ocupa todo el ancho */
+  }
+
+  .formGroup select, 
+  .formGroup input {
+    padding: 0.6rem 1rem; /* Reducimos el padding */
+    font-size: 1.2rem; /* Ajustamos el tamaño del texto */
+  }
+
+  .divBtnSubmit button {
+    font-size: 1.5rem; /* Ajustamos el tamaño del botón */
+    padding: 0.8rem 1rem;
+  }
+}
+
+/* Responsive para pantallas medianas (MacBook) */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .container h3 {
+    font-size: 2.2rem; /* Ajustamos el tamaño del título */
+  }
+
+  .formGroup select, 
+  .formGroup input {
+    padding: 0.7rem 1rem;
+    font-size: 1.3rem; /* Ajustamos el tamaño del texto */
+  }
+
+  .divBtnSubmit button {
+    font-size: 1.8rem; /* Ajustamos el tamaño del botón */
+    padding: 0.7rem 1rem;
+  }
+}

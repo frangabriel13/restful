@@ -7,59 +7,68 @@ import { validateCreateService } from "../../../utils/validations";
 const CreateService = ({ handleCancel }) => {
   const dispatch = useDispatch();
   const [formData, setFormData] = useState({
-    name: "",
+    name: { es: "", en: "" },
     price: "",
-    disclaimers: "",
-    features: [""],
+    disclaimers: { es: "", en: "" },
+    features: { es: [], en: [] },
     isActive: true,
   });
   const [errors, setErrors] = useState({});
+  const [inputValues, setInputValues] = useState({
+    es: '',
+    en: ''
+  });
 
   const handleChange = (e) => {
+    const { name, value } = e.target;
+    const [field, lang] = name.split("_");
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value,
+      [field]: {
+        ...formData[field],
+        [lang]: value,
+      },
     });
   };
 
-  const handleFeatureChange = (index, value) => {
-    const newFeatures = [...formData.features];
-    newFeatures[index] = value;
-    setFormData({
-      ...formData,
-      features: newFeatures,
+  const handleFeatureChange = (lang, value) => {
+    setInputValues({
+      ...inputValues,
+      [lang]: value
     });
   };
 
-  // const addFeature = () => {
-  //   setFormData({
-  //     ...formData,
-  //     features: [...formData.features, ""],
-  //   });
-  // };
-  const addFeature = () => {
-    // Verificar si el último feature está vacío
-    if (formData.features[formData.features.length - 1].trim() !== "") {
-      // Agregar un nuevo feature solo si el último no está vacío
+  const addFeature = (lang) => {
+    if (inputValues[lang].trim() !== "") {
       setFormData({
         ...formData,
-        features: [...formData.features, ""]
+        features: {
+          ...formData.features,
+          [lang]: [...formData.features[lang], inputValues[lang]],
+        },
+      });
+      setInputValues({
+        ...inputValues,
+        [lang]: ''
       });
     }
   };
 
-  const removeFeature = (index) => {
-    const newFeatures = formData.features.filter((feature, i) => i !== index);
+  const removeFeature = (lang, index) => {
+    const newFeatures = formData.features[lang].filter((_, i) => i !== index);
     setFormData({
       ...formData,
-      features: newFeatures,
+      features: {
+        ...formData.features,
+        [lang]: newFeatures,
+      },
     });
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const validationErrors = validateCreateService(formData);
-    if(Object.keys(validationErrors).length > 0) {
+    if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
       return;
     }
@@ -77,14 +86,24 @@ const CreateService = ({ handleCancel }) => {
           <div className={s.divNamePriceDis}>
             <div className={s.divNamePrice}>
               <div className={s.divInput}>
-                <label>Name</label>
+                <label>Name (ES)</label>
                 <input
                   type="text"
-                  name="name"
-                  value={formData.name}
+                  name="name_es"
+                  value={formData.name.es}
                   onChange={handleChange}
                 />
-                {errors.name && <p className={s.error}>{errors.name}</p>}
+                {errors.name && <p className={s.error}>{errors.name.es}</p>}
+              </div>
+              <div className={s.divInput}>
+                <label>Name (EN)</label>
+                <input
+                  type="text"
+                  name="name_en"
+                  value={formData.name.en}
+                  onChange={handleChange}
+                />
+                {errors.name && <p className={s.error}>{errors.name.en}</p>}
               </div>
               <div className={s.divInput}>
                 <label>Price</label>
@@ -92,41 +111,66 @@ const CreateService = ({ handleCancel }) => {
                   type="number"
                   name="price"
                   value={formData.price}
-                  onChange={handleChange}
+                  onChange={(e) => setFormData({ ...formData, price: e.target.value })}
                   step="0.01"
                 />
                 {errors.price && <p className={s.error}>{errors.price}</p>}
               </div>
             </div>
             <div className={s.divInput}>
-              <label>Disclaimers</label>
+              <label>Disclaimers (ES)</label>
               <textarea
-                name="disclaimers"
-                value={formData.disclaimers}
+                name="disclaimers_es"
+                value={formData.disclaimers.es}
                 onChange={handleChange}
               />
-              {errors.disclaimers && <p className={s.error}>{errors.disclaimers}</p>}
+              {errors.disclaimers && <p className={s.error}>{errors.disclaimers.es}</p>}
+            </div>
+            <div className={s.divInput}>
+              <label>Disclaimers (EN)</label>
+              <textarea
+                name="disclaimers_en"
+                value={formData.disclaimers.en}
+                onChange={handleChange}
+              />
+              {errors.disclaimers && <p className={s.error}>{errors.disclaimers.en}</p>}
             </div>
           </div>
           <div className={s.divFeatures}>
-            <label>Features</label>
+            <label>Features (ES)</label>
             <div className={s.featureInput}>
               <input
                 type="text"
-                value={formData.features[formData.features.length - 1]}
-                onChange={(e) => handleFeatureChange(formData.features.length - 1, e.target.value)}
+                value={inputValues.es}
+                onChange={(e) => handleFeatureChange("es", e.target.value)}
               />
-              <button type="button" onClick={addFeature}>+</button>
+              <button type="button" onClick={() => addFeature("es")}>+</button>
             </div>
-            {
-              formData.features.slice(0, -1).map((feature, index) => (
-                <div key={index} className={s.featureItem}>
-                  <span>{feature}</span>
-                  <button type="button" onClick={() => removeFeature(index)}>-</button>
-                </div>
-              ))
-            }
-            {errors.features && <p className={s.error}>{errors.features}</p>}
+            {formData.features.es.map((feature, index) => (
+              <div key={index} className={s.featureItem}>
+                <span>{feature}</span>
+                <button type="button" onClick={() => removeFeature("es", index)}>-</button>
+              </div>
+            ))}
+            {errors.features && <p className={s.error}>{errors.features.es}</p>}
+          </div>
+          <div className={s.divFeatures}>
+            <label>Features (EN)</label>
+            <div className={s.featureInput}>
+              <input
+                type="text"
+                value={inputValues.en}
+                onChange={(e) => handleFeatureChange("en", e.target.value)}
+              />
+              <button type="button" onClick={() => addFeature("en")}>+</button>
+            </div>
+            {formData.features.en.map((feature, index) => (
+              <div key={index} className={s.featureItem}>
+                <span>{feature}</span>
+                <button type="button" onClick={() => removeFeature("en", index)}>-</button>
+              </div>
+            ))}
+            {errors.features && <p className={s.error}>{errors.features.en}</p>}
           </div>
         </div>
         <div className={s.divBtn}>
@@ -135,7 +179,7 @@ const CreateService = ({ handleCancel }) => {
         </div>
       </form>
     </div>
-  )
+  );
 };
 
 

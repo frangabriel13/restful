@@ -1,24 +1,29 @@
 export const validateForm = (formData) => {
   const errors = {};
 
-  if(!formData.name) {
+  if (!formData.name) {
     errors.name = "El nombre es requerido";
   }
 
-  if(!formData.lastname) {
+  if (!formData.lastname) {
     errors.lastName = "El apellido es requerido";
   }
 
-  if(!formData.age) {
+  if (!formData.age) {
     errors.age = "La edad es requerida";
   }
 
-  if(!formData.service) {
+  if (!formData.service) {
     errors.type = "El tipo de consulta es requerido";
   }
 
-  if(!formData.phone) {
+  if (!formData.phone) {
     errors.phone = "El teléfono es requerido";
+  } else {
+    const phoneDigits = formData.phone.replace(/\D/g, ''); // Eliminar todos los caracteres que no sean dígitos
+    if (phoneDigits.length < 10) { // Verificar si tiene menos de 10 dígitos
+      errors.phone = "El teléfono debe tener al menos 10 dígitos";
+    }
   }
 
   return errors;
@@ -95,11 +100,16 @@ export const validateCreateService = (formData) => {
     errors.disclaimers = "Los disclaimers son requeridos";
   }
 
-  // if(formData.features.length === 0) {
-  //   errors.features = "Al menos un feature es requerido";
+  // if(formData.features.length === 0 || formData.features.every(feature => feature.trim() === "")) {
+  //   errors.features = "Al menos un feature válido es requerido";
   // }
-  if(formData.features.length === 0 || formData.features.every(feature => feature.trim() === "")) {
-    errors.features = "Al menos un feature válido es requerido";
+  if (
+    formData.features.es.length === 0 ||
+    formData.features.es.every((feature) => feature.trim() === "") ||
+    formData.features.en.length === 0 ||
+    formData.features.en.every((feature) => feature.trim() === "")
+  ) {
+    errors.features = "Al menos un feature válido es requerido en ambos idiomas";
   }
 
   return errors;

@@ -14,7 +14,7 @@ import UpdateModal from "./modals/UpdateModal";
 import TrackingModal from "./modals/TrackingModal";
 import ExcelModal from "./modals/ExcelModal";
 
-const OrdersTable = () => {
+const OrdersTable = ({ openModal }) => {
   const dispatch = useDispatch();
   const orders = useSelector((state) => state.order.orders);
   const totalOrders = useSelector((state) => state.order.totalOrders);
@@ -44,6 +44,8 @@ const OrdersTable = () => {
       status = "pending";
     } else if (selectedTab === "soldNotSold") {
       status = "sold,notSold";
+    } else if (selectedTab === "noUpdates") {
+      status = "inProgress";
     }
     dispatch(getOrders(currentPage, limit, status, service, user, search, funeralHome));
     dispatch(getFuneralHomes());
@@ -87,7 +89,7 @@ const OrdersTable = () => {
 
   const getServiceName = (id) => {
     const service = services.find((service) => service.id === id);
-    return service ? service.name : "Not sure";
+    return service ? service.name.en : "Not sure";
   };
 
   const getUserName = (id) => {
@@ -95,9 +97,6 @@ const OrdersTable = () => {
     return user ? user.name : "N/A";
   };
 
-  // const formatDate = (dateString) => {
-  //   return dateString.split('T')[0];
-  // };
   const formatDate = (dateString) => {
     const [year, month, day] = dateString.split('T')[0].split('-');
     return `${month}-${day}-${year}`;
@@ -129,24 +128,40 @@ const OrdersTable = () => {
 
   const totalPages = Math.ceil(totalOrders / limit);
 
-  console.log(orders);
-
   const handleUpdateOrder = (orderId, formData) => {
     dispatch(updateOrder(orderId, formData));
   };
 
-  console.log('orders', orders);
+  // Función para asignar la clase según el estado
+  const getStatusClass = (status) => {
+    switch (status) {
+      case "new":
+        return s.rowNew;
+      case "inProgress":
+        return s.rowInProgress;
+      case "pending":
+        return s.rowPending;
+      case "notSold":
+        return s.rowNotSold;
+      default:
+        return "";
+    }
+  };
 
   return (
     <div className={s.dashboard}>
       <div className={s.divTitle}>
         <h2>Orders</h2>
-        <button onClick={handleShowExcelModal}>Import</button>
+        <div className={s.divBtnOrder}>
+          <button onClick={openModal}>Create</button>
+          <button onClick={handleShowExcelModal}>Import</button>
+        </div>
       </div>
       <div className={s.tabs}>
         <button className={selectedTab === "newInProgress" ? s.active : ""} onClick={() => handleTabChange("newInProgress")}>New - in Progress</button>
         <button className={selectedTab === "pending" ? s.active : ""} onClick={() => handleTabChange("pending")}>Pending</button>
         <button className={selectedTab === "soldNotSold" ? s.active : ""} onClick={() => handleTabChange("soldNotSold")}>Sold - Not Sold</button>
+        <button className={selectedTab === "noUpdates" ? s.active : ""} onClick={() => handleTabChange("noUpdates")}>No Updates (7+ days)</button>
       </div>
       <Filters 
         service={service}
@@ -161,65 +176,67 @@ const OrdersTable = () => {
         funeralHomes={funeralHomes}
         handleFuneralHomeChange={handleFuneralHomeChange}
       />
-      <table className={s.table}>
-        <thead>
-          <tr>
-            <th>Status</th>
-            <th>Contact Day</th>
-            <th>Updates</th>
-            <th>Insurance</th>
-            <th>Funeral Home</th>
-            <th>Tracking</th>
-            <th>Price</th>
-            <th>Contact Name</th>
-            <th>Phone Number</th>
-            <th>Email</th>
-            <th>Relationship</th>
-            <th>Service Type</th>
-            <th>Deceased Name</th>
-            <th>Age</th>
-            <th>Source</th>
-            <th>Assigned</th>
-            <th>Comission</th>
-            <th></th>
-          </tr>
-        </thead>
-        <tbody>
-          {orders.map((order) => (
-            <tr key={order.id}>
-              <td>{order.status}</td>
-              <td>
-                {order.statusDate.date ? formatDate(order.statusDate.date) : 'Fecha no disponible'} by {order.statusDate.updatedBy}
-              </td>
-              <td>
-                <button className={s.btnMore} onClick={() => handleShowUpdates(order.updates)}>Ver más</button>
-              </td>
-              <td>{order.insurance}</td>
-              <td>{getFuneralHomeName(order.funeralHomeId)}</td>
-              <td>
-                <button className={s.btnMore} onClick={() => handleShowTracking(order.tracking)}>Ver más</button>
-              </td>
-              <td>{order.price}</td>
-              <td>{order.contactName}</td>
-              <td>{order.phoneNumber}</td>
-              <td>{order.email}</td>
-              <td>{order.relationship}</td>
-              <td>{getServiceName(order.serviceId)}</td>
-              <td>{order.deceasedName}</td>
-              <td>{order.age}</td>
-              <td>{order.source}</td>
-              <td>{getUserName(order.userId)}</td>
-              <td>{order.comission.join(", ")}</td>
-              <td>
-                <div className={s.divIcons}>
-                  <CiEdit onClick={() => handleEdit(order)} className={s.iconEdit} />
-                  <MdDeleteOutline onClick={() => handleDelete(order.id)} className={s.iconDelete} />
-                </div>
-              </td>
+      <div className={s.tableContainer}>
+        <table className={s.table}>
+          <thead>
+            <tr>
+              <th>Status</th>
+              <th>Contact Day</th>
+              <th>Updates</th>
+              <th>Insurance</th>
+              <th>Funeral Home</th>
+              <th>Tracking</th>
+              <th>Price</th>
+              <th>Contact Name</th>
+              <th>Phone Number</th>
+              <th>Email</th>
+              <th>Relationship</th>
+              <th>Service Type</th>
+              <th>Deceased Name</th>
+              <th>Age</th>
+              <th>Source</th>
+              <th>Assigned</th>
+              <th>Comission</th>
+              <th></th>
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {orders.map((order) => (
+              <tr key={order.id}>
+                <td className={getStatusClass(order.status)}>{order.status}</td>
+                <td>
+                  {order.statusDate.date ? formatDate(order.statusDate.date) : 'Fecha no disponible'} by {order.statusDate.updatedBy}
+                </td>
+                <td>
+                  <button className={s.btnMore} onClick={() => handleShowUpdates(order.updates)}>Ver más</button>
+                </td>
+                <td>{order.insurance}</td>
+                <td>{getFuneralHomeName(order.funeralHomeId)}</td>
+                <td>
+                  <button className={s.btnMore} onClick={() => handleShowTracking(order.tracking)}>Ver más</button>
+                </td>
+                <td>{order.price}</td>
+                <td>{order.contactName}</td>
+                <td>{order.phoneNumber}</td>
+                <td>{order.email}</td>
+                <td>{order.relationship}</td>
+                <td>{getServiceName(order.serviceId)}</td>
+                <td>{order.deceasedName}</td>
+                <td>{order.age}</td>
+                <td>{order.source}</td>
+                <td>{getUserName(order.userId)}</td>
+                <td>{order.comission.join(", ")}</td>
+                <td>
+                  <div className={s.divIcons}>
+                    <CiEdit onClick={() => handleEdit(order)} className={s.iconEdit} />
+                    <MdDeleteOutline onClick={() => handleDelete(order.id)} className={s.iconDelete} />
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       {showEdit && <EditOrder order={selectedOrder} onClose={() => setShowEdit(false)} updateOrder={handleUpdateOrder} />}
       {showUpdateModal && <UpdateModal updates={selectedUpdates} onClose={() => setShowUpdateModal(false)} />}
       {showTrackingModal && <TrackingModal tracking={selectedTracking} onClose={() => setShowTrackingModal(false)} />}
@@ -229,5 +246,5 @@ const OrdersTable = () => {
   );
 };
 
-
 export default OrdersTable;
+
