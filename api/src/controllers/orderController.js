@@ -316,12 +316,11 @@ const createOrdersFromExcel = async (req, res) => {
 
       let serviceId = null;
       if (serviceName && typeof serviceName === 'string') {
-        const service = await Service.findOne({
-          where: Sequelize.where(
-            Sequelize.fn('LOWER', Sequelize.col('name')),
-            Sequelize.fn('LOWER', serviceName)
-          )
-        });
+        const services = await Service.findAll();
+        const service = services.find(service => 
+          service.name.es.toLowerCase() === serviceName.toLowerCase() ||
+          service.name.en.toLowerCase() === serviceName.toLowerCase()
+        );
         serviceId = service ? service.id : null;
       }
 
