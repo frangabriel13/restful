@@ -1,5 +1,3 @@
-
-
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import s from "./CreateService.module.css";
@@ -12,10 +10,14 @@ const CreateService = ({ handleCancel }) => {
     name: { es: "", en: "" },
     price: "",
     disclaimers: { es: "", en: "" },
-    features: { es: [""], en: [""] },
+    features: { es: [], en: [] },
     isActive: true,
   });
   const [errors, setErrors] = useState({});
+  const [inputValues, setInputValues] = useState({
+    es: '',
+    en: ''
+  });
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -29,26 +31,25 @@ const CreateService = ({ handleCancel }) => {
     });
   };
 
-  const handleFeatureChange = (lang, index, value) => {
-    const newFeatures = [...formData.features[lang]];
-    newFeatures[index] = value;
-    setFormData({
-      ...formData,
-      features: {
-        ...formData.features,
-        [lang]: newFeatures,
-      },
+  const handleFeatureChange = (lang, value) => {
+    setInputValues({
+      ...inputValues,
+      [lang]: value
     });
   };
 
   const addFeature = (lang) => {
-    if (formData.features[lang][formData.features[lang].length - 1].trim() !== "") {
+    if (inputValues[lang].trim() !== "") {
       setFormData({
         ...formData,
         features: {
           ...formData.features,
-          [lang]: [...formData.features[lang], ""],
+          [lang]: [...formData.features[lang], inputValues[lang]],
         },
+      });
+      setInputValues({
+        ...inputValues,
+        [lang]: ''
       });
     }
   };
@@ -140,12 +141,12 @@ const CreateService = ({ handleCancel }) => {
             <div className={s.featureInput}>
               <input
                 type="text"
-                value={formData.features.es[formData.features.es.length - 1]}
-                onChange={(e) => handleFeatureChange("es", formData.features.es.length - 1, e.target.value)}
+                value={inputValues.es}
+                onChange={(e) => handleFeatureChange("es", e.target.value)}
               />
               <button type="button" onClick={() => addFeature("es")}>+</button>
             </div>
-            {formData.features.es.slice(0, -1).map((feature, index) => (
+            {formData.features.es.map((feature, index) => (
               <div key={index} className={s.featureItem}>
                 <span>{feature}</span>
                 <button type="button" onClick={() => removeFeature("es", index)}>-</button>
@@ -158,12 +159,12 @@ const CreateService = ({ handleCancel }) => {
             <div className={s.featureInput}>
               <input
                 type="text"
-                value={formData.features.en[formData.features.en.length - 1]}
-                onChange={(e) => handleFeatureChange("en", formData.features.en.length - 1, e.target.value)}
+                value={inputValues.en}
+                onChange={(e) => handleFeatureChange("en", e.target.value)}
               />
               <button type="button" onClick={() => addFeature("en")}>+</button>
             </div>
-            {formData.features.en.slice(0, -1).map((feature, index) => (
+            {formData.features.en.map((feature, index) => (
               <div key={index} className={s.featureItem}>
                 <span>{feature}</span>
                 <button type="button" onClick={() => removeFeature("en", index)}>-</button>
