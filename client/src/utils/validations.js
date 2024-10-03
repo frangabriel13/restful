@@ -21,8 +21,8 @@ export const validateForm = (formData) => {
     errors.phone = "El teléfono es requerido";
   } else {
     const phoneDigits = formData.phone.replace(/\D/g, ''); // Eliminar todos los caracteres que no sean dígitos
-    if (phoneDigits.length !== 10) { // Verificar si tiene exactamente 10 dígitos
-      errors.phone = "El teléfono debe tener exactamente 10 dígitos";
+    if (phoneDigits.length < 10) { // Verificar si tiene menos de 10 dígitos
+      errors.phone = "El teléfono debe tener al menos 10 dígitos";
     }
   }
 
