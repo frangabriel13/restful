@@ -7,7 +7,7 @@ import { validateForm } from "../../../utils/validations";
 import { getServices } from "../../../redux/actions/serviceActions";
 import { createOrder } from "../../../redux/actions/orderActions";
 import { useDispatch, useSelector } from "react-redux";
-import { translations } from "../../translations"; // Importa las traducciones
+import { translations } from "../../translations";
 
 const ContactForm = ({ language }) => {
   const dispatch = useDispatch();
@@ -22,7 +22,7 @@ const ContactForm = ({ language }) => {
   });
   const [errors, setErrors] = useState({});
   const [selectedServiceName, setSelectedServiceName] = useState("");
-  const t = translations[language]; // Traducciones según el idioma
+  const t = translations[language];
 
   useEffect(() => {
     dispatch(getServices());
@@ -67,7 +67,7 @@ const ContactForm = ({ language }) => {
   const handleServiceChange = (e) => {
     const selectedService = services.find(service => service.id === parseInt(e.target.value));
     setForm({ ...form, service: e.target.value });
-    setSelectedServiceName(selectedService ? selectedService.name : t.notSure);
+    setSelectedServiceName(selectedService ? selectedService.name[language] : t.notSure);
   };
 
   return (
@@ -98,7 +98,7 @@ const ContactForm = ({ language }) => {
                 <option value="">{t.selectService}</option>
                 {services.map((service) => (
                   <option key={service.id} value={service.id}>
-                    {service.name}
+                    {service.name[language]}
                   </option>
                 ))}
                 <option value="not_sure">{t.notSure}</option>
