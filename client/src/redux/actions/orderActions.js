@@ -1,16 +1,5 @@
 import { instance, instanceFile } from "../../utils/axiosConfig";
 
-// export const getOrders = () => async (dispatch) => {
-//   try {
-//     const response = await instance.get("orders");
-//     dispatch({
-//       type: "GET_ORDERS",
-//       payload: response.data,
-//     });
-//   } catch(error) {
-//     console.error(error);
-//   }
-// };
 export const getOrders = (page = 1, limit = 12, status, service, user, search, funeralHome, additionalStatus) => async (dispatch) => {
   try {
     let url = `orders?page=${page}&limit=${limit}`;
@@ -95,6 +84,26 @@ export const createOrdersFromExcel = (file) => async (dispatch) => {
       payload: response.data,
     });
   } catch(error) {
+    console.error(error);
+  }
+};
+
+export const exportOrdersToExcel = () => async (dispatch) => {
+  try {
+    const response = await instanceFile.get("orders/export/excel", {
+      responseType: 'blob' // Asegúrate de manejar la respuesta como un blob
+    });
+    const url = window.URL.createObjectURL(new Blob([response.data]));
+    const link = document.createElement('a');
+    link.href = url;
+    link.setAttribute('download', 'orders.xlsx'); // Nombre del archivo a descargar
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    dispatch({
+      type: "EXPORT_ORDERS_TO_EXCEL",
+    });
+  } catch (error) {
     console.error(error);
   }
 };
