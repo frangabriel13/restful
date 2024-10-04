@@ -6,7 +6,7 @@ const xlsx = require('xlsx');
 const { mapStatus, parseTracking } = require('../utils/helpers');
 
 const getOrders = async (req, res) => {
-  const { page = 1, limit = 12, status, service, user, search, funeralHome } = req.query;
+  const { page = 1, limit = 12, status, service, user, search, funeralHome, additionalStatus } = req.query;
   const offset = (page - 1) * limit;
 
   try {
@@ -17,6 +17,9 @@ const getOrders = async (req, res) => {
       } else {
         where.status = status;
       }
+    }
+    if (additionalStatus) {
+      where.status = additionalStatus;
     }
     if (service) {
       where.serviceId = service;
@@ -275,7 +278,8 @@ const createOrdersFromExcel = async (req, res) => {
         'Relationship': relationship,
         'Deceased Name': deceasedName,
         'Service Type': serviceName,
-        'Asignado A:': userName
+        'Asignado A:': userName,
+        'COMISION': comission,
       } = row;
 
       contactName = contactName || 'No';
@@ -330,7 +334,7 @@ const createOrdersFromExcel = async (req, res) => {
         contactName,
         phoneNumber,
         email,
-        comission: [],
+        comission,
         relationship,
         deceasedName,
         serviceId,

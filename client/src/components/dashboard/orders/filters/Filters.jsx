@@ -1,20 +1,36 @@
 import React from "react";
 import s from "./Filters.module.css";
 
-const Filters = ({ status, handleStatusChange, service, handleServiceChange, services, user, handleUserChange, users, search, handleSearchChange, funeralHomes, handleFuneralHomeChange, funeralHome }) => {
+const Filters = ({ 
+  status, 
+  handleStatusChange, 
+  service, 
+  handleServiceChange, 
+  services, 
+  user, 
+  handleUserChange, 
+  users, 
+  search, 
+  handleSearchChange, 
+  funeralHomes, 
+  handleFuneralHomeChange, 
+  funeralHome, 
+  additionalStatus, 
+  handleAdditionalStatusChange,
+  statusOptions }) => {
   return (
     <div className={s.container}>
-      {/* <div className={s.divFilter}>
-        <label htmlFor="statusFilter">Status: </label>
-        <select id="statusFilter" value={status} onChange={handleStatusChange}>
+      <div className={s.divFilter}>
+        <label htmlFor="additionalStatusFilter">Filter by Status: </label>
+        <select id="additionalStatusFilter" value={additionalStatus} onChange={handleAdditionalStatusChange}>
           <option value="">All</option>
-          <option value="new">New</option>
-          <option value="inProgress">In Progress</option>
-          <option value="pending">Pending</option>
-          <option value="sold">Sold</option>
-          <option value="notSold">Not Sold</option>
+          {statusOptions.map((status) => (
+            <option key={status} value={status}>
+              {status}
+            </option>
+          ))}
         </select>
-      </div> */}
+      </div>
       <div className={s.divFilter}>
         <label htmlFor="serviceFilter">Service: </label>
         <select id="serviceFilter" value={service} onChange={handleServiceChange}>
