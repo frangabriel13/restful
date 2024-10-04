@@ -34,7 +34,15 @@ const OrdersTable = ({ openModal }) => {
   const [showTrackingModal, setShowTrackingModal] = useState(false);
   const [selectedTracking, setSelectedTracking] = useState([]);
   const [showExcelModal, setShowExcelModal] = useState(false);
+  const [additionalStatus, setAdditionalStatus] = useState("");
   const limit = 12;
+
+  const statusOptions = {
+    newInProgress: ["new", "inProgress"],
+    pending: ["pending"],
+    soldNotSold: ["sold", "notSold"],
+    noUpdates: ["inProgress"]
+  };
 
   useEffect(() => {
     let status = "";
@@ -47,15 +55,16 @@ const OrdersTable = ({ openModal }) => {
     } else if (selectedTab === "noUpdates") {
       status = "inProgress";
     }
-    dispatch(getOrders(currentPage, limit, status, service, user, search, funeralHome));
+    dispatch(getOrders(currentPage, limit, status, service, user, search, funeralHome, additionalStatus));
     dispatch(getFuneralHomes());
     dispatch(getServices());
     dispatch(getUsers());
-  }, [dispatch, currentPage, limit, selectedTab, service, user, search, funeralHome]);
+  }, [dispatch, currentPage, limit, selectedTab, service, user, search, funeralHome, additionalStatus]);
 
   const handleTabChange = (tab) => {
     setSelectedTab(tab);
     setCurrentPage(1);
+    setAdditionalStatus("");
   };
 
   const handleServiceChange = (e) => {
@@ -75,6 +84,11 @@ const OrdersTable = ({ openModal }) => {
 
   const handleFuneralHomeChange = (e) => {
     setFuneralHome(e.target.value);
+    setCurrentPage(1);
+  };
+
+  const handleAdditionalStatusChange = (e) => {
+    setAdditionalStatus(e.target.value);
     setCurrentPage(1);
   };
 
@@ -175,6 +189,9 @@ const OrdersTable = ({ openModal }) => {
         funeralHome={funeralHome}
         funeralHomes={funeralHomes}
         handleFuneralHomeChange={handleFuneralHomeChange}
+        additionalStatus={additionalStatus}
+        handleAdditionalStatusChange={handleAdditionalStatusChange}
+        statusOptions={statusOptions[selectedTab]}
       />
       <div className={s.tableContainer}>
         <table className={s.table}>
