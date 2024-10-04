@@ -6,10 +6,10 @@ const upload = require('../utils/multer.js');
 const router = Router();
 
 router.get('/', getOrders);
+router.get('/export-excel', exportOrdersToExcel);
 router.get('/:id', getOrderById);
 router.post('/', createOrder);
 router.post('/excel', upload.single('file'), createOrdersFromExcel);
-router.get('/export-excel', exportOrdersToExcel);
 router.put('/:id', updateOrder);
 router.delete('/:id', deleteOrder);
 

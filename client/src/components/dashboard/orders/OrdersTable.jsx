@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import s from "./OrdersTable.module.css";
-import { getOrders, deleteOrder, updateOrder, createOrdersFromExcel } from "../../../redux/actions/orderActions";
+import { getOrders, deleteOrder, updateOrder, createOrdersFromExcel, exportOrdersToExcel } from "../../../redux/actions/orderActions";
 import { getFuneralHomes } from "../../../redux/actions/funeralHomeActions";
 import { getServices } from "../../../redux/actions/serviceActions";
 import { getUsers } from "../../../redux/actions/userActions";
@@ -140,6 +140,10 @@ const OrdersTable = ({ openModal }) => {
     setShowExcelModal(false);
   };
 
+  const handleExportExcel = () => {
+    dispatch(exportOrdersToExcel());
+  };
+
   const totalPages = Math.ceil(totalOrders / limit);
 
   const handleUpdateOrder = (orderId, formData) => {
@@ -169,6 +173,7 @@ const OrdersTable = ({ openModal }) => {
         <div className={s.divBtnOrder}>
           <button onClick={openModal}>Create</button>
           <button onClick={handleShowExcelModal}>Import</button>
+          <button onClick={handleExportExcel}>Export</button>
         </div>
       </div>
       <div className={s.tabs}>

@@ -90,7 +90,7 @@ export const createOrdersFromExcel = (file) => async (dispatch) => {
 
 export const exportOrdersToExcel = () => async (dispatch) => {
   try {
-    const response = await instanceFile.get("orders/export/excel", {
+    const response = await instanceFile.get("orders/export-excel", {
       responseType: 'blob' // Asegúrate de manejar la respuesta como un blob
     });
     const url = window.URL.createObjectURL(new Blob([response.data]));
