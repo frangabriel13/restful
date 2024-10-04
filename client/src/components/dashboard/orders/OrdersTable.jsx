@@ -225,7 +225,7 @@ const OrdersTable = ({ openModal }) => {
                 <td>{order.age}</td>
                 <td>{order.source}</td>
                 <td>{getUserName(order.userId)}</td>
-                <td>{order.comission.join(", ")}</td>
+                <td>{order.comission}</td>
                 <td>
                   <div className={s.divIcons}>
                     <CiEdit onClick={() => handleEdit(order)} className={s.iconEdit} />

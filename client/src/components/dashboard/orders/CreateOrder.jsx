@@ -22,7 +22,7 @@ const CreateOrder = ({ closeModal }) => {
     contactName: "",
     phoneNumber: "",
     email: "",
-    comission: [],
+    comission: "",
     relationship: "",
     deceasedName: "",
     age: "",
@@ -32,7 +32,6 @@ const CreateOrder = ({ closeModal }) => {
     createdBy: authUserName,
   });
   const [comment, setComment] = useState("");
-  const [selectedComission, setSelectedComission] = useState("");
   const [errors, setErrors] = useState({});
 
   useEffect(() => {
@@ -66,7 +65,7 @@ const CreateOrder = ({ closeModal }) => {
       contactName: "",
       phoneNumber: "",
       email: "",
-      comission: [],
+      comission: "",
       relationship: "",
       deceasedName: "",
       age: "",
@@ -76,7 +75,6 @@ const CreateOrder = ({ closeModal }) => {
       createdBy: authUserName,
     });
     setComment("");
-    setSelectedComission("");
     setErrors({});
   };
 
@@ -99,28 +97,6 @@ const CreateOrder = ({ closeModal }) => {
     setForm({
       ...form,
       tracking: newTracking,
-    });
-  };
-
-  const handleComissionChange = (e) => {
-    setSelectedComission(e.target.value);
-  };
-
-  const addComission = () => {
-    if (selectedComission && !form.comission.includes(selectedComission)) {
-      setForm({
-        ...form,
-        comission: [...form.comission, selectedComission],
-      });
-      setSelectedComission("");
-    }
-  };
-
-  const removeComission = (index) => {
-    const newComission = form.comission.filter((_, i) => i !== index);
-    setForm({
-      ...form,
-      comission: newComission,
     });
   };
 
@@ -244,22 +220,15 @@ const CreateOrder = ({ closeModal }) => {
                 </select>
               </div>
               <div className={s.formGroup}>
-                <h4>Comission</h4>
-                <select value={selectedComission} onChange={handleComissionChange} className={s.select}>
-                  <option value="">Select User</option>
-                  {users.map((user) => (
-                    <option key={user.id} value={user.name}>
-                      {user.name}
-                    </option>
-                  ))}
-                </select>
-                <button type="button" onClick={addComission} className={s.button}>Add Comission</button>
-                {form.comission.map((com, index) => (
-                  <div key={index} className={s.comment}>
-                    <p>{com}</p>
-                    <button type="button" onClick={() => removeComission(index)} className={s.removeButton}>Remove</button>
-                  </div>
-                ))}
+                <label htmlFor="comission">Comission</label>
+                <input
+                  type="text"
+                  name="comission"
+                  value={form.comission}
+                  onChange={handleChange}
+                  placeholder="Comission"
+                  className={s.input}
+                />
               </div>
               <div className={s.formGroup}>
                 <h4>Tracking</h4>
@@ -288,5 +257,6 @@ const CreateOrder = ({ closeModal }) => {
     </div>
   )
 };
+
 
 export default CreateOrder;
