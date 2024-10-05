@@ -382,12 +382,15 @@ const exportOrdersToExcel = async (req, res) => {
       'Service Type': order.service ? order.service.name.en : 'No',
       'Price': order.price,
       'Comission': order.comission,
-      // 'Tracking': order.tracking,
       'Tracking': order.tracking ? order.tracking.map(t => t.track).join('/ ') : 'No',
       'User': order.user ? order.user.name : 'No',
       'Funeral Home': order.funeralHome ? order.funeralHome.name : 'No',
       'Status Date': order.statusDate.date,
-      'Updated By': order.statusDate.updatedBy
+      'Updated By': order.statusDate.updatedBy,
+      'Contact Date': order.createdAt ? order.createdAt.toISOString().split('T')[0] : 'No',
+      'Insurance': order.insurance,
+      'Age': order.age,
+      'Source': order.source,
     }));
 
     // Crear un nuevo libro de trabajo y una hoja de cálculo
