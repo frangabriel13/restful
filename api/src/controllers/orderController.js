@@ -360,6 +360,64 @@ const createOrdersFromExcel = async (req, res) => {
   }
 };
 
+const exportOrdersToExcel = async (req, res) => {
+  try {
+    // Obtener las órdenes desde la base de datos
+    const orders = await Order.findAll({
+      include: [
+        { model: User, as: 'user' },
+        { model: FuneralHome, as: 'funeralHome' },
+        { model: Service, as: 'service' }
+      ]
+    });
+
+    // Convertir las órdenes a un formato adecuado para la exportación
+    const data = orders.map(order => ({
+      'Status': order.status,
+      'Contact Name': order.contactName,
+      'Phone Number': order.phoneNumber,
+      'Email': order.email,
+      'Relationship': order.relationship,
+      'Deceased Name': order.deceasedName,
+      'Service Type': order.service ? order.service.name.en : 'No',
+      'Price': order.price,
+      'Comission': order.comission,
+      'Tracking': order.tracking,
+      'User': order.user ? order.user.name : 'No',
+      'Funeral Home': order.funeralHome ? order.funeralHome.name : 'No',
+      'Status Date': order.statusDate.date,
+      'Updated By': order.statusDate.updatedBy
+    }));
+
+    // Crear un nuevo libro de trabajo y una hoja de cálculo
+    const workbook = xlsx.utils.book_new();
+    const worksheet = xlsx.utils.json_to_sheet(data);
+
+    // Agregar la hoja de cálculo al libro de trabajo
+    xlsx.utils.book_append_sheet(workbook, worksheet, 'Orders');
+
+    // Definir la ruta del archivo
+    const filePath = path.join(__dirname, 'orders.xlsx');
+
+    // Escribir el archivo Excel en el sistema de archivos
+    xlsx.writeFile(workbook, filePath);
+
+    // Enviar el archivo al cliente como una respuesta de descarga
+    res.download(filePath, 'orders.xlsx', (err) => {
+      if (err) {
+        console.log(err);
+        res.status(500).json({ message: 'Error al descargar el archivo' });
+      }
+
+      // Eliminar el archivo después de enviarlo
+      fs.unlinkSync(filePath);
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
+};
+
 
 module.exports = {
   getOrders,
@@ -368,4 +426,5 @@ module.exports = {
   updateOrder,
   deleteOrder,
   createOrdersFromExcel,
+  exportOrdersToExcel,
 };
