@@ -379,7 +379,7 @@ const exportOrdersToExcel = async (req, res) => {
       'Email': order.email,
       'Relationship': order.relationship,
       'Deceased Name': order.deceasedName,
-      'Service Type': order.service ? order.service.name : 'No',
+      'Service Type': order.service ? order.service.name.en : 'No',
       'Price': order.price,
       'Comission': order.comission,
       'Tracking': order.tracking,

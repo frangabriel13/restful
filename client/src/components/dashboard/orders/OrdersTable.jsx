@@ -37,6 +37,8 @@ const OrdersTable = ({ openModal }) => {
   const [additionalStatus, setAdditionalStatus] = useState("");
   const limit = 12;
 
+  console.log("orders", orders);
+
   const statusOptions = {
     newInProgress: ["new", "inProgress"],
     pending: ["pending"],
