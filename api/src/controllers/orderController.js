@@ -6,7 +6,7 @@ const xlsx = require('xlsx');
 const { mapStatus, parseTracking } = require('../utils/helpers');
 
 const getOrders = async (req, res) => {
-  const { page = 1, limit = 12, status, service, user, search, funeralHome } = req.query;
+  const { page = 1, limit = 12, status, service, user, search, funeralHome, additionalStatus } = req.query;
   const offset = (page - 1) * limit;
 
   try {
@@ -17,6 +17,9 @@ const getOrders = async (req, res) => {
       } else {
         where.status = status;
       }
+    }
+    if (additionalStatus) {
+      where.status = additionalStatus;
     }
     if (service) {
       where.serviceId = service;
@@ -251,6 +254,111 @@ const deleteOrder = async (req, res) => {
   }
 };
 
+// const createOrdersFromExcel = async (req, res) => {
+//   const filePath = req.file.path;
+
+//   try {
+//     const workbook = xlsx.readFile(filePath);
+//     const sheetName = workbook.SheetNames[0];
+//     const sheet = workbook.Sheets[sheetName];
+//     const rows = xlsx.utils.sheet_to_json(sheet);
+
+//     const orders = [];
+
+//     for(const row of rows) {
+//       let {
+//         'Status': excelStatus,
+//         'Dia de contacto': contactDate,
+//         'Funeraria': funeralHomeName,
+//         'Seguimiento': tracking,
+//         'PRECIO': price,
+//         'Contact Name': contactName,
+//         'Phone Number': phoneNumber,
+//         'Email': email,
+//         'Relationship': relationship,
+//         'Deceased Name': deceasedName,
+//         'Service Type': serviceName,
+//         'Asignado A:': userName,
+//         'COMISION': comission,
+//       } = row;
+
+//       contactName = contactName || 'No';
+//       phoneNumber = phoneNumber || '000-000-0000';
+//       email = email || 'No';
+//       relationship = relationship || 'No';
+//       deceasedName = deceasedName || 'No';
+//       price = price || 'No';
+
+//       const status = mapStatus(excelStatus) || 'pending';
+
+//       const statusDate = {
+//         date: new Date(),
+//         updatedBy: 'system', // Puedes cambiar 'system' por el usuario que creó la orden si está disponible
+//       };
+
+//       let userId = null;
+//       if (userName && typeof userName === 'string') {
+//         const user = await User.findOne({
+//           where: Sequelize.where(
+//             Sequelize.fn('LOWER', Sequelize.col('name')),
+//             Sequelize.fn('LOWER', userName)
+//           )
+//         });
+//         userId = user ? user.id : null;
+//       }
+
+//       let funeralHomeId = null;
+//       if (funeralHomeName && typeof funeralHomeName === 'string') {
+//         const funeralHome = await FuneralHome.findOne({
+//           where: Sequelize.where(
+//             Sequelize.fn('LOWER', Sequelize.col('name')),
+//             Sequelize.fn('LOWER', funeralHomeName)
+//           )
+//         });
+//         funeralHomeId = funeralHome ? funeralHome.id : null;
+//       }
+
+//       let serviceId = null;
+//       if (serviceName && typeof serviceName === 'string') {
+//         const services = await Service.findAll();
+//         const service = services.find(service => 
+//           service.name.es.toLowerCase() === serviceName.toLowerCase() ||
+//           service.name.en.toLowerCase() === serviceName.toLowerCase()
+//         );
+//         serviceId = service ? service.id : null;
+//       }
+
+//       const newOrder = {
+//         status,
+//         statusDate,
+//         contactName,
+//         phoneNumber,
+//         email,
+//         comission,
+//         relationship,
+//         deceasedName,
+//         serviceId,
+//         price,
+//         insurance: null,
+//         tracking: parseTracking(tracking),
+//         age: null,
+//         userId,
+//         funeralHomeId,
+//         source: null,
+//       }
+
+//       orders.push(newOrder);
+//     }
+    
+//     const createdOrders = await Order.bulkCreate(orders);
+//     res.status(201).json(createdOrders);
+//   } catch(error) {
+//     console.log(error);
+//     res.status(500).json({ message: 'Internal server error' });
+//   } finally {
+//     fs.unlinkSync(filePath);
+//   }
+// };
 const createOrdersFromExcel = async (req, res) => {
   const filePath = req.file.path;
 
@@ -262,20 +370,26 @@ const createOrdersFromExcel = async (req, res) => {
 
     const orders = [];
 
-    for(const row of rows) {
+    for (const row of rows) {
       let {
         'Status': excelStatus,
-        'Dia de contacto': contactDate,
-        'Funeraria': funeralHomeName,
-        'Seguimiento': tracking,
-        'PRECIO': price,
         'Contact Name': contactName,
         'Phone Number': phoneNumber,
         'Email': email,
         'Relationship': relationship,
         'Deceased Name': deceasedName,
         'Service Type': serviceName,
-        'Asignado A:': userName
+        'Price': price,
+        'Comission': comission,
+        'Tracking': tracking,
+        'User': userName,
+        'Funeral Home': funeralHomeName,
+        'Status Date': statusDate,
+        'Updated By': updatedBy,
+        'Contact Date': contactDate,
+        'Insurance': insurance,
+        'Age': age,
+        'Source': source,
       } = row;
 
       contactName = contactName || 'No';
@@ -284,12 +398,15 @@ const createOrdersFromExcel = async (req, res) => {
       relationship = relationship || 'No';
       deceasedName = deceasedName || 'No';
       price = price || 'No';
+      insurance = insurance || null;
+      age = age || null;
+      source = source || null;
 
       const status = mapStatus(excelStatus) || 'pending';
 
-      const statusDate = {
-        date: new Date(),
-        updatedBy: 'system', // Puedes cambiar 'system' por el usuario que creó la orden si está disponible
+      const statusDateObj = {
+        date: statusDate ? new Date(statusDate) : new Date(),
+        updatedBy: updatedBy || 'system', // Puedes cambiar 'system' por el usuario que creó la orden si está disponible
       };
 
       let userId = null;
@@ -326,33 +443,96 @@ const createOrdersFromExcel = async (req, res) => {
 
       const newOrder = {
         status,
-        statusDate,
+        statusDate: statusDateObj,
         contactName,
         phoneNumber,
         email,
-        comission: [],
+        comission,
         relationship,
         deceasedName,
         serviceId,
         price,
-        insurance: null,
+        insurance,
         tracking: parseTracking(tracking),
-        age: null,
+        age,
         userId,
         funeralHomeId,
-        source: null,
-      }
+        source,
+        createdAt: contactDate ? new Date(contactDate) : new Date(), // Usar contactDate como createdAt
+      };
 
       orders.push(newOrder);
     }
-    
+
     const createdOrders = await Order.bulkCreate(orders);
     res.status(201).json(createdOrders);
-  } catch(error) {
+  } catch (error) {
     console.log(error);
     res.status(500).json({ message: 'Internal server error' });
   } finally {
     fs.unlinkSync(filePath);
+  }
+};
+
+const exportOrdersToExcel = async (req, res) => {
+  try {
+    // Obtener las órdenes desde la base de datos
+    const orders = await Order.findAll({
+      include: [
+        { model: User, as: 'user' },
+        { model: FuneralHome, as: 'funeralHome' },
+        { model: Service, as: 'service' }
+      ]
+    });
+
+    // Convertir las órdenes a un formato adecuado para la exportación
+    const data = orders.map(order => ({
+      'Status': order.status,
+      'Contact Name': order.contactName,
+      'Phone Number': order.phoneNumber,
+      'Email': order.email,
+      'Relationship': order.relationship,
+      'Deceased Name': order.deceasedName,
+      'Service Type': order.service ? order.service.name.en : 'No',
+      'Price': order.price,
+      'Comission': order.comission,
+      'Tracking': order.tracking ? order.tracking.map(t => t.track).join('/ ') : 'No',
+      'User': order.user ? order.user.name : 'No',
+      'Funeral Home': order.funeralHome ? order.funeralHome.name : 'No',
+      'Status Date': order.statusDate.date,
+      'Updated By': order.statusDate.updatedBy,
+      'Contact Date': order.createdAt ? order.createdAt.toISOString().split('T')[0] : 'No',
+      'Insurance': order.insurance,
+      'Age': order.age,
+      'Source': order.source,
+    }));
+
+    // Crear un nuevo libro de trabajo y una hoja de cálculo
+    const workbook = xlsx.utils.book_new();
+    const worksheet = xlsx.utils.json_to_sheet(data);
+
+    // Agregar la hoja de cálculo al libro de trabajo
+    xlsx.utils.book_append_sheet(workbook, worksheet, 'Orders');
+
+    // Definir la ruta del archivo
+    const filePath = path.join(__dirname, 'orders.xlsx');
+
+    // Escribir el archivo Excel en el sistema de archivos
+    xlsx.writeFile(workbook, filePath);
+
+    // Enviar el archivo al cliente como una respuesta de descarga
+    res.download(filePath, 'orders.xlsx', (err) => {
+      if (err) {
+        console.log(err);
+        res.status(500).json({ message: 'Error al descargar el archivo' });
+      }
+
+      // Eliminar el archivo después de enviarlo
+      fs.unlinkSync(filePath);
+    });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: 'Internal server error' });
   }
 };
 
@@ -364,4 +544,5 @@ module.exports = {
   updateOrder,
   deleteOrder,
   createOrdersFromExcel,
+  exportOrdersToExcel,
 };

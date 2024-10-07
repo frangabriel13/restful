@@ -1,9 +1,14 @@
 const statusExcel = {
   'Nuevo': 'new',
+  'new': 'new',
   'En seguimiento': 'inProgress',
+  'inProgress': 'inProgress',
   'Pendiente': 'pending',
+  'pending': 'pending',
   'Vendidos': 'sold',
-  'No vendidos': 'notSold'
+  'sold': 'sold',
+  'No vendidos': 'notSold',
+  'notSold': 'notSold',
 };
 
 const mapStatus = (excelStatus) => {

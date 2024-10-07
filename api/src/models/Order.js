@@ -47,8 +47,7 @@ module.exports = (sequelize) => {
       type: DataTypes.STRING,
     },
     comission: {
-      type: DataTypes.ARRAY(DataTypes.STRING),
-      defaultValue: [],
+      type: DataTypes.STRING,
     },
     updates: {
       type: DataTypes.ARRAY(DataTypes.JSONB),
