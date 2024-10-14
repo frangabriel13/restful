@@ -53,6 +53,8 @@ const Users = () => {
     }
   };
 
+  console.log('users:', users);
+
   return (
     <div className={s.container}>
       <div className={s.dashboard}>
@@ -67,17 +69,32 @@ const Users = () => {
             </tr>
           </thead>
           <tbody>
-            {users.map((user) => (
+            {/* {users.map((user) => (
               <tr key={user._id}>
                 <td>{user.id}</td>
                 <td>{user.name}</td>
                 <td>{user.role}</td>
                 <td className={s.btnCell}>
-                  {/* <button onClick={() => handleEdit(user)}>Edit</button> */}
                   <button className={s.btnDelete} onClick={() => handleDelete(user.id)}>Delete</button>
                 </td>
               </tr>
-            ))}
+            ))} */}
+            {users ? (
+              users.map((user) => (
+                <tr key={user._id}>
+                  <td>{user.id}</td>
+                  <td>{user.name}</td>
+                  <td>{user.role}</td>
+                  <td className={s.btnCell}>
+                    <button className={s.btnDelete} onClick={() => handleDelete(user.id)}>Delete</button>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="4">Cargando usuarios...</td>
+              </tr>
+            )}
           </tbody>
         </table>
         <div className={s.btnCreateContainer}>
