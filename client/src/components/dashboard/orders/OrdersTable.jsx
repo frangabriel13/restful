@@ -225,7 +225,7 @@ const OrdersTable = ({ openModal }) => {
             </tr>
           </thead>
           <tbody>
-            {orders.map((order) => (
+            {/* {orders.map((order) => (
               <tr key={order.id}>
                 <td className={getStatusClass(order.status)}>{order.status}</td>
                 <td>
@@ -257,7 +257,46 @@ const OrdersTable = ({ openModal }) => {
                   </div>
                 </td>
               </tr>
-            ))}
+            ))} */}
+            {orders ? (
+              orders.map((order) => (
+                <tr key={order.id}>
+                  <td className={getStatusClass(order.status)}>{order.status}</td>
+                  <td>
+                    {order.statusDate.date ? formatDate(order.statusDate.date) : 'Fecha no disponible'} by {order.statusDate.updatedBy}
+                  </td>
+                  <td>
+                    <button className={s.btnMore} onClick={() => handleShowUpdates(order.updates)}>Ver más</button>
+                  </td>
+                  <td>{order.insurance}</td>
+                  <td>{getFuneralHomeName(order.funeralHomeId)}</td>
+                  <td>
+                    <button className={s.btnMore} onClick={() => handleShowTracking(order.tracking)}>Ver más</button>
+                  </td>
+                  <td>{order.price}</td>
+                  <td>{order.contactName}</td>
+                  <td>{order.phoneNumber}</td>
+                  <td>{order.email}</td>
+                  <td>{order.relationship}</td>
+                  <td>{getServiceName(order.serviceId)}</td>
+                  <td>{order.deceasedName}</td>
+                  <td>{order.age}</td>
+                  <td>{order.source}</td>
+                  <td>{getUserName(order.userId)}</td>
+                  <td>{order.comission}</td>
+                  <td>
+                    <div className={s.divIcons}>
+                      <CiEdit onClick={() => handleEdit(order)} className={s.iconEdit} />
+                      <MdDeleteOutline onClick={() => handleDelete(order.id)} className={s.iconDelete} />
+                    </div>
+                  </td>
+                </tr>
+              ))
+            ) : (
+              <tr>
+                <td colSpan="18">Cargando órdenes...</td>
+              </tr>
+            )}
           </tbody>
         </table>
       </div>

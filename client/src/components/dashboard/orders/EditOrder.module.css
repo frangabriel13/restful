@@ -17,6 +17,7 @@
   padding: 1rem;
   border-radius: .4rem;
   overflow-y: auto;
+  max-height: 80vh;
 }
 
 .btnClose {
@@ -186,6 +187,11 @@
 @media (min-width: 769px) and (max-width: 1024px) {
   .container h3 {
     font-size: 2.2rem; /* Ajustamos el tamaño del título */
+  }
+
+  .modalContent {
+    margin: 0rem;
+    padding: 1rem;
   }
 
   .formGroup select, 
