@@ -17,6 +17,7 @@
   padding: 1rem;
   border-radius: .4rem;
   overflow-y: auto;
+  max-height: 80vh;
 }
 
 .btnClose {
@@ -151,10 +152,10 @@
 
 /* Responsive para pantallas pequeñas (celulares) */
 @media (max-width: 768px) {
-  .modalContent {
+  /* .modalContent {
     margin: 1rem;
     padding: 1rem;
-  }
+  } */
 
   .container h3 {
     font-size: 2rem; /* Reducimos el tamaño del título */
