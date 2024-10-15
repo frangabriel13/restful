@@ -1,0 +1,17 @@
+.confirmationContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  padding: 20px;
+  background-color: #ffffff; /* Un color suave para el fondo */
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.message {
+  font-size: 1.5em;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
