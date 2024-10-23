@@ -52,7 +52,7 @@ const ImmediateNeed = ({ language }) => {
       </div>
       <div className={s.callToAction}>
         <h3>{t.immediateNeedCallToAction}</h3>
-        <button onClick={handleContactClick}>{t.immediateNeedButton}</button>
+        <button onClick={handleContactClick}>{t.futurePlanningButton}</button>
       </div>
     </div>
   );
