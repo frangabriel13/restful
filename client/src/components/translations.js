@@ -124,6 +124,15 @@ export const translations = {
     service: "Servicio",
     submit: "Enviar",
     emailSubject: "Solicitud de asesoramiento para el servicio",
+    requestQuote: "Solicitar Presupuesto",
+    footer: {
+      ourNetworks: "Nuestras redes:",
+      homeAppointments: "Citas a domicilio",
+      termsAndConditions: "Términos y condiciones",
+      privacyPolicy: "Política de privacidad",
+      faq: "Preguntas frecuentes",
+      copyright: "Copyright © 2024 Eternal Restful. Todos los derechos reservados. Diseñado por mandeveloper",
+    },
   },
   en: {
     aboutTitle: "Who are we?",
@@ -246,5 +255,14 @@ export const translations = {
     service: "Service",
     submit: "Submit",
     emailSubject: "Request for advice on service",
+    requestQuote: "Request Quote",
+    footer: {
+      ourNetworks: "Our networks:",
+      homeAppointments: "Home appointments",
+      termsAndConditions: "Terms and conditions",
+      privacyPolicy: "Privacy policy",
+      faq: "Frequently asked questions",
+      copyright: "Copyright © 2024 Eternal Restful. All rights reserved. Designed by mandeveloper",
+    },
   }
 };
