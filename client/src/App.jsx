@@ -55,7 +55,7 @@ function App() {
               <Route path='/services' element={<Services language={language} />} />
               <Route path='/mourning' element={<Mourning language={language} />} />
             </Routes>
-            <Footer />
+            <Footer language={language} setLanguage={setLanguage} />
           </>
         }
       />

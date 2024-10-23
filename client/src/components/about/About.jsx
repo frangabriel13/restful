@@ -56,7 +56,7 @@ const About = ({ language = 'en' }) => {
 
       <div className={s.callToAction}>
         <h3>{t.callToAction}</h3>
-        <button onClick={handleContactClick}>{t.contactButton}</button>
+        <button onClick={handleContactClick}>{t.requestQuote}</button>
       </div>
     </div>
   );
