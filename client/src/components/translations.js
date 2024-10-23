@@ -21,13 +21,13 @@ export const translations = {
       asegurando que todo se maneje según sus deseos.
       Esta planificación previa alivia la carga emocional y financiera de las familias en momentos difíciles, permitiendo que se tomen decisiones meditadas y personalizadas.
     `,
-    futurePlanningTakeNote: "A tener en cuenta",
+    futurePlanningTakeNote: "Importante para considerar",
     futurePlanningReminder: `
       Si el fallecimiento ocurre fuera de Estados Unidos y/o el servicio se brinda en alguna otra funeraria por desconocimiento de la familia, 
       con el acta de defunción se realiza el trámite pertinente y recupera el dinero pagado.
     `,
     futurePlanningCallToAction: "Anticipate al futuro, es momento de prevenir. Contáctanos para más información.",
-    futurePlanningButton: "Contacta",
+    futurePlanningButton: "Solicitar presupuesto",
     benefitsTitle: "Beneficios",
     benefit1: "Planes funerales con precios accesibles.",
     benefit2: "El plan funeral no cuenta con vigencia.",
@@ -109,8 +109,8 @@ export const translations = {
     mourningStage5Description: `La aceptación no significa que el dolor haya desaparecido, sino que se ha encontrado una manera de seguir adelante. 
     Es el reconocimiento de la realidad de la pérdida y la adaptación a una nueva vida sin la persona amada.`,
     contactTitle: "Iniciar arreglos",
-    formTitle: "Completa el formulario para información personalizada.",
-    formSubtitle: "Te responderemos a la brevedad.",
+    formTitle: "Completa el formulario para recibir presupuesto.",
+    formSubtitle: "Te contactaremos a la brevedad.",
     name: "Nombre",
     lastname: "Apellido",
     namePlaceholder: "Nombre",
@@ -156,13 +156,13 @@ export const translations = {
       ensuring that everything is handled according to their wishes.
       This prior planning relieves the emotional and financial burden on families during difficult times, allowing for thoughtful and personalized decisions.
     `,
-    futurePlanningTakeNote: "Take note",
+    futurePlanningTakeNote: "Important to consider",
     futurePlanningReminder: `
       If the death occurs outside of the United States and/or the service is provided by another funeral home without the family’s knowledge, 
       the necessary process can be initiated with the death certificate to recover the paid amount.
     `,
     futurePlanningCallToAction: "Anticipate the future, it's time to prepare. Contact us for more information.",
-    futurePlanningButton: "Contact",
+    futurePlanningButton: "Request a Quote",
     benefitsTitle: "Benefits",
     benefit1: "Accessible funeral plans with prices.",
     benefit2: "The plan does not have validity.",
@@ -240,8 +240,8 @@ export const translations = {
     mourningStage5Description: `Acceptance does not mean the pain has gone away, but that a way to move forward has been found. It is the recognition 
     of the reality of the loss and the adaptation to a new life without the loved one.`,
     contactTitle: "Start Arrangements",
-    formTitle: "Complete the form for personalized information.",
-    formSubtitle: "We will respond shortly.",
+    formTitle: "Complete the form to receive a quote.",
+    formSubtitle: "We will contact you shortly.",
     name: "Name",
     lastname: "Last Name",
     namePlaceholder: "Name",
