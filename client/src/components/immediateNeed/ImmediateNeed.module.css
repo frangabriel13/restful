@@ -145,6 +145,12 @@
     font-size: 2.5rem; /* Ajustar el tamaño del texto */
   }
 
+  .step {
+    flex-direction: column; /* Asegurar que los elementos estén en columna */
+    margin-bottom: 5rem;
+    gap: 1rem;
+  }
+
   .step h5 {
     font-size: 1.8rem; /* Ajustar el tamaño del texto */
   }
