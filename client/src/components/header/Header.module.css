@@ -97,14 +97,29 @@
 /* Estilos para los botones de idioma */
 .languageSwitcher {
   display: flex;
-  gap: 1rem;
+  /* gap: 1rem; */
 }
 
 .languageButton {
   padding: 0.5rem 1rem;
   font-size: 1.5rem;
   border: 0.1rem solid var(--second-color);
-  border-radius: 0.3rem;
+  /* border-radius: 0.3rem; */
+  border-top-left-radius: 0.3rem;
+  border-bottom-left-radius: 0.3rem;
+  cursor: pointer;
+  background-color: transparent;
+  color: var(--second-color);
+  transition: all 0.3s;
+}
+
+.languageButtonEn {
+  padding: 0.5rem 1rem;
+  font-size: 1.5rem;
+  border: 0.1rem solid var(--second-color);
+  /* border-radius: 0.3rem; */
+  border-top-right-radius: 0.3rem;
+  border-bottom-right-radius: 0.3rem;
   cursor: pointer;
   background-color: transparent;
   color: var(--second-color);
@@ -116,10 +131,27 @@
   color: var(--second-bg-color);
 }
 
+.languageButtonEn:hover {
+  background-color: var(--second-color);
+  color: var(--second-bg-color);
+}
+
 .languageButton.active {
   background-color: var(--second-color);
   color: var(--second-bg-color);
   font-weight: bold;
+}
+
+.languageButtonEn.active {
+  background-color: var(--second-color);
+  color: var(--second-bg-color);
+  font-weight: bold;
+}
+
+.divPhone p {
+  color: var(--second-color);
+  font-size: 1.5rem;
+  font-weight: 500;
 }
 
 /* Responsive para MacBook de 14 y 15 pulgadas */

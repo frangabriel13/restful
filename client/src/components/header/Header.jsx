@@ -124,14 +124,17 @@ function Header({ language, setLanguage }) { // Recibe el idioma como prop
               className={`${s.languageButton} ${language === 'es' ? s.active : ''}`}
               onClick={() => handleLanguageChange('es')}
             >
-              Español
+              Es
             </button>
             <button 
-              className={`${s.languageButton} ${language === 'en' ? s.active : ''}`}
+              className={`${s.languageButtonEn} ${language === 'en' ? s.active : ''}`}
               onClick={() => handleLanguageChange('en')}
             >
-              English
+              En
             </button>
+          </div>
+          <div className={s.divPhone}>
+            <p>+1 323 551 7579</p>
           </div>
         </nav>
       </div>
