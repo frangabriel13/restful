@@ -31,6 +31,7 @@
 }
 
 .divSteps {
+  padding: 0 50rem;
   width: fit-content;
   margin: auto;
 }
@@ -43,8 +44,26 @@
 
 .step {
   display: flex;
-  flex-direction: column;
+  align-items: center;
   margin-bottom: 2rem;
+}
+
+.leftToRight {
+  flex-direction: row;
+}
+
+.rightToLeft {
+  flex-direction: row-reverse;
+}
+
+.rightToLeft .stepDescription {
+  padding-right: 1.5rem;
+}
+
+.stepImage {
+  width: 30rem;
+  height: auto;
+  margin-right: 2rem;
 }
 
 .step h5 {
@@ -124,6 +143,12 @@
 
   .divSteps h4 {
     font-size: 2.5rem; /* Ajustar el tamaño del texto */
+  }
+
+  .step {
+    flex-direction: column; /* Asegurar que los elementos estén en columna */
+    margin-bottom: 5rem;
+    gap: 1rem;
   }
 
   .step h5 {

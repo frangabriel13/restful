@@ -7,7 +7,7 @@ const Contact = ({ language }) => {
   const t = translations[language]; // Selecciona el idioma adecuado
 
   return (
-    <div className={s.container}>
+    <div id="contact" className={s.container}>
       <div className={s.divTitle}>
         <h2>{t.contactTitle}</h2> {/* Título traducido */}
       </div>

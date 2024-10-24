@@ -17,7 +17,7 @@ const About = ({ language = 'en' }) => {
   const t = translations[language]; // Selecciona el idioma
 
   return (
-    <div className={s.container}>
+    <div id="about" className={s.container}>
       <div className={s.about}>
         <div className={s.divTitle}>
           <h2>{t.aboutTitle}</h2>
@@ -56,7 +56,7 @@ const About = ({ language = 'en' }) => {
 
       <div className={s.callToAction}>
         <h3>{t.callToAction}</h3>
-        <button onClick={handleContactClick}>{t.contactButton}</button>
+        <button onClick={handleContactClick}>{t.requestQuote}</button>
       </div>
     </div>
   );

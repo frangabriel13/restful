@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import s from "./Header.module.css";
 import { IoMdMenu, IoMdClose } from "react-icons/io";
 import { Link } from "react-router-dom";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/principal.png";
 import { scrollToSection } from "../../utils/utilities";
 
 function Header({ language, setLanguage }) { // Recibe el idioma como prop
@@ -62,6 +62,33 @@ function Header({ language, setLanguage }) { // Recibe el idioma como prop
     setLanguage(lang);
   };
 
+  const texts = {
+    es: {
+      about: "Quiénes somos",
+      futurePlanning: "Planes a futuro",
+      immediateNeed: "Necesidad inmediata",
+      services: "Tipos de servicio",
+      contact: "Contacto",
+      mourning: "Duelo",
+      requestQuote: "Solicitar Presupuesto",
+      spanish: "Español",
+      english: "English"
+    },
+    en: {
+      about: "About Us",
+      futurePlanning: "Future Planning",
+      immediateNeed: "Immediate Need",
+      services: "Services",
+      contact: "Contact",
+      mourning: "Mourning",
+      requestQuote: "Request Quote",
+      spanish: "Spanish",
+      english: "English"
+    }
+  };
+
+  const currentTexts = texts[language];
+
   return (
     <div className={`${s.container} ${isScrolled ? s.scrolled : ""}`}>
       <div>
@@ -72,7 +99,7 @@ function Header({ language, setLanguage }) { // Recibe el idioma como prop
       </div>
       <div className={s.divNav} ref={menuRef}>
         <nav className={`${s.navbar} ${menuOpen ? s.open : ''}`}>
-          <Link to="/about" onClick={() => toggleMenu('about')}>Quiénes somos</Link>
+          {/* <Link to="/about" onClick={() => toggleMenu('about')}>Quiénes somos</Link>
           <Link to="/future-planning" onClick={() => toggleMenu('future-planning')}>Planes a futuro</Link>
           <Link to="/immediate-need" onClick={() => toggleMenu('immediate-need')}>Necesidad inmediata</Link>
           <Link to="/services" onClick={() => toggleMenu('services')}>Tipos de servicio</Link>
@@ -80,6 +107,15 @@ function Header({ language, setLanguage }) { // Recibe el idioma como prop
           <Link to="/mourning" onClick={() => toggleMenu('mourning')}>Duelo</Link>
           <Link to="/contact" onClick={() => toggleMenu('contact')}>
             <button className={s.btnQuote}>Solicitar Presupuesto</button>
+          </Link> */}
+          <Link to="/about" onClick={() => toggleMenu('about')}>{currentTexts.about}</Link>
+          <Link to="/future-planning" onClick={() => toggleMenu('future-planning')}>{currentTexts.futurePlanning}</Link>
+          <Link to="/immediate-need" onClick={() => toggleMenu('immediate-need')}>{currentTexts.immediateNeed}</Link>
+          <Link to="/services" onClick={() => toggleMenu('services')}>{currentTexts.services}</Link>
+          <Link to="/contact" onClick={() => toggleMenu('contact')}>{currentTexts.contact}</Link>
+          <Link to="/mourning" onClick={() => toggleMenu('mourning')}>{currentTexts.mourning}</Link>
+          <Link to="/contact" onClick={() => toggleMenu('contact')}>
+            <button className={s.btnQuote}>{currentTexts.requestQuote}</button>
           </Link>
 
           {/* Selección de idioma */}
@@ -88,14 +124,22 @@ function Header({ language, setLanguage }) { // Recibe el idioma como prop
               className={`${s.languageButton} ${language === 'es' ? s.active : ''}`}
               onClick={() => handleLanguageChange('es')}
             >
-              Español
+              Es
             </button>
             <button 
-              className={`${s.languageButton} ${language === 'en' ? s.active : ''}`}
+              className={`${s.languageButtonEn} ${language === 'en' ? s.active : ''}`}
               onClick={() => handleLanguageChange('en')}
             >
-              English
+              En
             </button>
+          </div>
+          {/* <div className={s.divPhone}>
+            <p>+1 323 551 7579</p>
+          </div> */}
+          <div className={s.divPhone}>
+            <a href="https://wa.me/13235517579" target="_blank" rel="noopener noreferrer">
+              <p>+1 323 551 7579</p>
+            </a>
           </div>
         </nav>
       </div>

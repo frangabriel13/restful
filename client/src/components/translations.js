@@ -21,13 +21,13 @@ export const translations = {
       asegurando que todo se maneje según sus deseos.
       Esta planificación previa alivia la carga emocional y financiera de las familias en momentos difíciles, permitiendo que se tomen decisiones meditadas y personalizadas.
     `,
-    futurePlanningTakeNote: "A tener en cuenta",
+    futurePlanningTakeNote: "Importante para considerar",
     futurePlanningReminder: `
       Si el fallecimiento ocurre fuera de Estados Unidos y/o el servicio se brinda en alguna otra funeraria por desconocimiento de la familia, 
       con el acta de defunción se realiza el trámite pertinente y recupera el dinero pagado.
     `,
     futurePlanningCallToAction: "Anticipate al futuro, es momento de prevenir. Contáctanos para más información.",
-    futurePlanningButton: "Contacta",
+    futurePlanningButton: "Solicitar presupuesto",
     benefitsTitle: "Beneficios",
     benefit1: "Planes funerales con precios accesibles.",
     benefit2: "El plan funeral no cuenta con vigencia.",
@@ -52,10 +52,10 @@ export const translations = {
     immediateNeedStep2Description: "Una vez que el médico haya certificado la defunción, llama a nuestra funeraria para que podamos asistir en la recogida y cuidado del cuerpo, así como en la organización de los servicios funerarios.",
     immediateNeedStep3Title: "3. Notifica a familiares y amigos",
     immediateNeedStep3Description: "Notifica a familiares y amigos cercanos sobre el fallecimiento de tu ser querido. Es importante que las personas cercanas estén al tanto de la situación.",
-    immediateNeedStep4Title: "4. Prepara el funeral",
-    immediateNeedStep4Description: "Una vez que el cuerpo haya sido llevado a la funeraria, podrás comenzar a preparar el funeral. La funeraria te guiará a través de los pasos a seguir.",
+    immediateNeedStep4Title: "4. Prepara los servicios",
+    immediateNeedStep4Description: "Una vez que el cuerpo haya sido llevado a la funeraria, podras comenzar a preparar los servicios. La funeraria te compañara durante todo el proceso.",
     immediateNeedStep5Title: "5. Trámites legales",
-    immediateNeedStep5Description: "Una vez que hayas realizado los pasos anteriores, deberás ocuparte de los trámites legales correspondientes. Esto incluye la obtención del certificado de defunción y la realización de los trámites de entierro o cremación.",
+    immediateNeedStep5Description: "La funeraria será la encargada de realizar los tramites legales correspondientes y te mantendrá en constante actualización acerca del proceso.",
     immediateNeedStep6Title: "6. Apoyo emocional",
     immediateNeedStep6Description: "En momentos difíciles, es importante contar con el apoyo emocional de familiares y amigos. No dudes en pedir ayuda si la necesitas.",
     immediateNeedCallToAction: "Contáctate con nosotros para más información",
@@ -109,8 +109,8 @@ export const translations = {
     mourningStage5Description: `La aceptación no significa que el dolor haya desaparecido, sino que se ha encontrado una manera de seguir adelante. 
     Es el reconocimiento de la realidad de la pérdida y la adaptación a una nueva vida sin la persona amada.`,
     contactTitle: "Iniciar arreglos",
-    formTitle: "Completa el formulario para información personalizada.",
-    formSubtitle: "Te responderemos a la brevedad.",
+    formTitle: "Completa el formulario para recibir presupuesto.",
+    formSubtitle: "Te contactaremos a la brevedad.",
     name: "Nombre",
     lastname: "Apellido",
     namePlaceholder: "Nombre",
@@ -124,6 +124,15 @@ export const translations = {
     service: "Servicio",
     submit: "Enviar",
     emailSubject: "Solicitud de asesoramiento para el servicio",
+    requestQuote: "Solicitar Presupuesto",
+    footer: {
+      ourNetworks: "Nuestras redes:",
+      homeAppointments: "Citas a domicilio",
+      termsAndConditions: "Términos y condiciones",
+      privacyPolicy: "Política de privacidad",
+      faq: "Preguntas frecuentes",
+      copyright: "Copyright © 2024 Eternal Restful. Todos los derechos reservados. Diseñado por mandeveloper",
+    },
   },
   en: {
     aboutTitle: "Who are we?",
@@ -147,13 +156,13 @@ export const translations = {
       ensuring that everything is handled according to their wishes.
       This prior planning relieves the emotional and financial burden on families during difficult times, allowing for thoughtful and personalized decisions.
     `,
-    futurePlanningTakeNote: "Take note",
+    futurePlanningTakeNote: "Important to consider",
     futurePlanningReminder: `
       If the death occurs outside of the United States and/or the service is provided by another funeral home without the family’s knowledge, 
       the necessary process can be initiated with the death certificate to recover the paid amount.
     `,
     futurePlanningCallToAction: "Anticipate the future, it's time to prepare. Contact us for more information.",
-    futurePlanningButton: "Contact",
+    futurePlanningButton: "Request a Quote",
     benefitsTitle: "Benefits",
     benefit1: "Accessible funeral plans with prices.",
     benefit2: "The plan does not have validity.",
@@ -178,10 +187,10 @@ export const translations = {
     immediateNeedStep2Description: "Once the doctor has certified the death, call us to arrange the funeral, as well as the funeral services.",
     immediateNeedStep3Title: "3. Notify family and friends",
     immediateNeedStep3Description: "Notify family and friends nearby about the death of your loved one. It's important to know the situation in advance.",
-    immediateNeedStep4Title: "4. Prepare the funeral",
-    immediateNeedStep4Description: "Once the body is taken to the funeral home, you can start preparing the funeral. The funeral home will guide you through the steps.",
-    immediateNeedStep5Title: "5. Legal issues",
-    immediateNeedStep5Description: "Once you have completed the steps in advance, you will need to deal with legal issues related to the funeral. This includes obtaining the death certificate and performing the necessary cremation or entierro.",
+    immediateNeedStep4Title: "4. Prepare the services",
+    immediateNeedStep4Description: "Once the body has been taken to the funeral home, you can begin preparing the services. The funeral home will accompany you throughout the entire process.",
+    immediateNeedStep5Title: "5. Legal procedures",
+    immediateNeedStep5Description: "The funeral home will be responsible for carrying out the necessary legal procedures and will keep you constantly updated on the process.",
     immediateNeedStep6Title: "6. Emotional support",
     immediateNeedStep6Description: "During difficult times, it's important to have emotional support from family and friends. Don't hesitate to ask for help if needed.",
     immediateNeedCallToAction: "Contact us with any questions",
@@ -231,8 +240,8 @@ export const translations = {
     mourningStage5Description: `Acceptance does not mean the pain has gone away, but that a way to move forward has been found. It is the recognition 
     of the reality of the loss and the adaptation to a new life without the loved one.`,
     contactTitle: "Start Arrangements",
-    formTitle: "Complete the form for personalized information.",
-    formSubtitle: "We will respond shortly.",
+    formTitle: "Complete the form to receive a quote.",
+    formSubtitle: "We will contact you shortly.",
     name: "Name",
     lastname: "Last Name",
     namePlaceholder: "Name",
@@ -246,5 +255,14 @@ export const translations = {
     service: "Service",
     submit: "Submit",
     emailSubject: "Request for advice on service",
+    requestQuote: "Request Quote",
+    footer: {
+      ourNetworks: "Our networks:",
+      homeAppointments: "Home appointments",
+      termsAndConditions: "Terms and conditions",
+      privacyPolicy: "Privacy policy",
+      faq: "Frequently asked questions",
+      copyright: "Copyright © 2024 Eternal Restful. All rights reserved. Designed by mandeveloper",
+    },
   }
 };

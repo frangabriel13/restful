@@ -24,8 +24,8 @@
 }
 
 .divData img {
-  background-color: var(--second-color);
-  width: 20rem;
+  /* background-color: var(--second-color); */
+  width: 15rem;
   height: auto;
 }
 
