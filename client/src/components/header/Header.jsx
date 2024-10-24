@@ -133,8 +133,13 @@ function Header({ language, setLanguage }) { // Recibe el idioma como prop
               En
             </button>
           </div>
-          <div className={s.divPhone}>
+          {/* <div className={s.divPhone}>
             <p>+1 323 551 7579</p>
+          </div> */}
+          <div className={s.divPhone}>
+            <a href="https://wa.me/13235517579" target="_blank" rel="noopener noreferrer">
+              <p>+1 323 551 7579</p>
+            </a>
           </div>
         </nav>
       </div>
