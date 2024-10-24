@@ -22,8 +22,8 @@
 /* Estilos para el logo */
 .logo {
   cursor: pointer;
-  background-color: var(--second-color);
-  width: 20rem;
+  /* background-color: var(--second-color); */
+  width: 12rem;
   height: auto;
 }
 
@@ -161,7 +161,7 @@
   }
 
   .logo {
-    width: 18rem;
+    width: 12rem;
   }
 
   .navbar a {
@@ -187,7 +187,7 @@
   }
 
   .logo {
-    width: 12rem;
+    width: 10rem;
   }
 
   .navToggle {
@@ -206,7 +206,7 @@
 
   .navbar {
     position: absolute;
-    top: 7rem;
+    top: 8.2rem;
     right: 0;
     flex-direction: column;
     background: rgba(73, 82, 92, 0.95);

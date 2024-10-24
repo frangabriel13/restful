@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from "react";
 import s from "./Header.module.css";
 import { IoMdMenu, IoMdClose } from "react-icons/io";
 import { Link } from "react-router-dom";
-import logo from "../../assets/logo.png";
+import logo from "../../assets/principal.png";
 import { scrollToSection } from "../../utils/utilities";
 
 function Header({ language, setLanguage }) { // Recibe el idioma como prop
