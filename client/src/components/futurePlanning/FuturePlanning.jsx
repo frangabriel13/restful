@@ -19,7 +19,7 @@ const FuturePlanning = ({ language }) => {
   const t = translations[language];
 
   return (
-    <div className={s.container}>
+    <div id="future-planning" className={s.container}>
       <div className={s.divFuture}>
         <div className={s.divTitle}>
           <h2>{t.futurePlanningTitle}</h2>

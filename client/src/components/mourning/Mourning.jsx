@@ -6,7 +6,7 @@ const Mourning = ({ language }) => {
   const t = translations[language]; // Selecciona el idioma adecuado
 
   return (
-    <div className={s.container}>
+    <div id="mourning" className={s.container}>
       <div className={s.divTitle}>
         <h2>{t.mourningTitle}</h2> {/* Título traducido */}
       </div>

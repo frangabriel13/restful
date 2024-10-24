@@ -25,12 +25,22 @@ export const servicesImages = [
   { id: 9, image: service1 },
 ];
 
+// export const scrollToSection = (sectionId) => {
+//   const section = document.getElementById(sectionId);
+//   if (section) {
+//     section.scrollIntoView({ behavior: "smooth" });
+//   } else {
+//     window.scrollTo({ top: 0, behavior: "smooth" });
+//   }
+// };
 export const scrollToSection = (sectionId) => {
-  const section = document.getElementById(sectionId);
-  if (section) {
-    section.scrollIntoView({ behavior: "smooth" });
-  } else {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }
+  setTimeout(() => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth" });
+    } else {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+  }, 100); // Puedes ajustar el tiempo según sea necesario
 };
 

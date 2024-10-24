@@ -17,7 +17,7 @@ const Home = ({ language }) => {
   const t = translations[language]; // Selecciona el idioma adecuado
 
   return (
-    <div>
+    <div id="home">
       <div className={s.container}>
         <div className={s.divContainer}>
           <div className={s.divData}>

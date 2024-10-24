@@ -17,7 +17,7 @@ const About = ({ language = 'en' }) => {
   const t = translations[language]; // Selecciona el idioma
 
   return (
-    <div className={s.container}>
+    <div id="about" className={s.container}>
       <div className={s.about}>
         <div className={s.divTitle}>
           <h2>{t.aboutTitle}</h2>

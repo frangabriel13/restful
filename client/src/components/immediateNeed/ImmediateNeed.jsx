@@ -30,7 +30,7 @@ const ImmediateNeed = ({ language }) => {
   ];
 
   return (
-    <div className={s.container}>
+    <div id="immediate-need" className={s.container}>
       <div className={s.divTitle}>
         <h2>{t.immediateNeedTitle}</h2>
       </div>
