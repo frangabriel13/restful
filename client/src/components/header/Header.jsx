@@ -77,7 +77,7 @@ function Header({ language, setLanguage }) { // Recibe el idioma como prop
     en: {
       about: "About Us",
       futurePlanning: "Future Planning",
-      immediateNeed: "Immediate Need",
+      immediateNeed: "Pre-Need",
       services: "Services",
       contact: "Contact",
       mourning: "Mourning",
