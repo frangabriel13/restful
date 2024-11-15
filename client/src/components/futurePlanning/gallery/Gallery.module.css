@@ -4,20 +4,29 @@
   padding: 2rem;
   border-radius: .3rem;
   background-color: #fff;
+
 }
 
 .selectedImageContainer {
+  width: 100%; /* Asegura que el contenedor ocupe el ancho completo */
+  max-width: 60rem; /* Máximo ancho para mantener consistencia */
+  height: 40rem; /* Altura fija para evitar cambios de tamaño */
   margin-bottom: 2rem;
+  overflow: hidden; /* Oculta las partes de la imagen que sobresalgan */
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .selectedImage {
   width: 100%;
-  max-width: 60rem;
-  height: auto;
+  height: 100%;
+  object-fit: cover; /* Se adapta al contenedor, recortando si es necesario */
   border-radius: .3rem;
 }
 
 .thumbnailContainer {
+  max-width: 60rem;
   display: flex;
   justify-content: center;
   gap: 1rem;
@@ -25,10 +34,12 @@
 }
 
 .thumbnail {
-  width: 10rem;
-  height: auto;
+  width: 8rem;
+  height: 10rem; /* Fija el tamaño de las miniaturas */
+  object-fit: cover; /* Evita deformaciones en las miniaturas */
   cursor: pointer;
   transition: transform 0.2s;
+  border-radius: 0.2rem;
 }
 
 .thumbnail:hover {
@@ -46,11 +57,12 @@
   }
 
   .selectedImageContainer {
+    height: 25rem; /* Altura fija para pantallas pequeñas */
     margin-bottom: 1rem;
   }
 
   .selectedImage {
-    max-width: 100%;
+    object-fit: cover; /* Mantiene el ajuste en pantallas pequeñas */
   }
 
   .thumbnailContainer {
@@ -58,6 +70,7 @@
   }
 
   .thumbnail {
-    width: 5rem; /* Reducido para pantallas pequeñas */
+    width: 5rem; /* Miniaturas más pequeñas en dispositivos móviles */
+    height: 5rem; /* Asegura proporciones cuadradas */
   }
 }

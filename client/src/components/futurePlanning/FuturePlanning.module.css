@@ -32,10 +32,18 @@
 }
 
 .sectionTwo {
+  width: 90%; /* Contenedor ocupa el 90% del ancho total */
   display: flex;
-  justify-content: center;
-  gap: 15rem;
+  justify-content: space-between; /* Espacio igual entre los elementos */
+  gap: 1rem; /* Espacio entre los divs */
   align-items: center;
+  margin: 0 auto; /* Centra horizontalmente */
+}
+
+.sectionTwo > div {
+  flex: 1; /* Cada div ocupa un mismo ancho (50%) */
+  max-width: 50%; /* Limita el ancho máximo a 50% del contenedor */
+  box-sizing: border-box; /* Incluye padding y borde en el tamaño total */
 }
 
 .callToAction {
@@ -104,6 +112,12 @@
   .sectionTwo {
     flex-direction: column; /* Colocar los elementos uno debajo del otro en móviles */
     gap: 5rem; /* Reducir el espacio entre los elementos */
+  }
+
+  .sectionTwo > div {
+    flex: 1; /* Cada div ocupa un mismo ancho (50%) */
+    max-width: 100%; /* Limita el ancho máximo a 50% del contenedor */
+    box-sizing: border-box; /* Incluye padding y borde en el tamaño total */
   }
 
   .callToAction {
